@@ -1,7 +1,7 @@
 ```
-# 📚 Repositório de Conteúdo de Curso de Programação
+# 📚 Repositório do Conteúdo do Curso Técnico
 
-Bem-vindo ao **Repositório de Conteúdo de Visual Basic do Teilão**! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado a um curso de programação. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
+Bem-vindo ao **Repositório de Conteúdo de Visual Basic do Teilão ** (futuramente também incluirá arquivos de outros conteúdos)! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado ao curso. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
 
 ## 🎯 Propósito do Repositório
 
@@ -21,17 +21,17 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 
 ```plaintext
 📦 conteudo-curso-programacao/
-├── 📁 aulas/
+├── 📁 aulas-visual-basic/
 │   ├── aula-01.md
-│   ├── aula-02.md
+│   ├── aula-02-login.md
 │   └── ...
-├── 📁 exemplos-codigo/
-│   ├── exemplo-01.py
-│   ├── exemplo-02.js
+├── 📁 aulas-portugol/
+│   ├── exemplo-01.por
+│   ├── exemplo-02.por
 │   └── ...
-├── 📁 tarefas/
-│   ├── tarefa-01.md
-│   ├── tarefa-02.md
+├── 📁 aulas-modelagem-sistemas/
+│   ├── tarefa-bizagi-01.bpm
+│   ├── tarefa-star-uml-02.mdj
 │   └── ...
 ├── 📁 projetos/
 │   ├── projeto-01/
@@ -51,7 +51,7 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 
 ### Descrição das Pastas
 
-- **Aulas**: Contém arquivos markdown para cada aula. Cada arquivo contém notas da aula, slides e quaisquer recursos relacionados.
+- **Aulas**: Contém arquivos para cada aula. Cada arquivo contém notas da aula, slides e quaisquer recursos relacionados.
 - **Exemplos de Código**: Armazena todos os trechos de código e projetos de exemplo usados ao longo do curso. Os arquivos são nomeados de forma descritiva para corresponder à aula ou ao tópico.
 - **Tarefas**: Inclui descrições detalhadas das tarefas, com instruções sobre como completá-las e enviá-las.
 - **Projetos**: Contém projetos maiores que podem abranger várias aulas. Cada projeto é organizado em seu próprio subdiretório.
