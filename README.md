@@ -1,4 +1,4 @@
-```markdown
+```
 # 📚 Repositório de Conteúdo de Curso de Programação
 
 Bem-vindo ao **Repositório de Conteúdo de Visual Basic do Teilão**! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado a um curso de programação. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
