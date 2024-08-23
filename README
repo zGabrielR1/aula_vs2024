@@ -3,7 +3,7 @@ Aqui está a versão traduzida do README.md:
 ```markdown
 # 📚 Repositório de Conteúdo de Curso de Programação
 
-Bem-vindo ao **Repositório de Conteúdo de Curso de Programação**! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado a um curso de programação. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
+Bem-vindo ao **Repositório de Conteúdo de Visual Basic do Teilão**! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado a um curso de programação. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
 
 ## 🎯 Propósito do Repositório
 
@@ -49,6 +49,8 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
     └── ...
 ```
 
+
+
 ### Descrição das Pastas
 
 - **Aulas**: Contém arquivos markdown para cada aula. Cada arquivo contém notas da aula, slides e quaisquer recursos relacionados.
@@ -93,7 +95,6 @@ Aceitamos contribuições para melhorar este repositório. Siga estes passos par
 
 - [Página do Curso](https://exemplo.com/pagina-do-curso)
 - [GitHub do Instrutor](https://github.com/usuario-instrutor)
-- [Fórum do Curso](https://forum.exemplo.com)
 
 ## 📄 Licença
 
@@ -101,11 +102,9 @@ Este repositório está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](
 
 ## 👥 Autores e Agradecimentos
 
-Este projeto foi criado e é mantido por **Seu Nome**. Agradecimentos especiais a todos os colaboradores e alunos que ajudam a tornar este repositório valioso.
+Este projeto foi criado e é mantido por **Gabriel Renostro**. Agradecimentos especiais a todos os colaboradores e alunos que ajudam a tornar este repositório valioso.
 
 ---
 
 Feliz Codificação! 🚀
 ```
-
-Esse template é uma tradução direta, mantendo a mesma estrutura organizada, com instruções claras sobre como utilizar o repositório e contribuir para ele.
