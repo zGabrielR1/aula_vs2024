@@ -1,0 +1,19 @@
+G) Faça um programa para calcular e informar o IMC de uma pessoa, sendo informado pelo usuário a altura (m) e o peso (kg).
+FÓRMULA: imc = peso / altura²
+SITUAÇÕES:
+Abaixo do peso -> imc abaixo de 18
+Peso normal -> imc entre 18 e 25
+Sobrepeso -> imc entre 25 e 30
+Obesidade I -> imc entre 30 e 35
+Obesidade II -> imc entre 35 e 40
+Obesidade mórbida -> imc acima de 40
+
+H) Faça um programa para ler: Quantidade atual em estoque, quantidade máxima em estoque e quantidade mínima em estoque de um produto. Calcular e informar a quantidade média (quantidade média = (quantidade máxima + quantidade mínima) / 2). Se a quantidade atual em estoque for maior ou igual a quantidade média exibir a mensagem "Não efetuar compra", caso contrário escrever a mensagem "Efetuar compra".
+
+I) Faça um programa que recebe o prefixo correspondente ao estado de um indivíduo (ex: RS, SC etc.) e exibe na tela qual é a região (geográfica) do mesmo.
+
+J) A jornada de trabalho semanal de um funcionário é de 40 horas. O funcionário que trabalhar mais de 40 horas receberá hora extra, cujo cálculo é o valor da hora regular com um acréscimo de 50%. Escreva um programa que leia o número de horas trabalhadas em um mês, o salário por hora e escreva o salário total do funcionário, que deverá ser acrescido das horas extras, caso tenham sido trabalhadas (considere que o mês possua 4 semanas exatas).
+
+K) Já fizemos...
+
+L) Faça um programa para pegar dois valores e informar qual é o maior deles. Caso sejam iguais informar que são iguais.

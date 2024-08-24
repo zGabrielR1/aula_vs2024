@@ -1,0 +1,5 @@
+Faça um programa para calcular a área de um triângulo.
+1- Pegar a base
+2- Pegar a altura
+3- Calcular: area = base * altura / 2
+4- Exibir o resultado

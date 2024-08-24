@@ -1,0 +1,12 @@
+M) Faça um programa para analisar partidas de futebol, fornecendo o nome das duas equipes e o placar do jogo. O programa deverá exibir na tela quem ganhou o jogo (ou se foi empate) e a situação (Jogo normal ou Goleada).
+Para a situação, considere:
+JOGO NORMAL: Diferença de até no máximo 3 gols entre as equipes;
+GOLEDA: Diferença superior à 3 gols entre as equipes.
+
+N) Faça um programa para um banco, que solicite: Número da conta do cliente, valor atual do saldo, valor do débito (saída) e valor do crédito (entrada) a ser feito na conta. Calcule e exiba o valor do saldo atualizado (saldo atual = saldo atual + crédito - débito). Também verificar se saldo atual é positivo ou negativo e informar na tela 'Saldo Positivo' ou 'Saldo Negativo'.
+
+O) Para donos de carros flex, o álcool é mais vantajoso economicamente se o preço não ultrapassar 45% do preço da gasolina. Escreva um programa de computador que indique ao motorista qual combustível o mesmo deve utilizar (Gasolina ou Álcool).
+
+P) Faça um programa que leia 3 notas de avaliações de um aluno. Calcule a média aritmética e exiba uma mensagem que informa se o aluno foi ou não aprovado (considerar que média igual ou maior que 6 o aluno é aprovado). Exibir também a média calculada.
+
+Q) Faça um programa para pegar o salário fixo e o valor total das vendas efetuadas pelo vendedor de uma empresa. Sabendo que ele recebe uma comissão de 3% sobre o total das vendas até R$1.500,00 mais 5% sobre o que ultrapassar este valor, calcular e escrever o seu salário total.

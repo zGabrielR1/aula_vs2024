@@ -1,0 +1,8 @@
+C) Faça um programa para informar o nome e o sexo de uma pessoa (masculino/feminino), sendo coletados o seu nome e o seu sexo ("H" para masculino ou "M" para feminino);
+
+D) Maçãs custam R$ 1,30 cada se forem compradas menos de uma dúzia, e R$ 1,15 se forem compradas pelo menos 12. Escreva um programa que leia a quantidade de maçãs compradas, calcule e informe o custo total da compra;
+
+F) Faça um programa para informar qual é o peso ideal de uma pessoa, sendo informado pelo usuário a altura (cm) e o sexo dela (H para homens e M para mulheres). Use a formula de Lorentz para calcular o peso ideal.
+FORMULA: peso ideal = (altura- 100) - ((altura - 150) / índice)
+HOMENS: índice = 4
+MULHERES: índice = 2

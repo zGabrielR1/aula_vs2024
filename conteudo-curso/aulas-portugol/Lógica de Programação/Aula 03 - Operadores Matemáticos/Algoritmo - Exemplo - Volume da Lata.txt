@@ -1,0 +1,5 @@
+Faça um programa para calcular o volume de uma lata cilindrica.
+1) Pegar a medida do raio da lata;
+2) Pegar a medida da altura da lata
+3) Caular: volume = 3.14 * (raio*raio) * altura
+4) Informar o resultado

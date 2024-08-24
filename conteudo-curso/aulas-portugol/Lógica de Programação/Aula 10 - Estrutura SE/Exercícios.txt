@@ -1,0 +1,17 @@
+R) Desenvolva um programa para calcular a conta de água para a CASAN. O custo da água é apurado com base nos seguintes critérios
+• CONSUMIDOR RESIDENCIAL: R$ 5,00 de taxa + R$ 0,05 por m³ gastos;
+• CONSUMIDOR COMERCIAL: R$ 500,00 para os primeiros 80m³ gastos + R$ 0,25 por m³ gastos acima dos 80m³;
+• CONSUMIDOR INDUSTRIAL: R$ 800,00 para os primeiros 100m³ gastos + R$ 0,04 por m³ gastos acima dos 100 m³;
+O programa deverá ler o nome do cliente, seu tipo (RESIDENCIAL, COMERCIAL ou INDUSTRIAL) e o seu consumo de água em metros cúbicos. Como resultado exibir na tela a conta do cliente, com o nome e o valor em reais a ser pago pelo mesmo.
+
+S) Faça um programa que leia 3 notas de avaliações de um aluno e a sua frequência. Calcule a média aritmética e exiba uma mensagem que informa a situação do aluno.
+CONDIÇÕES:
+APROVADO = Média superior ou igual a 7 e frequência superior ou igual a 75.
+EXAME = Média entre 5 e 7 e frequência superior ou igual a 75.
+REPROVADO = Média abaixo de 5 ou frequência abaixo de 75.
+
+T) Uma fruteira está vendendo frutas com a seguinte tabela de preços:
+		Até 5 Kg 		Acima de 5 Kg
+Morango 	R$ 2,50 por Kg 		R$ 2,20 por Kg
+Maçã 		R$ 1,80 por Kg 		R$ 1,50 por Kg
+Se o cliente comprar mais de 8 Kg em frutas ou o valor total da compra ultrapassar R$ 25,00, receberá ainda um desconto de 10% sobre este total. Faça um programa para ler a quantidade (em Kg) de morangos e a quantidade (em Kg) de maças adquiridas e exiba o valor a ser pago pelo cliente.

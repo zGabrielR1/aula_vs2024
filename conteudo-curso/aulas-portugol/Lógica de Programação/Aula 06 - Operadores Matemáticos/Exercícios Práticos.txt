@@ -1,0 +1,13 @@
+1) Faça um programa que calcule o valor de venda de um automóvel, considerando o valor de custo que a fábrica teve para fabrica-lo, o percentual de impostos sobre o valor de custo, e o percentual de lucro da agência distribuidora do veículo.
+
+2) Faça um programa para calcular o reajuste de salário dos funcionários de uma empresa, usando um percentual de aumento desejado.
+
+3) Faça um programa para calcular e exibir o salário liquido de um vendedor. Considere o valor total das vendas feitas por ele, o seu percentual de comissão, o seu salário bruto e o percentual de contribuição de INSS.
+
+4) Faça um programa para converter distâncias lidas em Quilômetros para Milhas e Jardas.
+
+5) Crie um programa que converte uma medida lida em Metros² para Hectare e Alqueire.
+
+6) Faça um programa que leia o peso de um indivíduo na Terra e converta para o peso equivalente nos seguintes planetas: Mercurio, Venus e Marte.
+
+7) Faça um programa que converte para Kelvin uma temperatura recebida em Celsius.

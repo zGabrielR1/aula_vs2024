@@ -1,0 +1,18 @@
+2) Faça um programa para calcular o preço de venda de um produto, usando com base o preço de compra e o percentual de lucro desejado.
+1- Pegar o preço de custo
+2- Pegar o percentual de lucro
+3- Calcular: preço venda = preço custo * per lucro / 100 + preço custo
+4- Exibir o resultado
+
+
+
+
+
+
+
+
+
+
+
+
+

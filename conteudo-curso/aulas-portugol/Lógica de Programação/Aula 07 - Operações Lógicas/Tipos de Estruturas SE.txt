@@ -1,0 +1,21 @@
+Tipos de estrutura de controle SE:
+1) SE Simples
+se (condição) {
+  ...instruções para v
+}
+
+2) SE Composto
+se (condição) {
+  ...instruções para v
+} senao {
+  ...instruções para f
+}
+
+3) SE Encadeado
+se (condição1) {
+  ...instruções para v
+} senao se (condição2) {
+  ...instruções para v
+} senao {
+  ...instruções para f
+}

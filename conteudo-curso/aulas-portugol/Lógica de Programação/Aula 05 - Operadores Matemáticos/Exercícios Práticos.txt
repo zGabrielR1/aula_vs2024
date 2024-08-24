@@ -1,0 +1,22 @@
+1) Um comércio por atacado compra caixas de produtos para revender (exemplo, uma caixa de sabonetes com 12 unidades). Escreva um programa para calcular o custo unitário dos produtos contidos em uma caixa.
+
+2) Faça um programa que leia a idade de uma pessoa e exiba esta idade convertida em meses, dias, horas e minutos.
+
+3) Faça um programa que informa o tempo de viagem necessário entre duas cidades, sendo informado a distância (km) e a velocidade média (km/h).
+
+4) Faça um programa que receba um valor que foi aplicado em uma poupança e exiba o valor do montante após o número de meses informado pelo usuário. Considere, para o cálculo, a taxa de juros simples a.m. que for informada pelo usuário.
+
+
+5) Faça um programa que receba um valor que foi aplicado em uma poupança e exiba o valor do montante após o número de meses informado pelo usuário. Considere, para o cálculo, a taxa de juros compostos a.m. que for informada pelo usuário.
+m = c * (1 + i / 100)^t
+j = m - c
+
+m = c * Matematica.potencia(1 + i / 100, tempo)
+
+6) Faça um programa para converter uma velocidade fornecida em KM/H para M/S.
+
+7) Faça um programa para calcular a multa por devolução atrasada dos livros em uma biblioteca. Considere R$0,75 o valor diário da multa por livro atrasado.
+
+8) Faça um programa para calcular o consumo médio de combustível de um automóvel, sendo fornecida a distância total percorrida (KM) pelo automóvel e o total de combustível gasto (L).
+
+...Em breve mais.
