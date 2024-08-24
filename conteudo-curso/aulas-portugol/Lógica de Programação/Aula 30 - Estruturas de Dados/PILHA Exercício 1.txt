@@ -1,0 +1,20 @@
+Faça um programa no Portugol Studio para auxiliar no controle de um porto seco de uma empresa logística. O programa deverá controlar os containers, no máximo 5, que serão armazenados no local. O programa deverá ter o seguinte Menu:
+
+[1] Inserir Container na Pilha
+[2] Remover Container da Pilha
+[3] Visualizar a Pilha de Containers
+[4] Encerrar o Programa
+
+• O Menu deverá ser exibido em looping até o usuário selecionar a opção [4].
+• A opção [1] deverá inserir um novo container na pilha, desde que a pilha não esteja cheia. Caso esteja cheia informar ao usuário que não foi possível inserir o container.
+• Os containers são identificados pelo seu código (Ex: 1, 2, 3, 18, 99, 235...) formado apenas por números inteiros.
+• A opção [2] deverá remover o container do topo da pilha, liberando a posição dentro da pilha.
+• A opção [3] imprime na tela a pilha para que o usuário possa ver quem são os contêiners que estão na pilha.
+• A opção [4] encerra o programa independentemente da situação da pilha.
+
+NOVAS FUNCONALIDADES:
+Na opção [1] acrescentar uma validação que não permita o usuário inserir códigos de containers já existentes na pilha. Caso o código informado já exista na pilha, o programa deverá informar "Este container já está na pilha" e solicitar o código novamente.
+
+
+
+

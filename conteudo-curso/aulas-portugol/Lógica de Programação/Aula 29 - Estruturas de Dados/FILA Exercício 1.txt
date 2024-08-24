@@ -1,0 +1,15 @@
+Faça um programa, no Portugol Studio, para controlar a fila de atendimentos (de no máximo 6 pessoas) de uma farmácia. O programa deverá apresentar o seguinte MENU:
+
+[1] Inserir Cliente na Fila
+[2] Atender Próximo Cliente
+[3] Visualizar Fila
+[4] Encerrar o Programa
+
+• O Menu deverá ser exibido em looping até o usuário selecionar a opção [4].
+• A opção [1] deverá inserir um novo cliente na fila, desde que a fila não esteja cheia. Caso a fila esteja cheia informar ao usuário que não foi possível inserir o cliente.
+• A opção [2] deverá remover o primeiro cliente da fila e mover todos os outros para a próxima posição da fila, liberando a última posição da fila.
+• A opção [3] imprime na tela a fila para que o usuário possa ver quem são os clientes que estão na fila.
+• A opção [4] encerra o programa independentemente da situação da fila.
+
+NOVAS FUNCONALIDADES:
+Na opção [1] acrescentar a leitura da idade do cliente, se o cliente possuir mais de 60 anos ele deverá ser inserido no início da fila, e os demais clientes realocados para uma posição anterior da fila.

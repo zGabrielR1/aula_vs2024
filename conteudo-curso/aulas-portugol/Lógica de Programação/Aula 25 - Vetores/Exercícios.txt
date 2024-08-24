@@ -1,0 +1,13 @@
+A) Faça um programa que armazena os seguintes nomes (Teilor, Gustavo, Gabriel, Naiara, Rui, Leocir) em um vetor e depois recebe um nome escrito pelo usuário, e procure esse nome no vetor. Se o nome procurado for encontrado, deve exibir uma mensagem "NOME ENCONTRADO", caso contrário "NÃO ENCONTRADO".
+
+B) Faça um programa que armazena os seguinte valores (4, 7, 2, 9, 13, 5, 8, 1, 12, 11) em um vetor e depois verifica e informa para o usuário qual é o maior valor deste vetor e a sua posição dentro dele.
+
+C) Faça um programa que solicite 10 números inteiros e armazene os mesmos dentro de um vetor. Verifica e informa para o usuário qual é o maior valor do vetor e a sua posição dentro dele.
+
+D) O mesmo exercício anterior, mas agora deve informar parao usuário o menor valor do vetor e a respectiva posição dele nesse vetor.
+
+E) Faça um programa que armazena os seguinte valores (4, 7, 2, 9, 13, 5, 8, 1, 12, 11) em um vetor e depois imprime na tela esses 10 números na ordem inversa.
+
+F) Faça um programa que solicite 10 números inteiros e armazene os mesmos dentro de um vetor. Após a leitura total dos 10 números, o programa deve imprimir na tela esses 10 números lidos na ordem inversa.
+
+G) Faça um programa que solicite a nota de uma prova de uma turma de 15 alunos e armazene estas notas dentro de um vetor. Após a leitura das notas o programa deverá calcular a média das notas da turma e verificar quantos alunos tiveram nota acima desta média.

@@ -1,0 +1,7 @@
+K) Faça um programa que solicite a nota e o nome de 10 alunos, e armazene as notas e um vetor e os nomes em outro, no final imprima na tela o nome e a nota de cada aluno.
+
+L) O mesmo exercício anterior, mas agora o programa deve verificar qual foi o melhor aluno, imprimindo na tela no final o nome e a nota deste aluno.
+
+M) Faça um programa que solicita o nome e o preço de venda de 10 produtos, armazena os preços em um vetor e os nomes em outro e no final do programa imprime a relação de produtos e seus respectivos preços, com o total da venda também.
+
+N) Faça um programa que armazena os seguinte valores (4, 7, 2, 9, 13, 5, 8, 1, 12, 11) em um vetor A, e os seguintes valores (5, 8, 1, 3, 4, 6, 2, 9, 7, 2) em outro vetor B, multiplique o valor de cada posição do primeiro vetor A pelo valor da posição correspondente no outro vetor B, e armazene o resultado em um terceiro vetor C. No final imprima os resultados na tela.

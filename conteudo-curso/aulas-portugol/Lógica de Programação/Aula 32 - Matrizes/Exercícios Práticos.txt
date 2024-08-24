@@ -1,0 +1,29 @@
+A) Faça um programa que solicite 6 números inteiros e armazene estes números dentro de uma matriz 2x3, em seguida solicite mais 6 números inteiro e armaze estes números em outra matriza 2x3. Após armazenar os valores o programa deverá multiplicar os números da primeira matriz pelos numeros da segunda matriz, conforme o indíce correspondente de cada posição, e armazenar o resultado em uma terceira matriz 2x3.
+
+B) Faça um programa que solicita ao usuário a quantidade real em estoque, e a quantidade miníma em estoque de 5 produtos, armazena estes valores em uma matriz e cálcula a diferença entre os dois valores e armazena em um vetor.
+
+C) Faça um programa que solicita ao usuário a quantidade real em estoque, e a quantidade miníma em estoque de 5 produtos, armazena estes valores em uma matriz e verifica e infroma ao usuário quais produtos precisam ser comprados para repor a quantidade em estoque.
+
+D) Faça um programa que recebe a 3 notas de 4 alunos, armazena as notas em uma matriz, verifica e informa quais foram os alunos que estão aprovados, reprovados e em exame: Sendo média do aluno igual ou acima de 7 para aprovado, média entre 5 e 7 para exame, média abaixo de 5 para reprovado.
+
+E) Faça um programa que recebe a 3 notas de 4 alunos, armazena as notas em uma matriz, verifica e informa quantos alunos tiveram média acima da média da turma.
+
+F) Faça um programa que armazene os seguintes valores dos produtos de 3 vendas venda1: (9.50, 4.75, 2.00, 1.15), venda2: (3.55, 6.90, 4.50, 2.00) e venda3: (9.18, 12.65, 3.40, 2.98) em uma matriz e apresente na tela o valor total de cada venda.
+
+G) Faça um programa que armazene os seguintes valores dos produtos de 3 vendas, venda1: (9.50, 4.75, 2.00, 1.15), venda2: (3.55, 6.90, 4.50, 2.00) e venda3: (9.18, 12.65, 3.40, 2.98) em uma matriz, e em um vetor armazene de 3 posições armazene o nome do cliente de cada venda, venda1: Nicolas Cage, venda2: Angelina Jolie e venda3: Tom Hanks. No final apresente na tela o total da venda e o nome do cliente e quem foi o cliente com a maior valor de compra.
+
+H) Faça um programa que solicita e armazena em uma matriz o preço de venda de 4 produtos, de 3 vendas. Solicita e armazena em um vetor o nome do cliente de cada venda. Após isso processa e imprime na tela o nome de cada cliente e o valor total a pagar de cada um deles.
+
+I) Faça um programa que solicita e armazena em uma matriz o nome de 5 alunos de 3 Turmas. Após isso solicita um nome para ser procurado, e ao final imprime na tela se encontrou o aluno e qual é a turma que ele pertence.
+
+J) Faça um programa com uma matriz 3x3, que solicita para o usuário em qual posição ele quer armazenar o nome de uma pessoa, após completar a matriz informando os 9 nomes, o programa deve sortear um nome e imprimir na tela.
+
+K) Faça um programa que permite o usuário preencher uma matriz 4x4 e depois, através de um menu, permitir que o usuário escolha o que deseja fazer com esta matriz:
+Opção 01 - Imprimir todos os elementos da matriz;
+Opção 02 - Somar os quadrados (potência) de todos os elementos da primeira coluna;
+Opção 03 - Somar todos os valores da terceira linha;
+Opção 04 - Contar quantos valores ímpares existem na matriz;
+Opção 05 - Somar todos os valores das posições de índice par da matriz inteira.
+Opção 06 - Substituir todos os valores negativos por 0;
+Opção 07 - Sair
+DETALHE: Em todas as opções (de 1 a 6) é necessário imprimir o resultado na tela.

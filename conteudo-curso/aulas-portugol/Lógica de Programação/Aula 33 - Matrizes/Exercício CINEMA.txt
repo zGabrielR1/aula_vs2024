@@ -1,0 +1,14 @@
+Faça um programa no Portugol Studio para controlar as reservas das cadeiras de um cinema, que possui 5 filas de 4 cadeiras, totalizando 20 cadeiras. As reservas são feitas vinculando o nome do cliente à cadeira desejada por ele. O programa deverá apresentar o seguinte MENU:
+
+[1] Reservar Cadeira
+[2] Remover Reserva
+[3] Visualizar Reservas
+[4] Encerrar o Programa
+
+• O Menu deverá ser exibido em looping até o usuário selecionar a opção [4].
+• A opção [1] deverá inserir o nome do cliente na posição da cadeira desejada, desde que a cadeira esteja livre. Caso a cadeira já esteja reservada informar ao usuário que não foi possível reservar a cadeira e ele deverá informar outra cadeira.
+• A opção [2] deverá remover o nome do cliente da cadeira deixando ela livre para reserva, caso a cadeira informada já esteja livre deverá informar ao usuário que a cadeira já está livre.
+• A opção [3] imprime na tela as cadeiras reservadas com o nome do cliente e as cadeiras livres também, obedecendo o layout das cadeiras no cinema.
+• A opção [4] encerra o programa independentemente da situação da fila.
+
+

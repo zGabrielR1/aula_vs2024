@@ -1,0 +1,5 @@
+H) Faça um programa que armazena os seguinte valores (4, 7, 2, 9, 13, 5, 8, 1, 12, 11) em um vetor e depois imprime na tela esses 10 números em ordem crescente.
+
+I) Faça um programa que solicite 10 números inteiros e armazene os mesmos dentro de um vetor. Após a leitura total dos 10 números, o programa deve imprimir na tela esses 10 números lidos em ordem crescente.
+
+J) Faça um programa que solicite 10 números inteiros e armazene os mesmos dentro de um vetor. Após a leitura total dos 10 números verificar se existem números repetidos no vetor e ao final imprimir na tela e em que posições o números repetidos se encontram encontram.

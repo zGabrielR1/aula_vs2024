@@ -1,0 +1,15 @@
+Lista: 
+-Vetor de tamanho dinâmico
+-Vetor heterogêneo
+-Usa nós para  ligar os itens na memoria do computador
+
+Pilha:
+-LIFO
+-Vetor onde vc coloca o dado sempre no final, retira sempre do final
+
+FILA:
+-FIFO
+-Vetor onde vc coloca o dado sempre no final e retira sempre no começo
+
+REGISTRO:
+-Vetor heterogêneo

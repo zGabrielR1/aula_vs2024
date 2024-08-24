@@ -1,0 +1,18 @@
+1) Faça um programa no Portugol Studio para registrar os dados do diário de classe de uma escola. A turma possui 5 alunos e deverão ser armazenados no programa o número da matricula (real), o percentual de frequência, a nota 1, a nota 2, a nota 3 e a média final. O programa deverá apresentar o seguinte MENU:
+
+[1] Cadastrar Dados no Diário
+[2] Gerar Média Final
+[3] Visualizar Diário
+[4] Verificar Situação do Aluno
+[5] Encerrar o Programa
+
+• O Menu deverá ser exibido em looping até o usuário selecionar a opção [5].
+• A opção [1] deverá inserir a matricula, a frequência e as 3 notas do aluno na primeira linha disponível da matriz. Caso não exista mais linhas disponíveis na matriz o programa deverá informar o usuário.
+• A opção [2] deverá calcular a média final do aluno conforme a matricula do aluno informada, e armazenar este valor na última coluna da matriz.
+• A opção [3] imprime na tela todos os dados da matriz de forma organizada.
+• A opção [4] lê a frequência e a média final conforme a matricula do aluno informada e processa a situação dele de acordo com as regras abaixo:
+	-Frequência inferior a 75 = REPROVADO
+	-Média igual ou acima de 7 e frequência igual ou superior a 75 = APROVADO
+	-Média entre 5 e 6,9 e frequência igual ou superior a 75 = EXAME
+	-Média inferior a 5 = REPROVADO
+• A opção [5] encerra o programa independentemente da situação da fila.

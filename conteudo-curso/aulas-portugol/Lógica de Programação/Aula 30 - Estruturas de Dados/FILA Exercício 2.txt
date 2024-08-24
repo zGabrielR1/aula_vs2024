@@ -1,0 +1,16 @@
+Faça um programa, no Portugol Studio, para controlar a fila de atendimentos (de no máximo 10 posições) de um pronto-socorro. O programa deverá apresentar o seguinte Menu:
+
+[1] Inserir Paciente na Fila
+[2] Atender Próximo Paciente
+[3] Visualizar Fila
+[4] Encerrar o Programa
+
+• O Menu deverá ser exibido em looping até o usuário selecionar a opção [4].
+• A opção [1] deverá inserir um novo paciente na fila, desde que a fila não esteja cheia. Caso a fila esteja cheia informar ao usuário que não foi possível inserir o paciente.
+• Os pacientes são identificados pelo nome.
+• A opção [2] deverá remover o primeiro paciente da fila e mover todos os outros para a próxima posição da fila, liberando a última posição da fila.
+• A opção [3] imprime na tela a fila para que o usuário possa ver quem são os pacientes que estão na fila.
+• A opção [4] encerra o programa independentemente da situação da fila.
+
+REGRAS DE NEGÓCIO:
+• Na opção [1] o programa deverá perguntar ao usuário qual é a triagem do atendimento, Normal ou Urgente. Se o atendimento for urgente o paciente deverá ser inserido no início da fila, e os demais realocados para uma posição anterior da fila. Se o atendimento for normal o paciente deverá ser inserido no final da fila.

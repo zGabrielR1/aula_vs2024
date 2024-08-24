@@ -1,0 +1,3 @@
+O) Faça um programa que armazena os seguinte valores (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) em um vetor e depois misture os valores e imprima o vetor coms os valores misturados. (Para a lógica deste programa utilize a função Sorteia da biblioteca Util)
+
+P) Faça um programa que solicite 10 números inteiros e armazene os mesmos dentro de um vetor. Detalhe: O programa não deve permitir que o usuário insira valores repetidos, se isso acontecer deverá ser infromado ao usuário e ele deverá informar um novo valor.

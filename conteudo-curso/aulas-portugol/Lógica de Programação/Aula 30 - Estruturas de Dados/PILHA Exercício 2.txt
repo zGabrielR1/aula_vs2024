@@ -1,0 +1,17 @@
+Faça um programa no Portugol Studio para armazenar os textos das notícias de um site. O programa deverá armazenar as notícias, no máximo 10, e permitir o acesso a elas. O programa deverá ter o seguinte Menu:
+
+[1] Cadastrar Nova Notícia
+[2] Consultar Última Notícia
+[3] Remover Notícia
+[4] Visualizar Todas Notícias
+[5] Encerrar o Programa
+
+• O Menu deverá ser exibido em looping até o usuário selecionar a opção [5].
+• A opção [1] deverá inserir uma nova notícia na pilha, desde que a pilha não esteja cheia. Caso esteja cheia informar ao usuário que não foi possível inserir a notícia.
+• A opção [2] deverá imprimir na tela a última notícia cadastrada.
+• A opção [3] deverá remover a notícia do topo da pilha, liberando a posição dentro da pilha.
+• A opção [4] imprime na tela a pilha para que o usuário possa ver todas as notícias que estão na estrutura de dados.
+• A opção [5] encerra o programa independentemente da situação da pilha.
+
+NOVAS FUNCONALIDADES:
+Na opção [1] acrescentar uma validação que não permita o usuário inserir notícias com mais de 140 caracteres (usar biblioteca!).
