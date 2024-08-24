@@ -1,0 +1,16 @@
+U) Faça um programa que leia dois valores numéricos e exiba eles em ordem crescente se forem diferentes, ou informe que eles são iguais.
+
+V) Faça um algoritmo que dado três valores numéricos A, B, e C, verifica se eles formam um triângulo. Formando um triângulo, exibe na tela se ele é equilátero, isósceles ou escaleno.
+
+W) Escreva um algoritmo que descubra se um ano lido é bissexto. Um ano é bissexto se ele for múltiplo de 4, exceto quando ele for múltiplo de 100. Os anos múltiplos de 100 somente são bissextos quando são múltiplos de 400.
+
+X) Faça um programa que leia o peso de um indivíduo na Terra e converta para o peso equivalente em outro planeta conforme a escolha do usuário. Considere as opções abaixo:
+PLANETA		GRAVIDADE
+Mercúrio: 	0,37
+Vênus: 		0,88
+Marte: 		0,38
+Júpiter: 	2,64
+Saturno: 	1,15
+Urano: 		1,17
+Formula para o cálculo do peso em outro planeta, considerando a gravidade relativa de cada um deles é:
+Peso no planeta = Peso na terra * gravidade

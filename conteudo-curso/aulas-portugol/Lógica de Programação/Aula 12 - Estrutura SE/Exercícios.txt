@@ -1,0 +1,15 @@
+Y) Faça uma calculadora, que recebe do usuário 2 números e a operação matemática desejada, calcula os números e exibe o resultado na tela (tratar o erro de divisão por 0). Para isso considere as opções de cálculo abaixo:
+[1] Adição 
+[2] Subtração 
+[3] Multiplicação 
+[4] Divisão
+
+Z) Faça um programa para converter um valor recebido em Bytes nas opções abaixo (através de um menu):
+[1] Kilobyte	[2] Megabyte	[3] Gigabyte.
+
+Ç) Crie um programa que calcula o valor a ser pago por um produto considerando o preço de etiqueta e a escolha da condição de pagamento. Utilize as opções da tabela a seguir para saber qual a condição de pagamento escolhida e efetuar o cálculo adequado. Crie um menu com as opções abaixo.
+OPÇÃO	CONDIÇÃO DE PAGAMENTO
+1	À vista, dinheiro ou cheque, 10% de desconto.
+2	À vista, cartão de credito, 5% de desconto.
+3	À prazo em 2 vezes, preço normal da etiqueta sem juros.
+4	À prazo em 3 vezes, preço normal da etiqueta + 10% de juros.
