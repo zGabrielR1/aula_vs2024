@@ -1,0 +1,16 @@
+J) Crie um programa que receba o nome e a nota (de uma prova) de X alunos, e ao final exiba quantas notas foram menores que 7 e quantas foram iguais ou superiores a 7, e exiba também o nome do aluno com a melhor nota juntamente com a sua nota.
+
+K) A prefeitura de uma cidade deseja fazer uma pesquisa entre seus habitantes. Faça um algoritmo para coletar os dados sobre o salário e número de filhos de cada habitante e após as leituras, exibir um relatório com:
+• Média de salário da população;
+• Média do número de filhos;
+• Maior salário dos habitantes;
+• Percentual de pessoas com salário menor que R$ 1045,00.
+
+L) Uma loja está levantando o valor total de todas as mercadorias em estoque. Escreva um programa que permita a entrada das seguintes informações:
+• O número total de mercadorias no estoque;
+• O valor de cada mercadoria. 
+Ao final exibir um relatório com o valor total (R$) em estoque e a média de valor (R$) das mercadorias.
+
+M) O mesmo exercício anterior, mas agora não será informado o número de mercadorias em estoque. Então o funcionamento deverá ser da seguinte forma: ler o valor da mercadoria e perguntar ‘MAIS MERCADORIAS (S/N)?’. Ao final, imprimir o valor total em estoque e a média de valor das mercadorias em estoque.
+
+N) Faça um programa que leia tantos números quanto o usuário desejar e imprima a soma deles.

@@ -1,0 +1,7 @@
+A) Faça um programa para "contar" até o limite informado pelo usuário, fazendo um salto (incremento) também informado pelo usuário.
+
+B) Faça um programa que recebe 5 valores numéricos e no final exiba qual foi o maior valor digitado pelo usuário.
+
+C) Faça um programa que só recebe um número entre 1 e 10 (validar essa condição), e imprima a tabuada do valor digitado.
+
+D) Faça um programa para apresentar ao usuário todos os números de 0 à 100 indicando ao lado de cada um deles, se o mesmo é par ou ímpar.

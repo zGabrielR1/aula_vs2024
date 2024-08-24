@@ -1,0 +1,9 @@
+E) Faça um programa que peça 10 números e apresente a média destes valores digitados.
+
+F) Faça um programa que peça 10 números e apresente no final o maior e o menor valor digitado pelo usuário.
+
+G) Faça um programa que repita a mensagem "Olá mundo" até o usuário informar para parar.
+
+H) Faça um programa que recebe a idade de 10 pessoas, e no final imprima quantas são menores de idade e quantas são maiores de idade.
+
+I) Faça um programa que recebe a idade e o nome de várias pessoas, no final imprimia quantas são maiores e menores de idade e também quem foi a pessoa mais nova e mais velha a ser entrevistada.

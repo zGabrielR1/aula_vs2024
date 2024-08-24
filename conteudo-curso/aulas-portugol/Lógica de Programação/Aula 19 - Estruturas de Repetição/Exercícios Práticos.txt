@@ -1,0 +1,17 @@
+O) Escreva um programa para ler 2 valores e se o segundo valor informado for ZERO, deve ser lido um novo valor, ou seja, para o segundo valor não pode ser aceito o valor zero e imprimir o resultado da divisão do primeiro valor lido pelo segundo valor lido.
+
+P) Um hotel com 8 quartos cobra R$ 50,00 por diária e mais uma taxa de serviços. A taxa de serviços é de:
+•	R$ 4,00 por diária, se o número de diárias for superior à 15;
+•	R$ 3,60 por diária, se o número de diárias for igual à 15;
+•	R$ 3,00 por diária, se o número de diárias for inferior à 15.
+Faça um algoritmo que exiba nome e o total da conta de cada cliente do hotel, e também o total ganho pelo hotel.
+
+Q) Crie um programa para apurar os votos de uma eleição para presidente de uma sala de aula. Primeiramente o programa deverá receber o nome dos dois candidatos e o número de alunos votantes. Na sequencia o programa deverá exibir um menu com as duas possibilidades de voto:
+[ 1 ] “Nome do candidato A”
+[ 2 ] “Nome do candidato B”
+Ler o voto escolhido e acumular para o candidato escolhido. Por último exibir quem venceu a eleição e quantos votos cada um dos candidatos recebeu.
+
+R) Desenvolva um programa que leia um número não determinado de valores e calcule e exiba a média matemática dos valores lidos, a quantidade de valores positivos, a quantidade de valores negativos e o percentual de valores negativos e positivos.
+
+
+

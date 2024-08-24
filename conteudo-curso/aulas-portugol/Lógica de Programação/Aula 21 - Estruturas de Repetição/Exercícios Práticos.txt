@@ -1,0 +1,5 @@
+A) Faça um algoritmo que recebe um número inteiro verifica e exibe na tela a informação dizendo, se ele é um número primo ou não-primo. Para auxiliar no desenvolvimento consulte o fluxograma do algoritmo na próxima página.
+
+B) Um determinado material radioativo perde metade de sua massa a cada 50 segundos. Dada a massa inicial, em gramas, faça um programa que determine o tempo necessário para que essa massa se torne menor que 0,05 gramas.
+
+
