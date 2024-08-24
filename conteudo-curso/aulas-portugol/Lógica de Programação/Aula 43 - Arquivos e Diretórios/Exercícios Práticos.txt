@@ -1,0 +1,19 @@
+A) Faça um programa que grave 10 nomes em um arquivo de texto (nomes.txt), e depois leia esses nomes do arquivo e armazene-os dentro de um vetor.
+
+B) Faça um programa que grave a idade de X pessoas em um arquivo de texto, com o nome que o usuário definir para arquivo.
+
+C) Faça um programa que grave o nome e a idade (na mesma linha) de 5 pessoas em um arquivo de texto (pessoas.txt).
+
+D) Faça um programa que recebe o nome e o preço de X produtos e grava esses dados (na mesma linha) em um arquivo de texto com o nome correspondente a data e a hora atual do computador (usar biblioteca Calendário).
+
+E) Faça um programa que recebe o nome e a nota de 5 alunos e grave esses dados em dois arquivos: "alunos.txt" e "notas.txt".
+
+F) Faça um programa que lê os dados gravados nos arquivos "alunos.txt" e "notas.txt" (exercício E) e informa na tela o nome do aluno com a maior nota e também a média da turma.
+
+G) Refaça o programa do exercício E, adequando para que ele não substitua os valores (nos arquivos txt) quando o programa for executado novamente e novos dados forem inseridos nele.
+
+H) Faça um programa que recebe um nome, abre o arquivo "nomes.txt" (exercício A) e verifica se este nome informe está gravado no arquivo, informando o usuário através de uma mensagem. 
+
+I) Faça um programa que recebe dois nomes, verifica se o primeiro nome informado existe dentro do arquivo "nomes.txt" (exercício A), e substitui pelo segundo nome informado. DETALHE: Usar a função substituir_texto.
+
+J) Faça um programa que lê os dados dos arquivos "alunos.txt" e "notas.txt" (exercício E) e armazena estes dados dentro de uma matriz chamada "turma".

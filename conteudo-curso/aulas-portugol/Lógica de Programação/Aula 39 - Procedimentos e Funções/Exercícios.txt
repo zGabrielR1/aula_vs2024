@@ -1,0 +1,60 @@
+A) Faça um programa que recebe um número inteiro e através de uma função, verifica se ele é PAR ou ÍMPAR. No final exibe o resultado da função.
+
+B) Faça um programa que recebe dois valores numéricos e verifica se o primeiro é divisível pelo segundo (resto 0). Esta verificação deve ser feita por uma função, que retorna VERDADEIRO se for divisível ou FALSO se não for divisível. No final do programa deverá ser informado o resultado, se são divisíveis ou não.
+
+C) Faça um programa com um menu (conforme abaixo) para receber uma temperatura e converter ela de: Celsius para Fahrenheit; Fahrenheit para Celsius; Celsius para Kelvin; Kelvin para Celsius; Fahrenheit para Kelvin e Kelvin para Fahrenheit. O programa deverá possui um procedimento para imprimir o menu, e uma função para cada cálculo de conversão. O programa deve repetir até que seja escolhida a opção para finalizar.
+
+################
+   CONVERSOR
+################
+[1] C para F
+[2] F para C
+[3] C para K
+[4] K para C
+[5] F para K
+[6] K para F
+[7] Sair
+################
+
+D) Faça um programa que recebe um número inteiro (maior do que 0 e menor ou igual a 10) e exibe a tabuda (até 10) de multiplicação deste número. Para esse programa crie uma função de validação do número digitado e um procedimento que imprime a tabuada.
+
+FUNCAO: Deverá receber como parâmetro o número informado e verificar se ele está dentro do intervalo permitido (entre 1 e 10) e retornar um valor lógico (VERDADEIRO para número válido e FALSO para número invalido). Cada vez que for digitado umnúmero inválido no programa principal, co ajuda desta função, deverá exibir uma mensagem "Número inválido. Digite novamente!".
+
+PROCEDIMENTO: Receberá como parâmetro o número inteiro validado e deverá imprimr na tela, usando uma estrutura de repetição, a tabuada de multiplicação até 10 do número lido.
+Exemplo: número lido 5
+5 x 1 = 5
+5 x 2 = 10
+....
+5 x 10 = 50
+
+E) Faça um programa com uma função que recebe a média final de um aluno por parâmetro e retorna o seu conceito, conforme a tabela abaixo:
+Nota			Conceito
+de 0,0 a 4,9		D
+de 5,0 a 6,9		C
+de 7,0 a 8,9		B
+de 9,0 a 10,0		A
+
+F) Faça um programa com uma função que recebe a hora, minuto e segundo, via parâmetros e retorna esse tempo convertido em segundos.
+
+G) Faça um programa com uma função que recebe a idade de um nadador por parâmetro e retorna, a categoria desse nadador de acordo com a tabela abaixo:  
+Idade			Categoria
+5 a 7 anos		Infantil A
+8 a 10 anos		Infantil B
+11-13 anos		Juvenil A
+14-17 anos		Juvenil B
+18 anos ou mais 	Adulto
+
+H) Faça um programa com um procedimento que recebe 3 valores inteiros e imprime na tela estes valores de formar ordenada.
+
+I) Faça um programa com uma função que recebe, por parâmetro, dois valores X e Y e calcula e retorna X elevado a Y (DETALHE: Não usar a função de potência da biblioteca matemática).
+
+J) Faça um programa com uma função que recebe, por parâmetro, a altura e o sexo de uma pessoa e retorna o seu peso ideal. Considerando as seguintes fórmulas. MULHERES: peso ideal = 62.1 * altura - 44.7; HOMENS: peso ideal = 72.7 * altura - 58.  
+
+K) Faça um programa com uma função que recebe, por parâmetro, a altura (em metros) e o peso (em kg) de uma pessoa e retorna o valor do IMC. Use o retorno desta função para determinar qual a situação da pessoa:
+IMC inferior a 17 = Abaixo do peso
+IMC entre 17 e 20 = Peso ideial
+IMC entre 20 e 25 = Sobrepeso
+IMC entre 25 e 35 = Obesidade
+IMC acima de 35 = Obesidade Mórbida
+
+L) Faça um programa com uma função que recebe, por parâmetro, um número inteiro e verifica se ele é um "número perfeito" ou não, retornando VERDADEIRO se ee for e FALSO senão for. Um número é considerado perfeito quando ele é igual a soma dos seus divisores exceto ele próprio. (Ex: 6 é perfeito, 6 = 1 + 2 + 3, que são seus divisores).
