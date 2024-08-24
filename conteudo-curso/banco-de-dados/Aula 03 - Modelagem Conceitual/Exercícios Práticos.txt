@@ -1,0 +1,19 @@
+A) Fazer o projeto conceitual de um banco de dados para uma LOCADORA DE VEÍCULOS:
+-CLIENTE
+-FUNCIONARIO
+-ALUGUEL
+-VEICULO
+
+B) Fazer o projeto conceitual de um banco de dados para uma LANCHONETE:
+-CLIENTE
+-FUNCIONARIO
+-COMANDA
+-MESA
+-PRODUTO
+
+C) Fazer o projeto conceitual de um banco de dados para uma FARMÁCIA:
+-CLIENTE
+-FUNCIONARIO
+-VENDA
+-MEDICAMENTO
+-RECEITA

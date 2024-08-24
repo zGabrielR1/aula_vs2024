@@ -1,0 +1,25 @@
+-Livro
+*título
+*autor
+*gênero
+*ano
+*editora
+*isbn
+
+-Pessoa
+*nome
+*cpf
+*telefone
+*nascimento
+*endereço
+
+-Usuario
+*nome
+*cpf
+*senha
+
+-Empréstimo
+*data retirada
+*data devolucao
+*prazo
+*multa

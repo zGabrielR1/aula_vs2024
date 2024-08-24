@@ -1,0 +1,38 @@
+Empresa "Tei Mão na Obra" - Agência de emprego
+Cliente tem cadastro
+Cliente - Outras empresas que necessitam de mão de obra temporária
+Mão de obra - Pessoas com cnpj/mei/autônomos que preenchem o banco de dados, informando suas capacidades, e objetivo de emprego. Ex: Fez curso eletrotécnica, vaga: Eletricista
+Cada colaborador só pode estar vinculado em um setor de atividade
+Cadastro de candidatos
+Serviço deve ser definido
+
+CLIENTES / CADASTRO
+	* nome
+	* cpf/cnpj
+	* especialidade das vagas
+	* qtd de vagas
+
+CANDIDATOS / MÃO DE OBRA
+	* nome
+	* cpf
+	* data de nascimento
+	* tipo de serviço
+	* sexo
+	* endereço
+	* currículo (opcional)
+SERVIÇOS
+	* tipo de serviço
+	* experiência
+	* descrição
+	* data de início
+SETORES / SETOR DE ATIVIDADE
+	* habilidades específicas do candidato
+	
+COLABORADORES
+	* candidatos
+	* equipe de trabalho
+EQUIPES DE TRABALHO 
+	* pessoas cadastradas: nome e cpf
+COLABORADORES (pessoa cadastrada, que decide fazer serviço fornecido)
+	* nome
+	* cpf

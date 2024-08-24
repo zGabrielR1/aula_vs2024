@@ -1,0 +1,22 @@
+MERCADO:
+Desenvolva o modelo conceitual de um banco de dados para um pequeno mercado. O mercado funciona da seguinte forma:
+O cliente vai até o mercado para fazer suas compras, ao final ele se dirige ao caixa onde o funcionário realiza a venda e o faturamento destes produtos. 
+O estoque do mercado é abastecido através de fornecedores.
+
+POSTO COMBUSTÍVEL:
+Desenvolva o modelo conceitual de um banco de dados para um posto de combustível. O posto funciona da seguinte forma:
+Cliente chega, é atendido por um frentista que faz o abastecimento do combustível solicitado. O combustível saí da bomba, e cada bomba tem no mínimo 2 bicos. 
+Após terminar o abastecimento o cliente vai até o caixa e faz o pagamento para um funcionário que concluí o faturamento.
+
+HOTEL:
+Desenvolva o modelo conceitual de um banco de dados para um hotel. O hotel opera da seguinte forma:
+O hóspede utiliza um quarto, o quarto é controlado por dias de ocupação (diária).
+A diária pode possuir serviços e/ou produtos vinculados a ela.
+O funcionário do hotel controla e finaliza as diárias.
+
+CONSULTÓRIO MÉDICO:
+Desenvolva o modelo conceitual de um banco de dados para um consultório médico. O consultório funciona da seguinte forma:
+O paciente entra em contato com o funcionário para agendar sua consulta.
+O consultório atende somente pacientes que possuam convênio (plano médico).
+O médico realiza a consulta e anota informações sobre a mesma.
+Eventualmente o médico solicita exames aos pacientes.
