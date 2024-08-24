@@ -1,0 +1,8 @@
+1) Nomes de tabela (entidades) sempre no plural e minusculo
+2) Nomes de tabelas e nomes de campos seguem a mesma regra de nomes de variáveis
+3) Nomes de campo sempre no singular
+4) Os campos possuem:
+	-Tipos de dados
+	-Complementos (regras, restrições)
+5) Toda tabela possui uma chave primária (PK)
+6) Os campos da tabela devem ser ordenados do mais importante para o menos importante (chaves estrangerias sempre no final)

@@ -1,0 +1,41 @@
+Problema: Criar um BD para uma Escola.
+-Professor
+  *nome
+  *cpf
+  *pis
+  *data nascimento
+  *formação
+  *salário
+
+-Aluno
+  *nome
+  *cpf
+  *data nascimento
+  *sexo
+  *telefone
+
+-Funcionário
+  *nome
+  *setor
+  *salário
+  *pis
+
+-Matricula
+  *data
+
+-Curso
+  *nome
+  *valor
+
+-Matéria
+  *nome
+  *carga horária
+
+-Aula
+  *conteúdo
+  *periodo
+  *data  
+
+-Ambiente
+  *nome
+  *localização
