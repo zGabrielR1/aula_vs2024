@@ -107,5 +107,3 @@ Aqui está uma explicação detalhada dos tópicos abordados nas suas anotaçõe
 - **Resistores Não-Ôhmicos:** A relação entre corrente e tensão não é linear, como em resistores que mudam de resistência com a temperatura.
 
 ---
-
-Esses resumos cobrem os tópicos fundamentais que você mencionou. Se precisar de mais detalhes ou quiser explorar algum tópico específico com mais profundidade, estou à disposição!
