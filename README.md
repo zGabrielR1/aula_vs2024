@@ -33,9 +33,9 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 │   ├── tarefa-bizagi-01.bpm
 │   ├── tarefa-star-uml-02.mdj
 │   └── ...
-├── 📁 projetos/
-│   ├── projeto-01/
-│   ├── projeto-02/
+├── 📁 conteudo-eletrica/
+│   ├── aula-01/
+│   ├── aula-02/
 │   └── ...
 ├── 📁 materiais-leitura/
 │   ├── capitulo-01.pdf
