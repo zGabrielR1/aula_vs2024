@@ -1,3 +1,5 @@
+exercício Ohm - resultado letra e
+
 u = r i 
 ur = 9v
 It = 
