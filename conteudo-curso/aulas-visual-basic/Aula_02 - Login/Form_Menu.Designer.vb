@@ -24,7 +24,7 @@ Partial Class Form_Menu
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.CadastrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btn_clientes = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProdutosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuáriosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MovimentaçõesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -53,16 +53,16 @@ Partial Class Form_Menu
         '
         'CadastrosToolStripMenuItem
         '
-        Me.CadastrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClientesToolStripMenuItem, Me.ProdutosToolStripMenuItem, Me.UsuáriosToolStripMenuItem})
+        Me.CadastrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_clientes, Me.ProdutosToolStripMenuItem, Me.UsuáriosToolStripMenuItem})
         Me.CadastrosToolStripMenuItem.Name = "CadastrosToolStripMenuItem"
         Me.CadastrosToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
         Me.CadastrosToolStripMenuItem.Text = "Cadastros"
         '
-        'ClientesToolStripMenuItem
+        'btn_clientes
         '
-        Me.ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
-        Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
-        Me.ClientesToolStripMenuItem.Text = "Clientes"
+        Me.btn_clientes.Name = "btn_clientes"
+        Me.btn_clientes.Size = New System.Drawing.Size(122, 22)
+        Me.btn_clientes.Text = "Clientes"
         '
         'ProdutosToolStripMenuItem
         '
@@ -158,9 +158,12 @@ Partial Class Form_Menu
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.MaximizeBox = False
         Me.Name = "Form_Menu"
-        Me.Text = "Form_Menu"
+        Me.Text = "Menu"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
@@ -172,7 +175,7 @@ Partial Class Form_Menu
 
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents CadastrosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents btn_clientes As ToolStripMenuItem
     Friend WithEvents ProdutosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UsuáriosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MovimentaçõesToolStripMenuItem As ToolStripMenuItem
