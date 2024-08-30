@@ -1,6 +1,8 @@
 ```
 # 📚 Repositório do Conteúdo do Curso Técnico
 
+(repositório secundário público, o original é privado)
+
 Bem-vindo ao **Repositório de Conteúdo do curso ** (futuramente também incluirá arquivos de outros conteúdos)! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado ao curso. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
 
 ## 🎯 Propósito do Repositório
