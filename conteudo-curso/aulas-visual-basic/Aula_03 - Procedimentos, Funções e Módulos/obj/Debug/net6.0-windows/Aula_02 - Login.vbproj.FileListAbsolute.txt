@@ -1,0 +1,56 @@
+D:\Não Excluir\Aula_02 - Login\bin\Debug\net6.0-windows\Aula_02 - Login.exe
+D:\Não Excluir\Aula_02 - Login\bin\Debug\net6.0-windows\Aula_02 - Login.deps.json
+D:\Não Excluir\Aula_02 - Login\bin\Debug\net6.0-windows\Aula_02 - Login.runtimeconfig.json
+D:\Não Excluir\Aula_02 - Login\bin\Debug\net6.0-windows\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login\bin\Debug\net6.0-windows\Aula_02 - Login.pdb
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.AssemblyReference.cache
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02___Login.Form_Login.resources
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.GenerateResource.cache
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.GeneratedMSBuildEditorConfig.editorconfig
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.AssemblyInfoInputs.cache
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.AssemblyInfo.vb
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.CoreCompileInputs.cache
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\refint\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.pdb
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02 - Login.genruntimeconfig.cache
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\ref\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login\obj\Debug\net6.0-windows\Aula_02___Login.Form_Menu.resources
+D:\Não Excluir\Aula_02 - Login + Menu\bin\Debug\net6.0-windows\Aula_02 - Login.exe
+D:\Não Excluir\Aula_02 - Login + Menu\bin\Debug\net6.0-windows\Aula_02 - Login.deps.json
+D:\Não Excluir\Aula_02 - Login + Menu\bin\Debug\net6.0-windows\Aula_02 - Login.runtimeconfig.json
+D:\Não Excluir\Aula_02 - Login + Menu\bin\Debug\net6.0-windows\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login + Menu\bin\Debug\net6.0-windows\Aula_02 - Login.pdb
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.AssemblyReference.cache
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02___Login.Form_Cliente.resources
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02___Login.Form_Login.resources
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02___Login.Form_Menu.resources
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.GenerateResource.cache
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.GeneratedMSBuildEditorConfig.editorconfig
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.AssemblyInfoInputs.cache
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.AssemblyInfo.vb
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.CoreCompileInputs.cache
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\refint\Aula_02 - Login.dll
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.pdb
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\Aula_02 - Login.genruntimeconfig.cache
+D:\Não Excluir\Aula_02 - Login + Menu\obj\Debug\net6.0-windows\ref\Aula_02 - Login.dll
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\bin\Debug\net6.0-windows\Aula_02 - Login.exe
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\bin\Debug\net6.0-windows\Aula_02 - Login.deps.json
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\bin\Debug\net6.0-windows\Aula_02 - Login.runtimeconfig.json
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\bin\Debug\net6.0-windows\Aula_02 - Login.dll
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\bin\Debug\net6.0-windows\Aula_02 - Login.pdb
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.AssemblyReference.cache
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02___Login.Form_Cliente.resources
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02___Login.Form_Login.resources
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02___Login.Form_Menu.resources
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.GenerateResource.cache
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.GeneratedMSBuildEditorConfig.editorconfig
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.AssemblyInfoInputs.cache
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.AssemblyInfo.vb
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.vbproj.CoreCompileInputs.cache
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.dll
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\refint\Aula_02 - Login.dll
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.pdb
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\Aula_02 - Login.genruntimeconfig.cache
+D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\obj\Debug\net6.0-windows\ref\Aula_02 - Login.dll
