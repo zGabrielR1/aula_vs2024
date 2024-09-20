@@ -1,0 +1,17 @@
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\bin\Debug\net6.0-windows\Biblioteca Leitura Viva.exe
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\bin\Debug\net6.0-windows\Biblioteca Leitura Viva.deps.json
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\bin\Debug\net6.0-windows\Biblioteca Leitura Viva.runtimeconfig.json
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\bin\Debug\net6.0-windows\Biblioteca Leitura Viva.dll
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\bin\Debug\net6.0-windows\Biblioteca Leitura Viva.pdb
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.vbproj.AssemblyReference.cache
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca_Leitura_Viva.Form1.resources
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.vbproj.GenerateResource.cache
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.AssemblyInfoInputs.cache
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.AssemblyInfo.vb
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.vbproj.CoreCompileInputs.cache
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.dll
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\refint\Biblioteca Leitura Viva.dll
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.pdb
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\Biblioteca Leitura Viva.genruntimeconfig.cache
+C:\Users\gabriel_renostro\Documents\Exercicios\Biblioteca Leitura Viva\obj\Debug\net6.0-windows\ref\Biblioteca Leitura Viva.dll
