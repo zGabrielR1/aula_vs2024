@@ -14,4 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Aula_02___Login
-build_property.ProjectDir = D:\Não Excluir\Aula_03 - Procedimentos, Funções e Módulos\
+build_property.ProjectDir = C:\Users\gabriel_renostro\Source\Repos\zGabrielR1\aula_vs2024\conteudo-curso\aulas-visual-basic\Aula_03 - Procedimentos, Funções e Módulos\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

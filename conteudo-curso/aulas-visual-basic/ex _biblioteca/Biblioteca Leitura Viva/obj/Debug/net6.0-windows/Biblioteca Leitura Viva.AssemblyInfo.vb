@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Biblioteca Leitura Viva"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d69f2aa06b1c4ce7ff3f299201d5d9757f4e799"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("Biblioteca Leitura Viva"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("Biblioteca Leitura Viva"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
