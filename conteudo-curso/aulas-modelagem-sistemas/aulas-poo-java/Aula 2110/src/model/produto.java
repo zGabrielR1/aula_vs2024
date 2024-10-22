@@ -16,7 +16,17 @@ public class produto {
     private float altura;
     private float profundidade;
     private float largura;
+    private float peso;
+    //É obrigatório sempre ter uma descrição 
+    //para isso vamos criar um constructor
+    //personalizado
 
+    public produto(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public produto() {
+    }
     
     // Utilizando o InsertCode, criamos um comportamento de 
     // os dados do produto em uma variável do tipo String
@@ -71,6 +81,16 @@ public class produto {
     public void setLargura(float largura) {
         this.largura = largura;
     }
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
+
+    
     
     
 }

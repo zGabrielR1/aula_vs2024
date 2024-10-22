@@ -21,7 +21,9 @@ public class FirstClassExample {
          * como um float
          */
         aux.setValor((float) 56.20);
-        
+        aux.setPeso(55);
+
+        produto paux = new produto();
         System.out.println(aux.toString());
  //Exibe valores pro usuário
 //        System.out.println(" Dados do objeto");
