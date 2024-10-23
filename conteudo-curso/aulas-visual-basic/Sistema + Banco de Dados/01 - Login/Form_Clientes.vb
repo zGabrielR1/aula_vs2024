@@ -11,18 +11,44 @@ Public Class Form_Clientes
         Me.MaximizeBox = False
         Me.StartPosition = FormStartPosition.CenterScreen
 
-
         ' Marcar um Radio padrão
         rbt_feminino.Checked = True
 
         ' Preencher ComboBox
-        cbx_plano.Items.Add(New With {.Text = "Plano Premium", .Value = 1})
-        cbx_plano.Items.Add(New With {.Text = "Plano Gold", .Value = 2})
-        cbx_plano.Items.Add(New With {.Text = "Plano Básico", .Value = 3})
-        cbx_plano.DisplayMember = "Text"
-        cbx_plano.ValueMember = "Value"
+        Dim conexao As New FbConnection
+        Dim dados As FbDataReader
+        Try
+            ' 1) Conectar
+            Dim caminho As String = Application.StartupPath
+            Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
+            conexao.ConnectionString = str_conexao
+            conexao.Open()
+
+            ' 2) Definir 
+            Dim comando As New FbCommand
+            Dim sql As String = "SELECT * FROM planos"
+            comando.Connection = conexao
+            comando.CommandText = sql
+
+            ' 3) Executar Comando
+            dados = comando.ExecuteReader()
+
+            ' Imprimir os dados no ComboBox
+            While (dados.Read())
+                cbx_plano.Items.Add(New With {.Text = dados("descricao"), .Value = dados("id_plano")})
+                dados.NextResult()
+            End While
+        Catch erro As Exception
+            MsgBox("Ocorreu uma exceção no Banco de Dados: " & erro.Message)
+        Finally
+            ' 4) Desconectar
+            dados.Close()
+            conexao.Close()
+        End Try
 
         ' Configurar ComboBox
+        cbx_plano.DisplayMember = "Text"
+        cbx_plano.ValueMember = "Value"
         cbx_plano.DropDownStyle = ComboBoxStyle.DropDownList
 
         ' Confirgurando a ListView
@@ -37,8 +63,7 @@ Public Class Form_Clientes
         list_clientes.Columns.Add("Sexo")
         list_clientes.Columns.Add("Plano")
 
-
-        ' Atualizar a ListView  
+        ' Atualizar a ListView
         Listas.clientes()
 
         ' Desativar Form
@@ -80,14 +105,18 @@ Public Class Form_Clientes
         txt_nome.Text = list_clientes.Items(linha_selecionada).SubItems(1).Text
         txt_CPF.Text = list_clientes.Items(linha_selecionada).SubItems(2).Text
         date_nascimento.Value = list_clientes.Items(linha_selecionada).SubItems(3).Text
-        If (list_clientes.Items(linha_selecionada).SubItems(5).Text = "f") Then
+
+        ' Identificar o sexo e selecionar o radio correspondente
+        If (list_clientes.Items(linha_selecionada).SubItems(4).Text = "f") Then
             rbt_feminino.Checked = True
         Else
             rbt_masculino.Checked = True
         End If
+
+        ' Interagir com o combobox dos planos até encontrar o texto igual ao texto selecionado na listview
         Dim i As Integer = 0
         While (i < 3)
-            If (cbx_plano.Items(i).Value = list_clientes.Items(linha_selecionada).SubItems(6).Text) Then
+            If (cbx_plano.Items(i).Text = list_clientes.Items(linha_selecionada).SubItems(5).Text) Then
                 cbx_plano.SelectedIndex = i
                 Exit While
             End If
@@ -112,15 +141,43 @@ Public Class Form_Clientes
         Dim resposta As MsgBoxResult
         resposta = MsgBox("Tem erteza que deseja remover este cliente?", MsgBoxStyle.YesNo)
         If (resposta = MsgBoxResult.Yes) Then
-            list_clientes.Items.RemoveAt(linha_selecionada)
-            i = i - 1
-            MsgBox("Cliente removido com sucesso!")                         ' Sucesso
-            label_total.Text = "Total: " & list_clientes.Items.Count        ' Total
+            ' Pegar o ID do Cliente
+            Dim id_cliente As Integer = list_clientes.Items(linha_selecionada).Text
+
+            ' Banco de Dados
+            Dim conexao As New FbConnection
+            Try
+                ' 1) Conectar
+                Dim caminho As String = Application.StartupPath
+                Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
+                conexao.ConnectionString = str_conexao
+                conexao.Open()
+
+                ' 2) Definir 
+                Dim comando As New FbCommand
+                Dim sql As String = "DELETE FROM clientes WHERE id_cliente = ?"
+                comando.Parameters.Add(New FbParameter With {.Value = id_cliente})
+                comando.Connection = conexao
+                comando.CommandText = sql
+
+                ' 3) Executar Comando
+                comando.ExecuteNonQuery()
+
+                ' Sucesso
+                MsgBox("Cliente removido com sucesso!")
+
+                ' Atualizar a Listagem
+                Listas.clientes()
+            Catch erro As Exception
+                MsgBox("Ocorreu uma exceção no Banco de Dados: " & erro.Message)
+            Finally
+                ' 4) Desconectar
+                conexao.Close()
+            End Try
         End If
     End Sub
 
     Private Sub btn_salvar_Click(sender As Object, e As EventArgs) Handles btn_salvar.Click
-
         ' Validação Campos
         If (Not Formatar.validou_campos(Me)) Then
             MsgBox("Por favor preencha todos os campos!")
@@ -135,29 +192,26 @@ Public Class Form_Clientes
         Dim sexo As String = IIf(rbt_feminino.Checked, "f", "m")
         Dim plano As Integer = cbx_plano.SelectedItem.Value
 
-
-        ' Vericar se deve inserir novo cliente ou alterar existente
-
         ' Banco de Dados
         Dim conexao As New FbConnection
         Try
             ' 1) Conectar
             Dim caminho As String = Application.StartupPath
             Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
-
             conexao.ConnectionString = str_conexao
             conexao.Open()
+
             ' 2) Definir Comando
-            ' Verificar se deve inserir novo cliente ou alterar existente
+            ' Vericar se deve inserir novo cliente ou alterar existente
             Dim comando As New FbCommand
             comando.Connection = conexao
             Dim sql As String
             Dim msg As String
             If (id = "Novo") Then
-                sql = "INSERT INTO clientes (nome, cpf, nascimento, sexo, id_plano) VALUES (?, ?, ?, ?, ?)"
+                sql = "INSERT INTO clientes (nome, cpf, nascimento, sexo, id_plano) VALUES (?,?,?,?,?)"
                 comando.Parameters.Add(New FbParameter With {.Value = nome})
                 comando.Parameters.Add(New FbParameter With {.Value = cpf})
-                comando.Parameters.Add(New FbParameter With {.Value = nascimento})
+                comando.Parameters.Add(New FbParameter With {.Value = Format(nascimento, "yyyy-MM-dd")})
                 comando.Parameters.Add(New FbParameter With {.Value = sexo})
                 comando.Parameters.Add(New FbParameter With {.Value = plano})
                 msg = "Cliente cadastrado com sucesso!"
@@ -165,22 +219,21 @@ Public Class Form_Clientes
                 sql = "UPDATE clientes SET nome = ?, cpf = ?, nascimento = ?, sexo = ?, id_plano = ? WHERE id_cliente = ?"
                 comando.Parameters.Add(New FbParameter With {.Value = nome})
                 comando.Parameters.Add(New FbParameter With {.Value = cpf})
-                comando.Parameters.Add(New FbParameter With {.Value = nascimento})
+                comando.Parameters.Add(New FbParameter With {.Value = Format(nascimento, "yyyy-MM-dd")})
                 comando.Parameters.Add(New FbParameter With {.Value = sexo})
                 comando.Parameters.Add(New FbParameter With {.Value = plano})
                 comando.Parameters.Add(New FbParameter With {.Value = id})
                 msg = "Cliente alterado com sucesso!"
-
             End If
             comando.CommandText = sql
-
 
             ' 3) Executar Comando
             comando.ExecuteNonQuery()
 
             ' Sucesso
             MsgBox(msg)
-            ' Atualizar a ListView  
+
+            ' Atualizar a ListView
             Listas.clientes()
         Catch erro As Exception
             MsgBox("Ocorreu uma exceção no Banco de Dados: " & erro.Message)
@@ -188,14 +241,6 @@ Public Class Form_Clientes
             ' 4) Desconectar
             conexao.Close()
         End Try
-
-
-
-
-        ' Total
-        label_total.Text = "Total: " & list_clientes.Items.Count
-
-
 
         ' Limpar e Desativar Form
         Formatar.limpar(Me)
@@ -208,11 +253,4 @@ Public Class Form_Clientes
     Private Sub btn_fechar_Click(sender As Object, e As EventArgs) Handles btn_fechar.Click
         Me.Close()
     End Sub
-
-    Private Sub gbox_sexo_Enter(sender As Object, e As EventArgs) Handles gbox_sexo.Enter
-
-    End Sub
 End Class
-
-
-'ColumnContent
