@@ -12,8 +12,6 @@ Public Class Form_Login
 
     Private Sub bn_entrar_Click(sender As Object, e As EventArgs) Handles bn_entrar.Click
 
-        ' SELECT id_usuario, nome FROM usuarios WHERE usuario = '' AND senha = 
-
         ' Validação dos dados
         If (Not Formatar.validou_campos(Me)) Then
             MsgBox("Por favor preencha todos os campos!")
@@ -23,34 +21,20 @@ Public Class Form_Login
         ' Entrada dos dados
         Dim usuario As String = txt_usuario.Text
         Dim senha As String = txt_senha.Text
-        Dim conexao As New FbConnection
-        Dim dados As FbDataReader
+
         ' Login
         Try
             ' 1) Conectar
-            Dim caminho As String = Application.StartupPath
-            Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
-
-            conexao.ConnectionString = str_conexao
-            conexao.Open()
-
+            BancoDeDados.conectar()
 
             ' 2) Define o Comando
             Dim sql As String = "SELECT id_usuario, nome FROM usuarios WHERE usuario = ? AND senha = ?"
-            Dim comando As New FbCommand
-            comando.Parameters.Add(New FbParameter With {.Value = usuario})
-            comando.Parameters.Add(New FbParameter With {.Value = senha})
-            comando.Connection = conexao
-            comando.CommandText = sql
-
-            ' 3) Executa SQL
-
-            dados = comando.ExecuteReader()
+            Dim retorno As DataTable = BancoDeDados.consultar(sql, usuario, senha)
 
             ' Realizar autenticação
-            If (dados.Read()) Then
-                Variaveis_Publicas.id_usuario = dados("id_usuario")
-                Form_Menu.label_bemvindo.Text = "Bem-Vindo " & dados("nome")
+            If (retorno.Rows.Count > 0) Then
+                Variaveis_Publicas.id_usuario = retorno.Rows(0)("id_usuario")
+                Form_Menu.label_bemvindo.Text = "Bem-Vindo " & retorno.Rows(0)("nome")
                 Form_Menu.Show()
                 Me.Close()
             Else
@@ -61,8 +45,7 @@ Public Class Form_Login
             MsgBox("Ocorreu uma exceção no banco de dados: " & erro.Message)
         Finally
             ' 4) Desconectar
-            dados.Close()
-            conexao.Close()
+            BancoDeDados.desconectar()
         End Try
     End Sub
 

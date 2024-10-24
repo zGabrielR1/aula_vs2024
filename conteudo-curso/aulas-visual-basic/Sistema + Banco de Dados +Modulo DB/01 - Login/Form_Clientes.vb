@@ -15,35 +15,24 @@ Public Class Form_Clientes
         rbt_feminino.Checked = True
 
         ' Preencher ComboBox
-        Dim conexao As New FbConnection
-        Dim dados As FbDataReader
         Try
-            ' 1) Conectar
-            Dim caminho As String = Application.StartupPath
-            Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
-            conexao.ConnectionString = str_conexao
-            conexao.Open()
+            ' Conectar
+            BancoDeDados.conectar()
 
-            ' 2) Definir 
-            Dim comando As New FbCommand
+            ' Definir 
             Dim sql As String = "SELECT * FROM planos"
-            comando.Connection = conexao
-            comando.CommandText = sql
-
-            ' 3) Executar Comando
-            dados = comando.ExecuteReader()
+            Dim retorno As DataTable = BancoDeDados.consultar(sql)
 
             ' Imprimir os dados no ComboBox
-            While (dados.Read())
-                cbx_plano.Items.Add(New With {.Text = dados("descricao"), .Value = dados("id_plano")})
-                dados.NextResult()
-            End While
+            For Each linha In retorno.Rows
+                cbx_plano.Items.Add(New With {.Text = linha("descricao"), .Value = linha("id_plano")})
+            Next
+
         Catch erro As Exception
             MsgBox("Ocorreu uma exceção no Banco de Dados: " & erro.Message)
         Finally
-            ' 4) Desconectar
-            dados.Close()
-            conexao.Close()
+            ' Desconectar
+            BancoDeDados.desconectar()
         End Try
 
         ' Configurar ComboBox
@@ -139,41 +128,31 @@ Public Class Form_Clientes
 
         ' Confirmar se o usuário realmente deseja excluir o cliente
         Dim resposta As MsgBoxResult
-        resposta = MsgBox("Tem erteza que deseja remover este cliente?", MsgBoxStyle.YesNo)
+        resposta = MsgBox("Tem certeza que deseja remover este cliente?", MsgBoxStyle.YesNo)
         If (resposta = MsgBoxResult.Yes) Then
             ' Pegar o ID do Cliente
             Dim id_cliente As Integer = list_clientes.Items(linha_selecionada).Text
 
-            ' Banco de Dados
-            Dim conexao As New FbConnection
             Try
-                ' 1) Conectar
-                Dim caminho As String = Application.StartupPath
-                Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
-                conexao.ConnectionString = str_conexao
-                conexao.Open()
+                ' Conectar
+                BancoDeDados.conectar()
 
-                ' 2) Definir 
-                Dim comando As New FbCommand
+                ' Definir 
                 Dim sql As String = "DELETE FROM clientes WHERE id_cliente = ?"
-                comando.Parameters.Add(New FbParameter With {.Value = id_cliente})
-                comando.Connection = conexao
-                comando.CommandText = sql
-
-                ' 3) Executar Comando
-                comando.ExecuteNonQuery()
+                BancoDeDados.executar(sql, id_cliente)
 
                 ' Sucesso
                 MsgBox("Cliente removido com sucesso!")
 
-                ' Atualizar a Listagem
-                Listas.clientes()
             Catch erro As Exception
                 MsgBox("Ocorreu uma exceção no Banco de Dados: " & erro.Message)
             Finally
-                ' 4) Desconectar
-                conexao.Close()
+                ' Desconectar
+                BancoDeDados.desconectar()
             End Try
+
+            ' Atualizar a ListView
+            Listas.clientes()
         End If
     End Sub
 
@@ -192,55 +171,40 @@ Public Class Form_Clientes
         Dim sexo As String = IIf(rbt_feminino.Checked, "f", "m")
         Dim plano As Integer = cbx_plano.SelectedItem.Value
 
-        ' Banco de Dados
-        Dim conexao As New FbConnection
         Try
-            ' 1) Conectar
-            Dim caminho As String = Application.StartupPath
-            Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & "\DB_CLIENTES.gdb;DataSource=localhost;"
-            conexao.ConnectionString = str_conexao
-            conexao.Open()
+            ' Conectar
+            BancoDeDados.conectar()
 
-            ' 2) Definir Comando
+            ' Definir Comando
             ' Vericar se deve inserir novo cliente ou alterar existente
-            Dim comando As New FbCommand
-            comando.Connection = conexao
             Dim sql As String
             Dim msg As String
             If (id = "Novo") Then
                 sql = "INSERT INTO clientes (nome, cpf, nascimento, sexo, id_plano) VALUES (?,?,?,?,?)"
-                comando.Parameters.Add(New FbParameter With {.Value = nome})
-                comando.Parameters.Add(New FbParameter With {.Value = cpf})
-                comando.Parameters.Add(New FbParameter With {.Value = Format(nascimento, "yyyy-MM-dd")})
-                comando.Parameters.Add(New FbParameter With {.Value = sexo})
-                comando.Parameters.Add(New FbParameter With {.Value = plano})
+                ' 3) Executar Comando
+                BancoDeDados.executar(sql, nome, cpf, Format(nascimento, "yyyy/MM/dd"), sexo, plano)
                 msg = "Cliente cadastrado com sucesso!"
             Else
                 sql = "UPDATE clientes SET nome = ?, cpf = ?, nascimento = ?, sexo = ?, id_plano = ? WHERE id_cliente = ?"
-                comando.Parameters.Add(New FbParameter With {.Value = nome})
-                comando.Parameters.Add(New FbParameter With {.Value = cpf})
-                comando.Parameters.Add(New FbParameter With {.Value = Format(nascimento, "yyyy-MM-dd")})
-                comando.Parameters.Add(New FbParameter With {.Value = sexo})
-                comando.Parameters.Add(New FbParameter With {.Value = plano})
-                comando.Parameters.Add(New FbParameter With {.Value = id})
+                BancoDeDados.executar(sql, nome, cpf, Format(nascimento, "yyyy/MM/dd"), sexo, plano, id)
                 msg = "Cliente alterado com sucesso!"
             End If
-            comando.CommandText = sql
-
-            ' 3) Executar Comando
-            comando.ExecuteNonQuery()
 
             ' Sucesso
             MsgBox(msg)
 
-            ' Atualizar a ListView
-            Listas.clientes()
+
         Catch erro As Exception
             MsgBox("Ocorreu uma exceção no Banco de Dados: " & erro.Message)
         Finally
-            ' 4) Desconectar
-            conexao.Close()
+            ' Desconectar
+            BancoDeDados.desconectar()
+
         End Try
+
+
+        ' Atualizar a ListView
+        Listas.clientes()
 
         ' Limpar e Desativar Form
         Formatar.limpar(Me)
