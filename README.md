@@ -1,9 +1,9 @@
 ```
 # 📚 Repositório do Conteúdo do Curso Técnico
 
-(repositório secundário público, o original é privado)
+(repositório atualmente principal)
 
-Bem-vindo ao **Repositório de Conteúdo do curso ** (futuramente também incluirá arquivos de outros conteúdos)! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado ao curso. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
+Bem-vindo ao **Repositório de Conteúdo do curso ** (contém o conteúdo completo)! Este projeto serve como um hub central para armazenar e organizar o conteúdo relacionado ao curso. Se você é um instrutor procurando fazer upload de recursos ou um aluno ansioso para aprender, este repositório foi projetado para ser sua fonte principal para tudo relacionado ao curso.
 
 ## 🎯 Propósito do Repositório
 
@@ -24,29 +24,39 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 ```plaintext
 📦 conteudo-curso-programacao/
 ├── 📁 aulas-visual-basic/
-│   ├── aula-01.md
-│   ├── aula-02-login.md
-│   └── ...
+│ ├── aula-01.md
+│ ├── aula-02-login.md
+│ └── ...
 ├── 📁 aulas-portugol/
-│   ├── exemplo-01.por
-│   ├── exemplo-02.por
-│   └── ...
+│ ├── exemplo-01.por
+│ ├── exemplo-02.por
+│ └── ...
 ├── 📁 aulas-modelagem-sistemas/
-│   ├── tarefa-bizagi-01.bpm
-│   ├── tarefa-star-uml-02.mdj
-│   └── ...
+│ ├── 📁 aulas-poo-java/
+│ │ └── 📁 aula-2110/
+│ │ └── ...
+│ ├── 📁 Modelagem de Casos de Uso/
+│ │ └── Aula-01.pdf
+│ ├── tarefa-bizagi-01.bpm
+│ ├── tarefa-star-uml-02.mdj
+│ └── ...
+├── 📁 banco-de-dados/
+│ ├── 📁 aula-01/
+│ │ └── 1.1 - O que é Banco de Dados.pdf
+│ │ └── ...
+│ └── ...
 ├── 📁 conteudo-eletrica/
-│   ├── aula-01/
-│   ├── aula-02/
-│   └── ...
+│ ├── aula-01/
+│ ├── aula-02/
+│ └── ...
 ├── 📁 materiais-leitura/
-│   ├── capitulo-01.pdf
-│   ├── capitulo-02.pdf
-│   └── ...
+│ ├── capitulo-01.pdf
+│ ├── capitulo-02.pdf
+│ └── ...
 └── 📁 recursos-complementares/
-    ├── video-01.mp4
-    ├── links-uteis.md
-    └── ...
+├── video-01.mp4
+├── links-uteis.md
+└── ...
 ```
 
 
