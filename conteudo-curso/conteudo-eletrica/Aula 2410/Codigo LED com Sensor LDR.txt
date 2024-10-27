@@ -1,0 +1,17 @@
+const int ldr = A0;             // Pino analógico que o sensor está conectado
+const int luz = 11;             // Pino Referente ao led ou rele
+
+void setup() {
+  pinMode(luz, OUTPUT);         // Coloca variavel luz é um sinal de saida
+  Serial.begin(9600);           // inicializa a comunicação serial com a taxa de 9600 bps
+}
+void loop() {
+  int ldr = analogRead(ldr); // Lê o valor do sensor
+  Serial.println(ldr); // Informa pro "Serial Monitor"
+
+  int led = ldr - 450;
+  led = constrain(led, 0, 255);
+
+  analogWrite(luz, led); 
+  delay(100); // Delay de 100ms
+}
