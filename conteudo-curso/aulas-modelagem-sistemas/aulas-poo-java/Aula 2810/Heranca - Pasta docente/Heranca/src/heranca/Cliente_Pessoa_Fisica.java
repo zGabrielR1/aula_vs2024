@@ -4,14 +4,25 @@
  */
 package heranca;
 
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author gabriel_renostro
+ * @author Professor
  */
 public class Cliente_Pessoa_Fisica extends Cliente{
+    
     private String cpf;
     private String data_nascimento;
 
+    public void pedirNovaDataNascimento(){
+    this.setData_nascimento(JOptionPane.showInputDialog("Informe a data de nascimento"));
+    }
+    
+    public Cliente_Pessoa_Fisica() {
+    }
+
+    
     public String getCpf() {
         return cpf;
     }
@@ -26,9 +37,7 @@ public class Cliente_Pessoa_Fisica extends Cliente{
 
     public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
-    } 
-   public void AlterarCPF(String cpf) {
-        this.setCpf(cpf);
     }
+
     
 }

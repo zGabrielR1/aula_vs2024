@@ -4,63 +4,59 @@
  */
 package heranca;
 
-/**
- *
- * @author gabriel_renostro
- */
-//Classe de objeto Pai
+//Classe do Objeto Pai
 public class Cliente {
+    
     private String identificacao;
     private String situacao;
-    private Double saldo;
+    private double saldo;
     private String data_cadastro;
-
+    
+    public Cliente() {
+    }
+    
     public String getIdentificacao() {
         return identificacao;
     }
-
+    
     public void setIdentificacao(String identificacao) {
         this.identificacao = identificacao;
     }
-
+    
     public String getSituacao() {
         return situacao;
     }
-
+    
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-
-    public Double getSaldo() {
+    
+    public double getSaldo() {
         return saldo;
     }
-
-    public void setSaldo(Double saldo) {
+    
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
+    
     public String getData_cadastro() {
         return data_cadastro;
     }
-
+    
     public void setData_cadastro(String data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
-
-    public Cliente() {
-    }
 //Adicionando comportamento
-    public void AlteraStatus() {
-        if(this.getSituacao() == "Ativo") {
+
+    public void alteraStatus() {
+        if (this.getSituacao() == "Ativo") {
             this.setSituacao("Inativo");
         } else {
             this.setSituacao("Ativo");
         }
+        
     }
     public void zerarSaldo(){
-        this.setSaldo(0.0);
+    this.setSaldo(0.0);
     }
-    
-    
-    
 }
