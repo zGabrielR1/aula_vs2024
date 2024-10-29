@@ -57,6 +57,9 @@ public class Cliente {
             this.setSituacao("Ativo");
         }
     }
+    public void zerarSaldo(){
+        this.setSaldo(0.0);
+    }
     
     
 }

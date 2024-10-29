@@ -20,17 +20,19 @@ public class Heranca {
         
 //Povoa Objeto com dados        
 pf1.setIdentificacao("Senai");
-pf1.setSaldo(150);
+pf1.setSaldo(150.0);
 pf1.setSituacao("Ativo");
 pf1.setCpf("254.445.465-82");
 pf1.setData_nascimento("01/01/1990");
 
-
+        
         System.out.println(pf1.getSituacao());
+        System.out.println(pf1.getSaldo());
         
         pf1.AlteraStatus();
+        pf1.zerarSaldo();
         
         System.out.println(pf1.getSituacao());
-    }
-    
+        System.out.println(pf1.getSaldo());
+    }   
 }

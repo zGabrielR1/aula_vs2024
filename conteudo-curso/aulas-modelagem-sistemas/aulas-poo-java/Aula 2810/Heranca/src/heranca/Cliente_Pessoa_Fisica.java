@@ -27,10 +27,6 @@ public class Cliente_Pessoa_Fisica extends Cliente{
     public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
-
-    void setSaldo(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     
 }
