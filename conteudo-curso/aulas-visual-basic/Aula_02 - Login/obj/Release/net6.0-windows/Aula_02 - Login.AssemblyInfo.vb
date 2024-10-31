@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Aula_02 - Login"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Release"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d69f2aa06b1c4ce7ff3f299201d5d9757f4e799"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc322bcd704e2b41ebb31d822bc4832dc36df603"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("Aula_02 - Login"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("Aula_02 - Login"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
