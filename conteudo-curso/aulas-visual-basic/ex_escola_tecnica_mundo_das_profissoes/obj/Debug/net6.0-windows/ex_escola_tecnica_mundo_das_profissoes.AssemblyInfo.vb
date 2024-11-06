@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("ex_escola_tecnica_mundo_das_profissoes"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc322bcd704e2b41ebb31d822bc4832dc36df603"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53c7f12ec175e8f5051bf18f78872c91fe9415b4"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("ex_escola_tecnica_mundo_das_profissoes"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("ex_escola_tecnica_mundo_das_profissoes"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
