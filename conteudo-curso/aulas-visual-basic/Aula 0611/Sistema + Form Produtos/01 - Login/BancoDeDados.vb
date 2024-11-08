@@ -15,6 +15,19 @@ Module BancoDeDados
         conexao.Open()
     End Sub
 
+    ' Iniciar Transação
+    Public Sub iniciar_transação()
+        transacao = conexao.BeginTransaction
+        comando.Transaction = transacao
+    End Sub
+    ' Salvar Transação
+    Public Sub confirmar_transacao()
+        transacao.Commit()
+    End Sub
+    ' Voltar Transação
+    Public Sub voltar_transacao()
+        transacao.Rollback()
+    End Sub
     ' Executar
     Public Sub executar(sql As String, ParamArray parametros() As Object)
         comando.Connection = conexao

@@ -28,6 +28,11 @@ Partial Class Form_Vendas
         Me.cbx_cliente = New System.Windows.Forms.ComboBox()
         Me.GroupBox = New System.Windows.Forms.GroupBox()
         Me.list_produtos_adicionados = New System.Windows.Forms.ListView()
+        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader12 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader13 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader14 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btn_remover = New System.Windows.Forms.Button()
         Me.btn_adicionar = New System.Windows.Forms.Button()
         Me.txt_qtd = New System.Windows.Forms.TextBox()
@@ -44,11 +49,6 @@ Partial Class Form_Vendas
         Me.btn_salvar = New System.Windows.Forms.Button()
         Me.btn_sair = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader12 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader13 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader14 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.label_valor_total = New System.Windows.Forms.Label()
         Me.GroupBox.SuspendLayout()
         Me.SuspendLayout()
@@ -108,6 +108,7 @@ Partial Class Form_Vendas
         Me.list_produtos_adicionados.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader10, Me.ColumnHeader11, Me.ColumnHeader12, Me.ColumnHeader13, Me.ColumnHeader14})
         Me.list_produtos_adicionados.FullRowSelect = True
         Me.list_produtos_adicionados.GridLines = True
+        Me.list_produtos_adicionados.HideSelection = False
         Me.list_produtos_adicionados.Location = New System.Drawing.Point(9, 141)
         Me.list_produtos_adicionados.MultiSelect = False
         Me.list_produtos_adicionados.Name = "list_produtos_adicionados"
@@ -115,6 +116,26 @@ Partial Class Form_Vendas
         Me.list_produtos_adicionados.TabIndex = 28
         Me.list_produtos_adicionados.UseCompatibleStateImageBehavior = False
         Me.list_produtos_adicionados.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "ID"
+        '
+        'ColumnHeader11
+        '
+        Me.ColumnHeader11.Text = "Produto"
+        '
+        'ColumnHeader12
+        '
+        Me.ColumnHeader12.Text = "R$ Preço"
+        '
+        'ColumnHeader13
+        '
+        Me.ColumnHeader13.Text = "Qtd."
+        '
+        'ColumnHeader14
+        '
+        Me.ColumnHeader14.Text = "R$ Total"
         '
         'btn_remover
         '
@@ -173,6 +194,7 @@ Partial Class Form_Vendas
         Me.list_vendas.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8})
         Me.list_vendas.FullRowSelect = True
         Me.list_vendas.GridLines = True
+        Me.list_vendas.HideSelection = False
         Me.list_vendas.Location = New System.Drawing.Point(353, 12)
         Me.list_vendas.MultiSelect = False
         Me.list_vendas.Name = "list_vendas"
@@ -241,26 +263,6 @@ Partial Class Form_Vendas
         Me.Label5.Size = New System.Drawing.Size(78, 13)
         Me.Label5.TabIndex = 27
         Me.Label5.Text = "Valor Total: R$"
-        '
-        'ColumnHeader10
-        '
-        Me.ColumnHeader10.Text = "ID"
-        '
-        'ColumnHeader11
-        '
-        Me.ColumnHeader11.Text = "Produto"
-        '
-        'ColumnHeader12
-        '
-        Me.ColumnHeader12.Text = "R$ Preço"
-        '
-        'ColumnHeader13
-        '
-        Me.ColumnHeader13.Text = "Qtd."
-        '
-        'ColumnHeader14
-        '
-        Me.ColumnHeader14.Text = "R$ Total"
         '
         'label_valor_total
         '
