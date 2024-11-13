@@ -82,6 +82,9 @@ Para começar a usar o conteúdo deste repositório, siga estes passos:
    
 3. **Explore o conteúdo**: Navegue pelas pastas para encontrar aulas, exemplos de código, tarefas e muito mais.
 
+📁 aulas-visual-basic (use o Visual Studio)
+![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
+
 ## 📜 Diretrizes de Contribuição
 
 Aceitamos contribuições para melhorar este repositório. Siga estes passos para contribuir:
