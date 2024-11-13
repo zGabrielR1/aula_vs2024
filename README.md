@@ -21,7 +21,6 @@ Tudo o que você precisa para o curso será sistematicamente organizado aqui, pa
 
 Aqui está uma visão geral de alto nível da estrutura de diretórios:
 
-```plaintext
 📦 conteudo-curso-programacao/
 ├── 📁 aulas-visual-basic/
 │ ├── aula-01.md
@@ -57,7 +56,7 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 ├── video-01.mp4
 ├── links-uteis.md
 └── ...
-```
+
 
 
 
