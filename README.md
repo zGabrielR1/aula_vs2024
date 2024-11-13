@@ -57,9 +57,6 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 ├── links-uteis.md
 └── ...
 
-
-
-
 ### Descrição das Pastas
 
 - **Aulas**: Contém arquivos para cada aula. Cada arquivo contém notas da aula, slides e quaisquer recursos relacionados.
@@ -116,4 +113,3 @@ Este projeto foi criado e é mantido por **Gabriel Renostro**. Agradecimentos es
 ---
 
 Feliz Codificação! 🚀
-```
