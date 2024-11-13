@@ -83,11 +83,14 @@ Para começar a usar o conteúdo deste repositório, siga estes passos:
 3. **Explore o conteúdo**: Navegue pelas pastas para encontrar aulas, exemplos de código, tarefas e muito mais.
 
 4. Ferramentas usadas:
+
 Visual Studio:
 
 ![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
 
+dotNET (Visual Basic):
 
+![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
 ## 📜 Diretrizes de Contribuição
 
