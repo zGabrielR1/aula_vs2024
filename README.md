@@ -21,7 +21,6 @@ Tudo o que você precisa para o curso será sistematicamente organizado aqui, pa
 
 Aqui está uma visão geral de alto nível da estrutura de diretórios:
 
-```plaintext
 📦 conteudo-curso-programacao/
 ├── 📁 aulas-visual-basic/
 │ ├── aula-01.md
@@ -57,9 +56,6 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 ├── video-01.mp4
 ├── links-uteis.md
 └── ...
-```
-
-
 
 ### Descrição das Pastas
 
@@ -85,6 +81,16 @@ Para começar a usar o conteúdo deste repositório, siga estes passos:
    ```
    
 3. **Explore o conteúdo**: Navegue pelas pastas para encontrar aulas, exemplos de código, tarefas e muito mais.
+
+4. Ferramentas usadas:
+
+Visual Studio:
+
+![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
+
+dotNET (Visual Basic):
+
+![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
 ## 📜 Diretrizes de Contribuição
 
@@ -117,4 +123,3 @@ Este projeto foi criado e é mantido por **Gabriel Renostro**. Agradecimentos es
 ---
 
 Feliz Codificação! 🚀
-```
