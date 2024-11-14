@@ -20,20 +20,24 @@ Module BancoDeDados
         transacao = conexao.BeginTransaction
         comando.Transaction = transacao
     End Sub
-    ' Salvar Transação
+
+    ' Confirmar Transação
     Public Sub confirmar_transacao()
         transacao.Commit()
     End Sub
+
     ' Voltar Transação
     Public Sub voltar_transacao()
         transacao.Rollback()
     End Sub
-    ' Travar tabela
+
+    ' Travar Tabela (o commit libera a tabela)
     Public Sub travar_tabela(tabela As String)
         comando.Connection = conexao
         comando.CommandText = "SELECT * FROM " & tabela & " WITH LOCK"
         comando.ExecuteNonQuery()
     End Sub
+
     ' Executar
     Public Sub executar(sql As String, ParamArray parametros() As Object)
         comando.Connection = conexao

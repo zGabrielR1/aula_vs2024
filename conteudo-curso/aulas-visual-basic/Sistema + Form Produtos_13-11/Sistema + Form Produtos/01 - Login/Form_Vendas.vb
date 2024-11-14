@@ -1,9 +1,5 @@
-﻿Imports System.Data.SqlClient
-Imports System.IO
-
-Public Class Form_Vendas
+﻿Public Class Form_Vendas
     Private Sub Form_Vendas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
 
         ' Preencher ComboBox Cliente
         Try
@@ -21,8 +17,7 @@ Public Class Form_Vendas
         cbx_cliente.DisplayMember = "Text"
         cbx_cliente.ValueMember = "Value"
 
-
-        ' Preencher ComboBox Cliente
+        ' Preencher ComboBox Produto
         Try
             BancoDeDados.conectar()
             Dim sql As String = "SELECT id_produto, descricao FROM produtos ORDER BY descricao"
@@ -42,8 +37,8 @@ Public Class Form_Vendas
     Private Sub btn_adicionar_Click(sender As Object, e As EventArgs) Handles btn_adicionar.Click
         ' Validação de campos
         If (cbx_produto.SelectedIndex = -1 Or txt_qtd.Text = "") Then
-            MsgBox("Por favor, Informe o produto e a quantidade!")
-            Exit Sub ' Encerra o algoritmo
+            MsgBox("Por favor informe o produto e a quantidade!")
+            Exit Sub ' Encerrar o algoritmo
         End If
 
         ' Pegar os dados
@@ -51,17 +46,17 @@ Public Class Form_Vendas
         Dim nome_produto As String = cbx_produto.SelectedItem.Text
         Dim qtd_produto As Integer = txt_qtd.Text
 
-        ' Validação da quantidade em estoque
+        ' Validação da qtd em estoque
         Try
             BancoDeDados.conectar()
             Dim sql As String = "SELECT estoque FROM produtos WHERE id_produto = ?"
             Dim dados As DataTable = BancoDeDados.consultar(sql, id_produto)
             Dim estoque_produto As Integer = dados(0)("estoque")
 
-            ' Verificar se a quantidade em estoque é suficiente para a venda
+            ' Verificar se a quantidade no estoque é suficiente para a venda
             If (qtd_produto > estoque_produto) Then
                 MsgBox("Estoque insuficiente para este produto!")
-                Exit Sub
+                Exit Sub ' Encerar o algoritmo
             End If
         Catch erro As Exception
             MsgBox("Houve uma exceção com o Banco de Dados: " & erro.Message)
@@ -69,7 +64,7 @@ Public Class Form_Vendas
             BancoDeDados.desconectar()
         End Try
 
-        ' Consultar o preço no Banco de Dados
+        ' Consultar o preço no banco de dados
         Dim preco_produto As Double
         Try
             BancoDeDados.conectar()
@@ -96,38 +91,37 @@ Public Class Form_Vendas
         ' Atualizar o valor total da venda na label
         label_valor_total.Text = CDbl(label_valor_total.Text) + total_produto
 
-        ' Limpar os campos 
+        ' Limpar os campos
         cbx_produto.SelectedIndex = -1
         txt_qtd.Text = ""
     End Sub
 
     Private Sub btn_remover_Click(sender As Object, e As EventArgs) Handles btn_remover.Click
-        ' Validação de seleção de produto                                                                                                                                                                                            
+        ' Validação
         If (list_produtos_adicionados.SelectedIndices.Count = 0) Then
             MsgBox("Por favor selecione um produto!")
-            Exit Sub ' Encerrar o algoritmo
+            Exit Sub ' Encerrar algoritmo
         End If
 
         ' Confirmação
-        Dim resposta As MsgBoxResult = MsgBox("Tem certeza que deseja remover esse produto?", MsgBoxStyle.YesNo)
+        Dim resposta As MsgBoxResult = MsgBox("Tem certeza que deseja remover este produto?", MsgBoxStyle.YesNo)
         If (resposta = MsgBoxResult.Yes) Then
-            ' Pegar o índice do produto selecionado ma ListView
+            ' Pegar o índice do produto selecionado na ListView
             Dim linha_selecionada As Integer = list_produtos_adicionados.SelectedIndices(0)
 
-            ' Decrementar o valor total da venda de acordo com o(s) produto(s) removido(s)
+            ' Pegar o valor total do produto e decrementar do valor da venda
             Dim total_produto As Double = list_produtos_adicionados.Items(linha_selecionada).SubItems(4).Text
             label_valor_total.Text = CDbl(label_valor_total.Text) - total_produto
 
             ' Remover da ListView
             list_produtos_adicionados.Items(linha_selecionada).Remove()
         End If
-
     End Sub
 
     Private Sub btn_salvar_Click(sender As Object, e As EventArgs) Handles btn_salvar.Click
         ' Validação
         If (cbx_cliente.SelectedIndex = -1 Or list_produtos_adicionados.Items.Count = 0) Then
-            MsgBox("Por favor informe o cliente ou informe o(s) produto(s)!")
+            MsgBox("Por favor informe o cliente ou informe o(s) produto(s)")
             Exit Sub ' Encerrar o algoritmo
         End If
 
@@ -137,18 +131,18 @@ Public Class Form_Vendas
         Dim id_cliente As Integer = cbx_cliente.SelectedItem.Value
         Dim id_usuario As Integer = Globais.id_usuario
 
-        ' Gravar a venda no banco
+        ' Gravar os dados no banco
         Try
             BancoDeDados.conectar()
 
-            ' Início da transação
+            ' Inicio da transação
             BancoDeDados.iniciar_transação()
 
             ' Inserir os dados na tabela vendas
-            Dim sql As String = "INSERT INTO vendas (data, valor_total, id_cliente, id_usuario) VALUES (?, ?, ?, ?)"
+            Dim sql As String = "INSERT INTO vendas (data, valor_total, id_cliente, id_usuario) VALUES (?,?,?,?)"
             BancoDeDados.executar(sql, data_venda, total_venda, id_cliente, id_usuario)
 
-            ' Travar a tabela Vendas para negar a inserção de dados nela por outros usuários até a venda terminar
+            ' Travar a tabela vendas, para negar a inserção de dados nela por outros usuários, até a venda termiar
             BancoDeDados.travar_tabela("vendas")
 
             ' Inserir os dados na tabela detalhes
@@ -158,21 +152,21 @@ Public Class Form_Vendas
                 Dim qtd_produto As Integer = list_produtos_adicionados.Items(i).SubItems(3).Text
                 Dim total_produto As Double = list_produtos_adicionados.Items(i).SubItems(4).Text
 
-                sql = "INSERT INTO detalhes (qtd_total, valor_total, id_produto, id_venda) VALUES (?, ?, ?, (SELECT FIRST 1 id_venda FROM vendas ORDER BY id_venda))"
+                sql = "INSERT INTO detalhes (qtd_total, valor_total, id_produto, id_venda) VALUES (?,?,?,(SELECT FIRST 1 id_venda FROM vendas ORDER BY id_venda DESC))"
                 BancoDeDados.executar(sql, qtd_produto, total_produto, id_produto)
 
                 ' Atualizar a quantidade de estoque do produto na tabela produtos
                 sql = "UPDATE produtos SET estoque = estoque - ? WHERE id_produto = ?"
                 BancoDeDados.executar(sql, qtd_produto, id_produto)
 
-                ' Incrementar o contador para avançar o produto na listagem
+                ' Incrementear o contador apra avançar o produto na listagem
                 i = i + 1
             End While
 
             ' Confirmar a transação
             BancoDeDados.confirmar_transacao()
         Catch erro As Exception
-            ' Deu erro em alguma operação com o banco, deve voltar a transação
+            ' Deu erro em alguma opração com o banco, deve voltar a transação
             BancoDeDados.voltar_transacao()
             MsgBox("Houve uma exceção com o Banco de Dados: " & erro.Message)
         Finally

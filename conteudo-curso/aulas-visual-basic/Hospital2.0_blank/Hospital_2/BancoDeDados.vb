@@ -5,7 +5,7 @@ Module BancoDeDados
     ' Variáveis
     Private conexao As New FbConnection
     Private comando As New FbCommand
-    Private caminho As String = Application.StartupPath & "\DB_SISTEMA.GDB"
+    Private caminho As String = Application.StartupPath & "\DB_HOSPITAL.GDB"
     Private transacao As FbTransaction
 
     ' Conectar
@@ -15,25 +15,6 @@ Module BancoDeDados
         conexao.Open()
     End Sub
 
-    ' Iniciar Transação
-    Public Sub iniciar_transação()
-        transacao = conexao.BeginTransaction
-        comando.Transaction = transacao
-    End Sub
-    ' Salvar Transação
-    Public Sub confirmar_transacao()
-        transacao.Commit()
-    End Sub
-    ' Voltar Transação
-    Public Sub voltar_transacao()
-        transacao.Rollback()
-    End Sub
-    ' Travar tabela
-    Public Sub travar_tabela(tabela As String)
-        comando.Connection = conexao
-        comando.CommandText = "SELECT * FROM " & tabela & " WITH LOCK"
-        comando.ExecuteNonQuery()
-    End Sub
     ' Executar
     Public Sub executar(sql As String, ParamArray parametros() As Object)
         comando.Connection = conexao
