@@ -5,6 +5,85 @@
     Dim plano_c() As String = {"Puff Daddy", "Jeffrey Epstein"}                                 ' Array para armazenar os médicos do plano Convênio João de Deus
     Dim plano_selecionado As String                                                             ' Variável para armazenar o nome do plano selecionado nos Radios
 
+    Dim modo_escuro As Boolean = False                                                          ' Controlar se o modo escuro está ativado
+
+    ' Alternar modo escuro quando o botão é clicado
+    Private Sub btn_modo_escuro_Click(sender As Object, e As EventArgs) Handles btn_modo_escuro.Click
+        AlternarModoEscuro()
+    End Sub
+
+    ' Método para alternar entre modo claro e escuro
+    Private Sub AlternarModoEscuro()
+        If modo_escuro Then
+            ' Definir Modo Claro
+            Me.BackColor = Color.White
+            ForeColor = Color.Black
+            DefinirCoresControles(Color.White, Color.Black)
+        Else
+            ' Definir Modo Escuro
+            Me.BackColor = Color.FromArgb(45, 45, 48)
+            ForeColor = Color.White
+            DefinirCoresControles(Color.FromArgb(45, 45, 48), Color.White)
+        End If
+        modo_escuro = Not modo_escuro
+    End Sub
+
+    ' Método para definir cores para todos os controles do formulário
+    Private Sub DefinirCoresControles(corFundo As Color, corTexto As Color)
+        For Each ctrl As Control In Me.Controls
+            If TypeOf ctrl Is Button Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+                CType(ctrl, Button).FlatStyle = FlatStyle.Flat
+                CType(ctrl, Button).FlatAppearance.BorderSize = 0
+            ElseIf TypeOf ctrl Is TextBox Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is Label Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is ComboBox Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is RadioButton Then
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is ListView Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is GroupBox Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+                DefinirCoresControlesFilhos(ctrl, corFundo, corTexto)
+            End If
+        Next
+    End Sub
+
+    ' Método para definir cores dos controles dentro de GroupBoxes
+    Private Sub DefinirCoresControlesFilhos(container As Control, corFundo As Color, corTexto As Color)
+        For Each ctrl As Control In container.Controls
+            If TypeOf ctrl Is Button Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+                CType(ctrl, Button).FlatStyle = FlatStyle.Flat
+                CType(ctrl, Button).FlatAppearance.BorderSize = 0
+            ElseIf TypeOf ctrl Is TextBox Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is Label Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is ComboBox Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is RadioButton Then
+                ctrl.ForeColor = corTexto
+            ElseIf TypeOf ctrl Is ListView Then
+                ctrl.BackColor = corFundo
+                ctrl.ForeColor = corTexto
+            End If
+        Next
+    End Sub
+
     Private Sub Form_Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Marcar o RadioButton do plano Health On Demand por padrão
         rbt_planoA_CheckedChanged(rbt_planoA, EventArgs.Empty)
@@ -51,6 +130,7 @@
         Try
             ' Conectar e iniciar transação
             BancoDeDados.conectar()
+            BancoDeDados.iniciar_transação()
 
             ' Inserir paciente no banco
             Dim sql As String = "INSERT INTO PACIENTES " &
@@ -58,7 +138,8 @@
                                "VALUES (?, ?, ?, ?, ?, ?, 'NAO')"
             BancoDeDados.executar(sql, nome, cpf, nascimento, plano_selecionado, medico, tipo)
 
-
+            ' Confirmar transação
+            BancoDeDados.confirmar_transacao()
 
             ' Criar item da ListView
             Dim item As New ListViewItem(nome)
@@ -68,6 +149,7 @@
             item.SubItems.Add(plano_selecionado)
             item.SubItems.Add(medico)
             item.SubItems.Add(tipo)
+
 
             ' Adicionar à fila conforme prioridade
             If (tipo = "Urgente" Or Paciente.calcular_idade(nascimento) >= 60) Then
@@ -81,6 +163,7 @@
             Formatar.limpar(Me)
 
         Catch ex As Exception
+            BancoDeDados.voltar_transacao()
             MsgBox("Erro ao cadastrar paciente: " & ex.Message)
         Finally
             BancoDeDados.desconectar()
@@ -99,17 +182,25 @@
             Try
                 ' Conectar e iniciar transação
                 BancoDeDados.conectar()
+                BancoDeDados.iniciar_transação()
+
+                ' Travar tabela de pacientes
+                BancoDeDados.travar_tabela("PACIENTES")
 
                 ' Atualizar status do paciente
                 Dim cpf As String = list_fila.Items(0).SubItems(1).Text
                 Dim sql As String = "UPDATE PACIENTES SET ATENDIDO = 'SIM' WHERE CPF = ?"
                 BancoDeDados.executar(sql, cpf)
 
+                ' Confirmar transação
+                BancoDeDados.confirmar_transacao()
+
                 ' Remover da ListView
                 list_fila.Items(0).Remove()
                 MsgBox("Paciente atendido com sucesso!")
 
             Catch ex As Exception
+                BancoDeDados.voltar_transacao()
                 MsgBox("Erro ao atender paciente: " & ex.Message)
             Finally
                 BancoDeDados.desconectar()
