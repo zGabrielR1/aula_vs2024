@@ -48,6 +48,7 @@ Partial Class Form_Principal
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.btn_modo_escuro = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -268,11 +269,21 @@ Partial Class Form_Principal
         Me.Label1.TabIndex = 14
         Me.Label1.Text = "Nome:"
         '
+        'btn_modo_escuro
+        '
+        Me.btn_modo_escuro.Location = New System.Drawing.Point(15, 347)
+        Me.btn_modo_escuro.Name = "btn_modo_escuro"
+        Me.btn_modo_escuro.Size = New System.Drawing.Size(112, 23)
+        Me.btn_modo_escuro.TabIndex = 28
+        Me.btn_modo_escuro.Text = "Modo escuro"
+        Me.btn_modo_escuro.UseVisualStyleBackColor = True
+        '
         'Form_Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(849, 356)
+        Me.ClientSize = New System.Drawing.Size(849, 374)
+        Me.Controls.Add(Me.btn_modo_escuro)
         Me.Controls.Add(Me.cbx_medico)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btn_atender)
@@ -323,4 +334,5 @@ Partial Class Form_Principal
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents column_tipo As System.Windows.Forms.ColumnHeader
     Friend WithEvents column_nasc As System.Windows.Forms.ColumnHeader
+    Friend WithEvents btn_modo_escuro As Button
 End Class

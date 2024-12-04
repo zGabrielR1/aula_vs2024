@@ -1,4 +1,5 @@
 ﻿' Importação da Biblioteca do Firebird
+Imports System.Data.Common
 Imports FirebirdSql.Data.FirebirdClient
 
 Module BancoDeDados
@@ -13,6 +14,29 @@ Module BancoDeDados
         Dim str_conexao As String = "User=SYSDBA;Password=masterkey;Database=" & caminho & ";DataSource=localhost;Port=3050;"
         conexao.ConnectionString = str_conexao
         conexao.Open()
+    End Sub
+
+    ' Iniciar Transação
+    Public Sub iniciar_transação()
+        transacao = conexao.BeginTransaction
+        comando.Transaction = transacao
+    End Sub
+
+    ' Confirmar Transação
+    Public Sub confirmar_transacao()
+        transacao.Commit()
+    End Sub
+
+    ' Voltar Transação
+    Public Sub voltar_transacao()
+        transacao.Rollback()
+    End Sub
+
+    ' Travar Tabela (o commit libera a tabela)
+    Public Sub travar_tabela(tabela As String)
+        comando.Connection = conexao
+        comando.CommandText = "SELECT * FROM " & tabela & " WITH LOCK"
+        comando.ExecuteNonQuery()
     End Sub
 
     ' Executar
