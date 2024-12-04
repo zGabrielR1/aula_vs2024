@@ -144,4 +144,8 @@
     Private Sub btn_fechar_Click(sender As Object, e As EventArgs) Handles btn_fechar.Click
         Me.Close()
     End Sub
+
+    Private Sub list_produtos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles list_produtos.SelectedIndexChanged
+
+    End Sub
 End Class

@@ -173,4 +173,8 @@
             BancoDeDados.desconectar()
         End Try
     End Sub
+
+    Private Sub GroupBox_Enter(sender As Object, e As EventArgs) Handles GroupBox.Enter
+
+    End Sub
 End Class

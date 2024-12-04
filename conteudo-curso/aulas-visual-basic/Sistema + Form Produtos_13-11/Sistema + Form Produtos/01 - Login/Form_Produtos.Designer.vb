@@ -147,6 +147,7 @@ Partial Class Form_Produtos
         '
         'list_produtos
         '
+        Me.list_produtos.HideSelection = False
         Me.list_produtos.Location = New System.Drawing.Point(301, 12)
         Me.list_produtos.Name = "list_produtos"
         Me.list_produtos.Size = New System.Drawing.Size(507, 262)
