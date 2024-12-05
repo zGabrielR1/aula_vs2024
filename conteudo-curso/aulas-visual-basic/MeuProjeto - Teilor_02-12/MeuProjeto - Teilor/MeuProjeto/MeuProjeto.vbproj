@@ -90,25 +90,24 @@
       <DependentUpon>FormLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Menu.Designer.vb">
-      <DependentUpon>Form_Menu.vb</DependentUpon>
+    <Compile Include="FormMenu.Designer.vb">
+      <DependentUpon>FormMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form_Menu.vb">
+    <Compile Include="FormMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Produtos.Designer.vb">
-      <DependentUpon>Form_Produtos.vb</DependentUpon>
+    <Compile Include="FormProdutos.Designer.vb">
+      <DependentUpon>FormProdutos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form_Produtos.vb">
+    <Compile Include="FormProdutos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Vendas.Designer.vb">
-      <DependentUpon>Form_Vendas.vb</DependentUpon>
+    <Compile Include="FormVendas.Designer.vb">
+      <DependentUpon>FormVendas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form_Vendas.vb">
+    <Compile Include="FormVendas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Globais.vb" />
     <Compile Include="Listar.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -126,6 +125,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Pessoa.vb" />
     <Compile Include="Produto.vb" />
     <Compile Include="Usuario.vb" />
     <Compile Include="Util.vb" />
@@ -137,14 +137,14 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Menu.resx">
-      <DependentUpon>Form_Menu.vb</DependentUpon>
+    <EmbeddedResource Include="FormMenu.resx">
+      <DependentUpon>FormMenu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Produtos.resx">
-      <DependentUpon>Form_Produtos.vb</DependentUpon>
+    <EmbeddedResource Include="FormProdutos.resx">
+      <DependentUpon>FormProdutos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Vendas.resx">
-      <DependentUpon>Form_Vendas.vb</DependentUpon>
+    <EmbeddedResource Include="FormVendas.resx">
+      <DependentUpon>FormVendas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

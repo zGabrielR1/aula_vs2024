@@ -1,13 +1,7 @@
-﻿Module Util
-    ' Prodecimento para ajustar a largura das colunas de uma ListView conforme o seu conteúdo
-    Public Sub ajustar_colunas(lv As ListView)
-        For i As Integer = 0 To lv.Columns.Count - 1
-            lv.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent)
-        Next
-    End Sub
+﻿Public Class Util
 
-    ' Função para aplicar a máscara ao CPF
-    Public Function Formatar_CPF(cpf As String) As String
+    ' Método Estático para aplicar a máscara CPF
+    Shared Function FormatarCPF(cpf As String) As String
         ' Remove qualquer caractere não numérico
         cpf = cpf.Replace(".", "").Replace("-", "")
 
@@ -20,4 +14,4 @@
             Return cpf
         End If
     End Function
-End Module
+End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form_Vendas
+Partial Class FormVendas
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -284,7 +284,7 @@ Partial Class Form_Vendas
         Me.label_valor_total.TabIndex = 28
         Me.label_valor_total.Text = "0,00"
         '
-        'Form_Vendas
+        'FormVendas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -301,7 +301,7 @@ Partial Class Form_Vendas
         Me.Controls.Add(Me.txt_id)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "Form_Vendas"
+        Me.Name = "FormVendas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Controle Vendas"
         Me.GroupBox.ResumeLayout(False)

@@ -1,4 +1,8 @@
-﻿Public Class Form_Vendas
+﻿Imports MeuProjeto.banco
+
+Public Class FormVendas
+    ' Criando o objeto `banco` da classe banco
+    Dim banco As New BancoDeDados
     Private Sub Form_Vendas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
         Me.ControlBox = False
@@ -9,16 +13,16 @@
 
         ' Preencher ComboBox Cliente
         Try
-            BancoDeDados.conectar()
+            banco.Conectar()
             sql = "SELECT id_cliente, nome FROM clientes ORDER BY nome ASC"
-            Dim clientes As DataTable = BancoDeDados.consultar(sql)
+            Dim clientes As DataTable = banco.Consultar(sql)
             For Each row As DataRow In clientes.Rows
                 cbx_cliente.Items.Add(New With {.Text = row("nome"), .Value = row("id_cliente")})
             Next
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
         Finally
-            BancoDeDados.desconectar()
+            banco.Desconectar()
         End Try
         cbx_cliente.DisplayMember = "Text"
         cbx_cliente.ValueMember = "Value"
@@ -26,34 +30,34 @@
 
         ' Preencher ComboBox Produto
         Try
-            BancoDeDados.conectar()
+            banco.Conectar()
             sql = "SELECT id_produto, descricao FROM produtos ORDER BY descricao ASC"
-            Dim produtos As DataTable = BancoDeDados.consultar(sql)
+            Dim produtos As DataTable = banco.Consultar(sql)
             For Each row As DataRow In produtos.Rows
                 cbx_produto.Items.Add(New With {.Text = row("descricao"), .Value = row("id_produto")})
             Next
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
         Finally
-            BancoDeDados.desconectar()
+            banco.Desconectar()
         End Try
         cbx_produto.DisplayMember = "Text"
         cbx_produto.ValueMember = "Value"
         cbx_produto.DropDownStyle = ComboBoxStyle.DropDownList
 
         ' Desativar 
-        Formatar.desativar(Me)
+        Formatar.Desativar(Me)
         GroupBox.Enabled = False
         txt_id.ReadOnly = True
 
         ' Atualizar listagem
-        Listar.vendas()
+        Listar.Vendas()
     End Sub
 
     Private Sub btn_novo_Click(sender As Object, e As EventArgs) Handles btn_novo.Click
         ' Limpar e Ativar 
-        Formatar.limpar(Me)
-        Formatar.ativar(Me)
+        Formatar.Limpar(Me)
+        Formatar.Ativar(Me)
         GroupBox.Enabled = True
         txt_id.Text = "NOVO"
     End Sub
@@ -72,9 +76,9 @@
 
         ' Validação da qtd em estoque
         Try
-            BancoDeDados.conectar()
+            banco.Conectar()
             Dim sql As String = "SELECT estoque FROM produtos WHERE id_produto = ?"
-            Dim dados As DataTable = BancoDeDados.consultar(sql, id_produto)
+            Dim dados As DataTable = banco.Consultar(sql, id_produto)
             Dim estoque_produto As Integer = dados(0)("estoque")
 
             ' Verificar se a quantidade no estoque é suficiente para a venda
@@ -85,20 +89,20 @@
         Catch erro As Exception
             MsgBox("Houve uma exceção com o Banco de Dados: " & erro.Message)
         Finally
-            BancoDeDados.desconectar()
+            banco.Desconectar()
         End Try
 
         ' Pegar o preço do produto
         Dim preco_produto As Double
         Try
-            BancoDeDados.conectar()
+            banco.Conectar()
             Dim sql As String = "SELECT preco FROM produtos WHERE id_produto = ?"
-            Dim dados As DataTable = BancoDeDados.consultar(sql, id_produto)
+            Dim dados As DataTable = banco.Consultar(sql, id_produto)
             preco_produto = dados.Rows(0)("preco")
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
         Finally
-            BancoDeDados.desconectar()
+            banco.Desconectar()
         End Try
 
         ' Calcular o valor total do produto
@@ -166,24 +170,24 @@
             Dim id_cliente As Integer = cbx_cliente.SelectedItem.Value
             Dim data_atual As Date = Format(Now(), "yyyy-MM-dd")
             Dim total_venda As Double = label_valor_total.Text
-            Dim id_usuario As Integer = Globais.id_usuario
+            Dim id_usuario As Integer = FormLogin.usuario.Id
 
             Try
-                BancoDeDados.conectar()
+                banco.Conectar()
 
                 ' Iniciar Transação
-                BancoDeDados.iniciar_transacao()
+                banco.IniciarTransacao()
 
                 ' Trancar tabela para outro usuário não gravar uma venda até esta terminar
-                BancoDeDados.trancar_tabela("vendas")
+                banco.TrancarTabela("vendas")
 
                 ' Gravar a venda
                 sql = "INSERT INTO vendas (data, valor_total, cancelado, id_cliente, id_usuario) VALUES (?,?,'N',?,?)"
-                BancoDeDados.executar(sql, data_atual, total_venda, id_cliente, id_usuario)
+                banco.Executar(sql, data_atual, total_venda, id_cliente, id_usuario)
 
                 ' Pegar o ID da venda recém gravada
                 sql = "SELECT MAX(id_venda) AS ultimo_id FROM vendas"
-                Dim dados As DataTable = BancoDeDados.consultar(sql)
+                Dim dados As DataTable = banco.Consultar(sql)
                 Dim id_venda As Integer = dados.Rows(0)("ultimo_id")
 
                 ' Gravar os produtos nos detalhes da venda
@@ -194,38 +198,38 @@
                     Dim total_produto As Double = list_produtos_adicionados.Items(i).SubItems(4).Text
 
                     sql = "INSERT INTO detalhes (qtd_total, valor_total, id_produto, id_venda) VALUES (?,?,?,?)"
-                    BancoDeDados.executar(sql, qtd_produto, total_produto, id_produto, id_venda)
+                    banco.Executar(sql, qtd_produto, total_produto, id_produto, id_venda)
 
                     ' Atualizar a quantidade de estoque do produto na tabela produtos
                     sql = "UPDATE produtos SET estoque = estoque - ? WHERE id_produto = ?"
-                    BancoDeDados.executar(sql, qtd_produto, id_produto)
+                    banco.Executar(sql, qtd_produto, id_produto)
 
                     ' Incrementar o contador para avançar o produto na listagem
                     i = i + 1
                 End While
 
                 ' Comitar Transação
-                BancoDeDados.confirmar_transacao()
+                banco.ConfirmarTransacao()
 
                 ' Sucesso
                 MsgBox("Venda registrada com sucesso!")
             Catch erro As Exception
                 ' Voltar Transação
-                BancoDeDados.voltar_transacao()
+                banco.VoltarTransacao()
                 MsgBox("Houve um problema com a operação no banco de dados: " & erro.Message)
             Finally
-                BancoDeDados.desconectar()
+                banco.Desconectar()
             End Try
 
             ' Limpar e desativar
             list_produtos_adicionados.Items.Clear()
             cbx_cliente.SelectedIndex = -1
-            Formatar.limpar(Me)
-            Formatar.desativar(Me)
+            Formatar.Limpar(Me)
+            Formatar.Desativar(Me)
             GroupBox.Enabled = False
 
             ' Atualizar listagem
-            Listar.vendas()
+            Listar.Vendas()
 
             ' Resetar valor da venda
             label_valor_total.Text = "0,00"
@@ -251,20 +255,24 @@
 
             ' Atualizar o valor no banco
             Try
-                BancoDeDados.conectar()
+                banco.Conectar()
                 Dim sql As String = "UPDATE vendas SET cancelado = 'S' WHERE id_venda = ?"
-                BancoDeDados.executar(sql, id_venda)
+                banco.Executar(sql, id_venda)
 
                 ' Sucesso
                 MsgBox("Venda cancelada com sucesso!")
             Catch erro As Exception
                 MsgBox("Houve um problema com a operação no banco de dados: " & erro.Message)
             Finally
-                BancoDeDados.desconectar()
+                banco.Desconectar()
             End Try
 
             ' Atualizar listagem
-            Listar.vendas()
+            Listar.Vendas()
         End If
+    End Sub
+
+    Private Sub GroupBox_Enter(sender As Object, e As EventArgs) Handles GroupBox.Enter
+
     End Sub
 End Class

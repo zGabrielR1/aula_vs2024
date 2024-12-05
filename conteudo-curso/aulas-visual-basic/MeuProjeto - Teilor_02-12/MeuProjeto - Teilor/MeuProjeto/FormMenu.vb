@@ -1,4 +1,4 @@
-﻿Public Class Form_Menu
+﻿Public Class FormMenu
     Private Sub Form_Menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
         Me.ControlBox = True
@@ -20,14 +20,14 @@
     End Sub
 
     Private Sub item_clientes_Click(sender As Object, e As EventArgs) Handles item_clientes.Click
-        Form_Clientes.Show()
+        FormClientes.Show()
     End Sub
 
     Private Sub item_produtos_Click(sender As Object, e As EventArgs) Handles item_produtos.Click
-        Form_Produtos.Show()
+        FormProdutos.Show()
     End Sub
 
     Private Sub item_vendas_Click(sender As Object, e As EventArgs) Handles item_vendas.Click
-        Form_Vendas.Show()
+        FormVendas.Show()
     End Sub
 End Class

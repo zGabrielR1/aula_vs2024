@@ -13,7 +13,7 @@ Public Class FormLogin
 
     Private Sub bn_entrar_Click(sender As Object, e As EventArgs) Handles bn_entrar.Click
         ' Validação dos dados
-        If (Not Formatar.validou_campos(Me)) Then
+        If (Not Formatar.ValidouCampos(Me)) Then
             MsgBox("Por favor preencha todos os campos!")
             Exit Sub
         End If
@@ -24,8 +24,8 @@ Public Class FormLogin
 
         ' Autenticar usuário
         If (usuario.FazerLogin()) Then
-            Form_Menu.label_bemvindo.Text = "Bem-vindo " & usuario.Nome
-            Form_Menu.Show()
+            FormMenu.label_bemvindo.Text = "Bem-vindo " & usuario.Nome
+            FormMenu.Show()
             Me.Close()
         Else
             MsgBox("Usuário ou senha incorretos!")

@@ -1,33 +1,12 @@
-﻿Imports MeuProjeto.BancoDeDados
+﻿Public Class Cliente
+    Inherits Pessoa ' Mesma coisa que `Extends`, ou seja, Cliente é uma subclasse de Pessoa
 
-Public Class Cliente
     ' Atributos
-    Private _id As Integer
-    Private _nome As String
     Private _cpf As String
     Private _nascimento As Date
     Private _sexo As String
-    Private banco As New BancoDeDados
 
     ' Getters e Setters
-    Public Property Id As Integer
-        Get
-            Return _id
-        End Get
-        Set(value As Integer)
-            _id = value
-        End Set
-    End Property
-
-    Public Property Nome As String
-        Get
-            Return _nome
-        End Get
-        Set(value As String)
-            _nome = value
-        End Set
-    End Property
-
     Public Property Cpf As String
         Get
             Return _cpf

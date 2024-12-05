@@ -1,5 +1,8 @@
-﻿Public Class Form_Produtos
-    Private Sub Form_Produtos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Imports MeuProjeto.Produto
+Public Class FormProdutos
+    ' Criando o objeto 'produto' da classe Produto
+    Dim produto As New Produto
+    Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
         Me.ControlBox = False
         Me.MaximizeBox = False
@@ -16,11 +19,11 @@
         list_produtos.Columns.Add("Estoque")
 
         ' Desativar Form
-        Formatar.desativar(Me)
+        Formatar.Desativar(Me)
         txt_id.ReadOnly = True
 
         ' Preencher a ListView
-        Listar.produtos()
+        Listar.Produtos()
 
         ' Total
         label_total.Text = "Total: " & list_produtos.Items.Count
@@ -28,15 +31,15 @@
 
     Private Sub btn_novo_Click(sender As Object, e As EventArgs) Handles btn_novo.Click
         ' Limpar e Ativar Form
-        Formatar.limpar(Me)
-        Formatar.ativar(Me)
+        Formatar.Limpar(Me)
+        Formatar.Ativar(Me)
         txt_id.Text = "Novo"
     End Sub
 
     Private Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
         ' Limpar e Desativar Form
-        Formatar.limpar(Me)
-        Formatar.desativar(Me)
+        Formatar.Limpar(Me)
+        Formatar.Desativar(Me)
     End Sub
 
     Private Sub btn_alterar_Click(sender As Object, e As EventArgs) Handles btn_alterar.Click
@@ -56,7 +59,7 @@
         txt_estoque.Text = list_produtos.Items(linha_selecionada).SubItems(3).Text
 
         ' Ativar Form
-        Formatar.ativar(Me)
+        Formatar.Ativar(Me)
     End Sub
 
     Private Sub btn_excluir_Click(sender As Object, e As EventArgs) Handles btn_excluir.Click
@@ -71,13 +74,13 @@
         resposta = MsgBox("Tem erteza que deseja remover este produto?", MsgBoxStyle.YesNo)
         If (resposta = MsgBoxResult.Yes) Then
             Dim linha_selecionada As Integer = list_produtos.SelectedIndices(0)
-            Produto.id = list_produtos.Items(linha_selecionada).Text
+            produto.Id = list_produtos.Items(linha_selecionada).Text
 
             ' Excluir o produto
-            Produto.excluir()
+            produto.excluir()
 
             ' Atualizar a ListView
-            Listar.produtos()
+            Listar.Produtos()
 
             ' Total
             label_total.Text = "Total: " & list_produtos.Items.Count
@@ -86,33 +89,33 @@
 
     Private Sub btn_salvar_Click(sender As Object, e As EventArgs) Handles btn_salvar.Click
         ' Validação Campos
-        If (Not Formatar.validou_campos(Me)) Then
+        If (Not Formatar.ValidouCampos(Me)) Then
             MsgBox("Por favor preencha todos os campos!")
             Exit Sub
         End If
 
         ' Entrada dos dados
-        Produto.id = txt_id.Text
-        Produto.descricao = txt_descricao.Text
-        Produto.preco = txt_preco.Text
-        Produto.estoque = txt_estoque.Text
+        produto.Id = IIf(txt_id.Text = "Novo", 0, txt_id.Text)
+        produto.Descricao = txt_descricao.Text
+        Produto.Preco = txt_preco.Text
+        Produto.Estoque = txt_estoque.Text
 
         ' Verificar se deve inserir ou atualizar o produto
-        If (Produto.id = "Novo") Then
-            Produto.inserir()
+        If (produto.Id = 0) Then
+            produto.Inserir()
         Else
-            Produto.atualizar()
+            produto.Atualizar()
         End If
 
         ' Atualizar a ListView
-        Listar.produtos()
+        Listar.Produtos()
 
         ' Total
         label_total.Text = "Total: " & list_produtos.Items.Count
 
         ' Limpar e Desativar Form
-        Formatar.limpar(Me)
-        Formatar.desativar(Me)
+        Formatar.Limpar(Me)
+        Formatar.Desativar(Me)
     End Sub
 
     Private Sub btn_fechar_Click(sender As Object, e As EventArgs) Handles btn_fechar.Click
