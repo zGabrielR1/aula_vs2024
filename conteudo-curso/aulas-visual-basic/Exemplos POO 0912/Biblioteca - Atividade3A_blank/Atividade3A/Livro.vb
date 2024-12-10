@@ -1,12 +1,11 @@
-﻿Imports MeuProjeto.BancoDeDados
-
-Public Class Produto
-    ' Atributos
+﻿Public Class Livro
+    ' Método Variáveis
     Private _id As Integer
-    Private _descricao As String
-    Private _preco As Double
-    Private _estoque As Integer
-    Private banco As New BancoDeDados
+    Private _titulo As String
+    Private _ano As Integer
+    Private _autor As String
+    Private _disponivel As String
+    Protected banco As New BancoDeDados
 
     Public Property Id As Integer
         Get
@@ -17,57 +16,62 @@ Public Class Produto
         End Set
     End Property
 
-    Public Property Descricao As String
+    Public Property Titulo As String
         Get
-            Return _descricao
+            Return _titulo
         End Get
         Set(value As String)
-            _descricao = value
+            _titulo = value
         End Set
     End Property
 
-    Public Property Preco As Double
+    Public Property Ano As Integer
         Get
-            Return _preco
-        End Get
-        Set(value As Double)
-            _preco = value
-        End Set
-    End Property
-
-    Public Property Estoque As Integer
-        Get
-            Return _estoque
+            Return _ano
         End Get
         Set(value As Integer)
-            _estoque = value
+            _ano = value
         End Set
     End Property
 
+    Public Property Autor As String
+        Get
+            Return _autor
+        End Get
+        Set(value As String)
+            _autor = value
+        End Set
+    End Property
+
+    Public Property Disponivel As String
+        Get
+            Return _disponivel
+        End Get
+        Set(value As String)
+            _disponivel = value
+        End Set
+    End Property
     ' Método Inserir
     Public Sub Inserir()
         Try
             Me.banco.Conectar()
-            Dim sql As String = "INSERT INTO 
-
-
-s (descricao, preco, estoque) VALUES (?, ?, ?)"
-            Me.banco.Executar(sql, Me.Descricao, Me.Preco, Me.Estoque)
-            MsgBox("Produto cadastrado com sucesso!")
+            Dim sql As String = "INSERT INTO livros (titulo, ano, autor, disponivel) VALUES (?, ?, ?, ?)"
+            Me.banco.Executar(sql, Titulo, Ano, Autor, Disponivel)
+            MsgBox("Livro cadastrado com sucesso!")
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
         Finally
             Me.banco.Desconectar()
-        End Try '
+        End Try
     End Sub
 
     ' Método Atualizar
     Public Sub Atualizar()
         Try
             Me.banco.Conectar()
-            Dim sql As String = "UPDATE produtos SET descricao = ?, preco = ?, estoque = ? WHERE id_produto = ?"
-            Me.banco.Executar(sql, Me.Descricao, Me.Preco, Me.Estoque, Me.Id)
-            MsgBox("Produto alterado com sucesso!")
+            Dim sql As String = "UPDATE livros SET titulo = ?, ano = ?, autor = ?, disponivel = ? WHERE id_livro = ?"
+            Me.banco.Executar(sql, Titulo, Ano, Autor, Disponivel, Id)
+            MsgBox("Livro alterado com sucesso!")
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
         Finally
@@ -75,13 +79,13 @@ s (descricao, preco, estoque) VALUES (?, ?, ?)"
         End Try
     End Sub
 
-    ' Excluir
-    Public Sub excluir()
+    ' Método Excluir
+    Public Sub Excluir()
         Try
             Me.banco.Conectar()
-            Dim sql As String = "DELETE FROM produtos WHERE id_produto = ?"
-            Me.banco.Executar(sql, Me.Id)
-            MsgBox("Produto removido com sucesso!")
+            Dim sql As String = "DELETE FROM livros WHERE id_livro = ?"
+            Me.banco.Executar(sql, Id)
+            MsgBox("Livro removido com sucesso!")
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
         Finally
@@ -89,14 +93,13 @@ s (descricao, preco, estoque) VALUES (?, ?, ?)"
         End Try
     End Sub
 
-
-    ' Selecionar por ID (Retonar um VETOR de dados DataRow)
+    ' Método Selecionar por ID
     Public Function SelecionarPorId() As DataRow
         Try
             Me.banco.Conectar()
-            Dim sql As String = "SELECT * FROM produtos WHERE id_produto = ?"
-            Dim dados As DataTable = Me.banco.Consultar(sql, Me.Id)
-            Return dados(0)     ' Retornando a primeira e única linha da consulta (DataTable)
+            Dim sql As String = "SELECT * FROM livros WHERE id_livro = ?"
+            Dim dados As DataTable = Me.banco.Consultar(sql, Id)
+            Return dados.Rows(0)
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
             Return Nothing
@@ -105,11 +108,11 @@ s (descricao, preco, estoque) VALUES (?, ?, ?)"
         End Try
     End Function
 
-    ' Selecionar Todos
+    ' Método Selecionar Todos
     Public Function SelecionarTodos() As DataTable
         Try
             Me.banco.Conectar()
-            Dim sql As String = "SELECT * FROM produtos"
+            Dim sql As String = "SELECT * FROM livros"
             Return Me.banco.Consultar(sql)
         Catch erro As Exception
             MsgBox("Houve um problema com o Banco de Dados: " & erro.Message)
