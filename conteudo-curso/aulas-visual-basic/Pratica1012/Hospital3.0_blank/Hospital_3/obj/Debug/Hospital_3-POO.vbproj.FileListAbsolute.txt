@@ -1,0 +1,14 @@
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\bin\Debug\Hospital_3.exe.config
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\bin\Debug\Hospital_3.exe
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\bin\Debug\Hospital_3.pdb
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\bin\Debug\Hospital_3.xml
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3-POO.vbproj.AssemblyReference.cache
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3.FormLogin.resources
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3.FormPrincipal.resources
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3.Resources.resources
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3-POO.vbproj.GenerateResource.cache
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3-POO.vbproj.CoreCompileInputs.cache
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital.4048B44D.Up2Date
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3.exe
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3.xml
+C:\Users\gabriel_renostro\Documents\kk.txt\Hospital3.0_blank\Hospital_3\obj\Debug\Hospital_3.pdb
