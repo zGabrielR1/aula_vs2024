@@ -1,5 +1,0 @@
-BancoDeDados - concluido ??
-formatar - concluido
-paciente - concluido
-classe pessoa - concluido
-classe usuario - compet
