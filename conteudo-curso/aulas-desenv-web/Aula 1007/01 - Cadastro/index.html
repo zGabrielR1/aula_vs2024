@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
 <body>
-    
+    <form method="post" action="salvar.php">
+        <label>Nome</label>
+        <input type="text" name="txt-nome">
+
+        <br>
+
+        <label>Email</label>
+        <input type="email" name="txt-email">
+
+        <br>
+
+        <label>Sexo</label>
+        <input type="radio" name="rbt-sexo" id="rbt-f" value="f">
+        <label for="rbt-f">Feminino</label>
+
+        <input type="radio" name="rbt-sexo" id="rbt-m" value="m">
+        <label for="rbt-m">Masculino</label>
+
+        <br>
+
+        <label>Nascimento</label>
+        <input type="date" name="date-nascimento">
+
+        <br>
+        <label>Estado Civil</label>
+        <select name="slt-estado-civil">
+            <option value="solteiro">Solteiro</option>
+            <option value="casado">Casado</option>
+            <option value="divorciado">Divorciado</option>
+            <option value="viuvo">Viúvo</option>
+            <option value="outro">Outro</option>
+        </select>
+
+        <br>
+
+        <label>Cursos</label>
+        <input type="checkbox" name="chk-sistemas" id="chk-sistemas" value="sistemas">
+        <label for="chk-sistemas">Curso Desenvolvimento de Sistemas</label>
+        <input type="checkbox" name="chk-mecanica" id="chk-mecanica" value="mecanica">
+        <label for="chk-mecanica">Curso Mecânico</label>
+        <input type="checkbox" name="chk-eletrotecnica" id="chk-eletrotecnica" value="eletrotec nica">
+        <label for="chk-eletrotecnica">Curso Eletrotécnica</label>
+        <input type="checkbox" name="chk-informatica" id="chk-informatica" value="informatica">
+        <label for="chk-informatica">Curso Informática</label>
+        <input type="checkbox" name="chk-outro" id="chk-outro" value="outro">
+        <label for="chk-outro">Outro</label>
+
+        <button type="submit">Salvar</button>     
+    </form>
 </body>
 </html>
