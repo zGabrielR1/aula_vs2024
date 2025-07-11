@@ -1,5 +1,3 @@
 <?php
-$teste = "Oi";
-
-echo $teste;
+    var_dump($_POST);
 ?>
