@@ -1,6 +1,7 @@
 <?php
 
    // Controle de sessão
+   session_start();
    if (!isset($_SESSION['logado'])){
        header("location: index.php");
    }
@@ -23,7 +24,7 @@
             <li><a href="sistema.php?tela=clientes">Clientes</a></li>
             <li><a href="sistema.php?tela=produtos">Produtos</a></li>
             <li><a href="sistema.php?tela=vendas">Vendas</a></li>
-            <li><a>Sair</a></li>
+            <li><button onclick = "sair()">Sair</button></li>
         </ul>
     </nav>
 
@@ -47,5 +48,13 @@
                 }
         ?>
     </main>
+    <!-- JS -->
+    <script>
+        function sair() {
+            var confirmou = confirm('Deseja realmente sair?');
+            if (confirmou) {
+                window.location.href = 'logout.php';
+            }
+        }
 </body>
 </html>
