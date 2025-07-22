@@ -14,6 +14,10 @@
 
     // Login   
     if ($usuario == 'admin' && $senha == '123') {
+        // Abrir sessão
+        session_start();
+        $_SESSION['usuario'] = $usuario;
+
         // Não vamos usar JS para redirecionar para o sistema, vamos usar uma função nativa do PHP
         header('location: sistema.php');
     } else {
