@@ -22,15 +22,19 @@
 
         // Cookies
         if ($lembrar) {
-            $configuracoes =
-                'domain' => 'localhost:82',
-                'path'   => '/',
-                'expires' => time() + 60 * 60 * 24 * 30, // 30 dias
+            date_default_timezone_set('America/Sao_Paulo'); // Definir fuso-hoaário
+            $configuracoes =[
+                'expires' => time() + 300,
+                'path'    => '/',
+                'domain' => 'localhost',
             ];
+
+            setcookie('usuario', $usuario, $configuracoes);
+            setcookie('senha', $senha, $configuracoes);
         }
 
         // Não vamos usar JS para redirecionar para o sistema, vamos usar uma função nativa do PHP
-        header('location: sistema.php');
+        header('location: ../sistema.php');
     } else {
         echo "<script>
 

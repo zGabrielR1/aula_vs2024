@@ -1,8 +1,9 @@
 <?php
    // Controle de sessão
    session_start();
-   if (!isset($_SESSION['logado'])){
+   if (isset($_SESSION['logado'])){
        header("location: sistema.php");
+       exit();
    }
 ?>
 
