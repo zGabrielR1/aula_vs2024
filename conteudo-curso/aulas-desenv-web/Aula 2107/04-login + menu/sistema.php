@@ -1,3 +1,8 @@
+<?php
+
+   // Controle de sessão
+   
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
