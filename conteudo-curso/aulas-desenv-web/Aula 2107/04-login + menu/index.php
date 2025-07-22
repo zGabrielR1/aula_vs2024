@@ -25,8 +25,10 @@
 
         <br>
 
-        <label>Lembrar-me</Label>
-        <input type="checkbox" name="chech-lembrar">
+        <label for="check-lembrar">Lembrar-me</Label>
+        <input type="checkbox" name="chech-lembrar" id="check-lembrar">
+
+        <br> 
 
         <button type="submit">Entrar</button>
     </form>
