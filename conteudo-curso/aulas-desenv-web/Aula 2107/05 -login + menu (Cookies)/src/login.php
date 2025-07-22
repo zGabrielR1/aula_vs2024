@@ -6,7 +6,6 @@
 
     if ($usuario == null || $senha == null) {
         echo "<script>
-
             alert('Preencha todos os campos');
             window.history.back();
         </script>";
