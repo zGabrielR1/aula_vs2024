@@ -53,7 +53,7 @@
         function sair() {
             var confirmou = confirm('Deseja realmente sair?');
             if (confirmou) {
-                window.location.href = 'logout.php';
+                window.location.href = 'src/logout.php';
             }
         }
 </body>
