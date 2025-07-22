@@ -19,11 +19,15 @@
         <input type="text" name="txt-usuario" required>
 
         <br>
-        
+
         <label>Senha: </label>
         <input type="password" name="txt-senha" required>
 
         <br>
+
+        <label>Lembrar-me</Label>
+        <input type="checkbox" name="chech-lembrar">
+
         <button type="submit">Entrar</button>
     </form>
 </body>
