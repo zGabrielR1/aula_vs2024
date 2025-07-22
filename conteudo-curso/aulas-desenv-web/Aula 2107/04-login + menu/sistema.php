@@ -1,7 +1,10 @@
 <?php
 
    // Controle de sessão
-   
+   if (!isset($_SESSION['logado'])){
+       header("location: login.php");
+   }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
