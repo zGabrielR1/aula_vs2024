@@ -14,7 +14,7 @@
     <title>Login - Sistema de cadastros</title>
 </head>
 <body>
-    <form method="post" action="login.php">
+    <form method="post" action="src/login.php">
         <label>Usuário: </label>
         <input type="text" name="txt-usuario" required>
 
