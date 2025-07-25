@@ -30,6 +30,23 @@ Aqui está uma visão geral de alto nível da estrutura de diretórios:
 │ ├── exemplo-01.por
 │ ├── exemplo-02.por
 │ └── ...
+├── 📁 aulas-desenv-web/
+│ ├── 📁 php/
+│ │ ├── introducao-php.md
+│ │ ├── variaveis-tipos.php
+│ │ ├── estruturas-controle.php
+│ │ ├── funcoes-arrays.php
+│ │ ├── orientacao-objetos.php
+│ │ ├── conexao-banco-dados.php
+│ │ └── projeto-crud/
+│ ├── 📁 html-css/
+│ │ ├── estrutura-html.html
+│ │ ├── estilos-css.css
+│ │ └── layouts-responsivos/
+│ └── 📁 javascript/
+│ ├── fundamentos-js.js
+│ ├── dom-manipulation.js
+│ └── ajax-fetch.js
 ├── 📁 aulas-modelagem-sistemas/
 │ ├── 📁 aulas-poo-java/
 │ │ └── 📁 aula-2110/
@@ -95,6 +112,22 @@ dotNET (Visual Basic):
 Java:
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+
+PHP:
+
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+
+HTML5:
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+CSS3:
+
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+JavaScript:
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## 📜 Diretrizes de Contribuição
 
