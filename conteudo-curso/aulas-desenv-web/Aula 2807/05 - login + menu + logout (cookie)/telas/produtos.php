@@ -30,11 +30,11 @@
         
         <br>
         
-        <button type="submit">Salvar</button>
+        <button type="submit" name="salvar">Salvar</button>
     </form>
     
-    <!-- Tabela de produtos cadastrados será exibida aqui -->
-    <div id="tabela-produtos">
-        <!-- Conteúdo será carregado via PHP -->
+    <div style='margin-top: 20px;'>
+        <h2>Produtos Cadastrados</h2>
+        <?php listarProdutos(); ?>
     </div>
 </div>
