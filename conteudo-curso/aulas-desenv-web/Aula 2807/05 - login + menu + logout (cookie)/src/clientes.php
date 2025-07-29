@@ -1,4 +1,6 @@
 <?php
+
+include_once 'config.php';
 // Inicia a sessão se ainda não estiver iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -11,7 +13,6 @@ if (!isset($_SESSION['clientes'])) {
 
 // Processa o formulário quando enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include 'config.php';
     // Verifica se é uma solicitação para limpar os registros
     if (isset($_POST['limpar_clientes'])) {
         unset($_SESSION['clientes']);
@@ -79,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Exibe a mensagem do último cliente registrado (se existir)
 if (isset($_COOKIE['ultimo_cliente'])) {
-    include 'config.php';
     $ultimo_cliente = openssl_decrypt(
         $_COOKIE['ultimo_cliente'],
         CIFRA_CRYPT,
