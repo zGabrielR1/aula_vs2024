@@ -30,11 +30,41 @@
         
         <br>
         
-        <button type="submit" name="salvar">Salvar</button>
+        <button type="submit">Salvar</button>
     </form>
     
-    <div style='margin-top: 20px;'>
+    <div style="margin-top: 20px;">
         <h2>Produtos Cadastrados</h2>
-        <?php listarProdutos(); ?>
+        <?php 
+        if (function_exists('listarProdutos')) { 
+            listarProdutos(); 
+        } 
+        ?>
     </div>
 </div>
+
+<script>
+// Formata os valores monetários para aceitar apenas números e ponto decimal
+document.getElementById('txt-preco-compra').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9.]/g, '');
+    
+    // Garante que não há múltiplos pontos decimais
+    if ((this.value.match(/\./g) || []).length > 1) {
+        this.value = this.value.slice(0, -1);
+    }
+});
+
+document.getElementById('txt-preco-venda').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9.]/g, '');
+    
+    // Garante que não há múltiplos pontos decimais
+    if ((this.value.match(/\./g) || []).length > 1) {
+        this.value = this.value.slice(0, -1);
+    }
+});
+
+// Formata a quantidade para aceitar apenas números
+document.getElementById('txt-quantidade').addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '');
+});
+</script>
