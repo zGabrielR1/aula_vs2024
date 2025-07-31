@@ -11,13 +11,15 @@
         exit; // Encerra o script
     }
 
+    // aqui a gente usa um array associativo pros logins
     $logins = array(
         'teilor.g' => '123!@#',
         'monica.p' => 'hjnaotemaula',
         'cicero.n' => 'botafogo100titulo',
     );
     
-    $usuario = isset($_POST['txt-usuario']) ? strtolower($_POST['txt-usuario']) : '';
+    // aqui a gente pega os dados do formulario
+    $usuario = isset($_POST['txt-usuario']) ? $_POST['txt-usuario'] : '';
     $senha = isset($_POST['txt-senha']) ? $_POST['txt-senha'] : '';
 
     // Login
