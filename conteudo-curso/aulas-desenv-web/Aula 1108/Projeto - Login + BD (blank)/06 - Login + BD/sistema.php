@@ -38,19 +38,33 @@
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="sistema.php">
+                                    <i class="bi bi-house-fill"></i>    
+                                    Home
+                                </a>
+                            </li>
                             <?php
-                            if ($_SESSION['tipo' === 'admin']) {
+                            if ($_SESSION['tipo'] === 'a') {
                                 echo "<li class='nav-item'>
-                                <a class='nav-link d-flex align-items-center gap-2 active' href='#'>Clientes</a>
+                                <a class='nav-link d-flex align-items-center gap-2 active' href='sistema.php?tela=clientes'>
+                                <i class='bi bi-people-fill'></i>
+                                Clientes
+                                </a>
                             </li>
                             <li class='nav-item'>
-                                <a class='nav-link d-flex align-items-center gap-2' href='#'>Produtos</a>
-                                
+                                <a class='nav-link d-flex align-items-center gap-2' href='sistema.php?tela=produtos'>
+                                <i class='bi bi-box-fill'></i>
+                                Produtos
+                                </a>
                             </li>";
                             }
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">Vendas</a>
+                                <a class="nav-link d-flex align-items-center gap-2" href="sistema.php?tela=vendas">
+                                <i class="bi bi-cash-coin"></i>    
+                                Vendas
+                                </a>
                             </li>
                         </ul>
                         <hr class="my-3">
@@ -65,6 +79,25 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Bem-vindo! <?php echo $_SESSION['nome']; ?></h1>
+
+                    <?php
+                    $tela = isset($_GET['tela']) ? $_GET['tela'] : null;
+
+                    switch ($tela) {
+                        case 'clientes':
+                            include 'telas/clientes.php';
+                            break;
+                        case 'produtos':
+                            include 'telas/produtos.php';
+                            break;
+                        case 'vendas':
+                            include 'telas/vendas.php';
+                            break;
+                        default:
+                            echo <h1 class='h2'>Bem-vindo {$_SESSION['nome']}!</h1>;
+                            break;
+                    }
+                    ?>
                 </div>
             </main>
         </div>
