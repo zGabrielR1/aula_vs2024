@@ -2,7 +2,7 @@
     <h1 class="h2">Cadastro de <strong>Clientes</strong></h1>
 </div>
 
-<form method="post" action="src/cliente/cadastrar.php">
+<form method="post" action="src/cliente/inserir.php">
     <div class="row g-3">
         <div class="col-sm-12 mb-3">
             <label for="txt-nome" class="form-label">Nome Completo</label>
@@ -74,13 +74,13 @@
 
         <div class="col-sm-6">
             <button type="reset" class="btn btn-secondary w-100">
-                <i class="bi bi-x-lg"></i>
+                <i class="bi bi-x-lg"></i>&nbsp;
                 Cancelar
             </button>
         </div>
         <div class="col-sm-6">
             <button type="submit" class="btn btn-primary w-100">
-                <i class="bi bi-floppy-fill"></i>
+                <i class="bi bi-floppy-fill"></i>&nbsp;
                 Salvar
             </button>
         </div>
