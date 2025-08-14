@@ -1,38 +1,48 @@
-<form>
-    <div class="mb-3">
+                
+                
+                
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<h1 class="h2">Cadastro de <strong>Clientes</strong></h1>
+            </div>
+<form method="post" action="src/cliente/cadastrar.php">
+    <div class="row g-3">
+    <div class="col-sm-12 mb-3">
     <label for="txt-nome" class="form-label">Nome completo</label>
     <input type="text" class="form-control" id="txt-nome" placeholder="Ex: João Silva" required>
     </div>
-    <div class="mb-3">
+    <div class="col-sm-4 mb-3">
     <label for="txt-cpf" class="form-label">CPF</label>
     <input type="text" class="form-control" id="txt-cpf" placeholder="Ex: 123.456.789-00" required>
     </div>
-    <div class="mb-3">
-    <label for="txt-nascimento" class="form-label">Nascimento</label>
-    <input type="date" class="form-control" id="txt-nascimento" placeholder="Ex: 2000-01-01" required>
+    <div class="col-sm-4 mb-3">
+    <label for="date-nascimento" class="form-label">Nascimento</label>
+    <input type="date" class="form-control" id="date-nascimento" placeholder="Ex: 2000-01-01" required>
     </div>
 
-    <div class="mb-3">
-        <div class="form-check">
+    <div class="col-sm-4 mb-3">
+        <label class="form-label">Gênero</label>
+        <div class="form-control border border-0">
+        <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-fem" value="f" checked>
             <label class="form-check-label" for="rbt-fem">
             Feminino
             </label>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-masc" value="m" checked>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-masc" value="m">
             <label class="form-check-label" for="rbt-masc">
             Masculino
             </label>
         </div>
+        </div>
     </div>
-    <div class="mb-3">
-    <label for="txt-cidade" class="form-label">Cidade</label>
-    <input type="text" class="form-control" id="txt-cidade" placeholder="Ex: Concórdia" required>
+    <div class="mb-3 col-sm-8">
+        <label for="txt-cidade" class="form-label">Cidade</label>
+        <input type="text" class="form-control" id="txt-cidade" name="txt-cidade" placeholder="Ex: Concórdia" required>
     </div>
     <div class="mb-3">
         <label  class="form-label">UF</label>
-        <select class="form-select" id="list-uf" name="list-uf">>
+        <select class="form-select" id="list-uf" name="list-uf">
             <option selected>Selecione o estado</option>
             <option value="AC">AC</option>
             <option value="AL">AL</option>
@@ -62,5 +72,18 @@
             <option value="TO">TO</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Salvar</button>
+
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-secondary w-100">
+            <i class="bi bi-x-lg"></i>    
+                Cancelar
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary w-100">
+            <i class="bi bi-floppy-fill"></i>    
+                    Salvar
+                </button>
+        </div>
+    </div>
 </form>
