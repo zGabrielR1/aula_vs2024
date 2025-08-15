@@ -86,3 +86,27 @@
         </div>
     </div>
 </form>
+<div class="mt 5">
+    <table class="table     -striped">
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Nascimento</th> 
+            <th scope="col">Sexo</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">UF</th>   
+            </tr>
+        </thead>
+    <tbody>
+        <?php
+            $conexao = new PDO('mysql:host=localhost;port=3307;dbname=db_exemplo', 'root', 'masterkey');
+            $sql = 'SELECT * FROM clientes';
+            $stmt = $conexao->prepare($sql);
+            $stmt->execute();
+            $clientes = $stmt->fetchAll(PDO::FETCH_ASSSOC);
+            ?>
+    </tbody>
+</table>
+</div>
