@@ -2,36 +2,48 @@
     <h1 class="h2">Cadastro de <strong>Clientes</strong></h1>
 </div>
 
+
 <form method="post" action="src/cliente/inserir.php">
+
     <div class="row g-3">
+
+
         <div class="col-sm-12 mb-3">
             <label for="txt-nome" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="txt-nome" name="txt-nome" placeholder="Ex: João Silva" required>
         </div>
 
+
+
         <div class="col-sm-4 mb-3">
             <label for="txt-cpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="txt-cpf" name="txt-cpf" placeholder="123.456.789-10" required>
+            <input type="text" class="form-control" id="txt-cpf" name="txt-cpf" placeholder="Ex: 123.456.789-10" required>
         </div>
+
+
 
         <div class="col-sm-4 mb-3">
-            <label for="date-nascimento" class="form-label">Nascimento</label>
-            <input type="date" class="form-control" id="date-nascimento" name="date-nascimento" required>
+            <label for="date_nascimento" class="form-label">Nascimento</label>
+            <input type="date" class="form-control" id="date_nascimento" name="date_nascimento" required>
         </div>
 
+        
         <div class="col-sm-4 mb-3">
             <label class="form-label">Gênero</label>
+
             <div class="form-control border border-0">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-fem" value="f" checked>
-                    <label class="form-check-label" for="rbt-fem">Feminino</label>
+                        <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-fem" value="f" checked>
+                        <label class="form-check-label" for="rbt-fem">Feminino</label>
                 </div>
+
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-masc" value="m">
-                    <label class="form-check-label" for="rbt-masc">Masculino</label>
+                        <input class="form-check-input" type="radio" name="rbt-sexo" id="rbt-masc" value="m">
+                        <label class="form-check-label" for="rbt-masc">Masculino</label>
                 </div>
             </div>
         </div>
+
 
         <div class="col-sm-8 mb-3">
             <label for="txt-cidade" class="form-label">Cidade</label>
@@ -39,9 +51,10 @@
         </div>
 
         <div class="col-sm-4 mb-3">
-            <label class="form-label">UF</label>
-            <select class="form-select" id="list-uf" name="list-uf">
-                <option selected>Selecione a UF</option>
+            <label  class="form-label">UF</label>
+            <select class="form-select" name="list-uf" id="list-uf">
+                <option selected>Selecione o UF</option>
+
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
                 <option value="AP">AP</option>
@@ -70,43 +83,82 @@
                 <option value="SE">SE</option>
                 <option value="TO">TO</option>
             </select>
+
+        </div>
+        
+        
+        <div class="col-sm-6">
+            <button type="reset" class="btn btn-danger w-100">
+                <i class="bi bi-x-circle"></i>&nbsp;Cancelar</button>
         </div>
 
         <div class="col-sm-6">
-            <button type="reset" class="btn btn-secondary w-100">
-                <i class="bi bi-x-lg"></i>&nbsp;
-                Cancelar
-            </button>
-        </div>
-        <div class="col-sm-6">
             <button type="submit" class="btn btn-primary w-100">
-                <i class="bi bi-floppy-fill"></i>&nbsp;
-                Salvar
-            </button>
+                <i class="bi bi-floppy-fill"></i>&nbsp;Salvar</button>
         </div>
-    </div>
+    </div>    
+
 </form>
-<div class="mt 5">
-    <table class="table     -striped">
+<div class='mt-5'>
+    <table class="table table-striped">
         <thead>
-            <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Nascimento</th> 
-            <th scope="col">Sexo</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">UF</th>   
-            </tr>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Nascimento</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">UF</th>
+        </tr>
         </thead>
-    <tbody>
-        <?php
+        <tbody>
+            <?php
             $conexao = new PDO('mysql:host=localhost;port=3307;dbname=db_exemplo', 'root', 'masterkey');
-            $sql = 'SELECT * FROM clientes';
+            $sql = "SELECT * FROM clientes";
             $stmt = $conexao->prepare($sql);
             $stmt->execute();
-            $clientes = $stmt->fetchAll(PDO::FETCH_ASSSOC);
+            $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($clientes) {
+                foreach ($clientes as $cliente) {
+                    echo "<tr>";
+                    echo "<td scope='row'>{$cliente['id_cliente']}</td>";
+                    echo "<td>{$cliente['nome']}</td>";
+                    echo "<td>{$cliente['cpf']}</td>";
+                    echo "<td>" . date('d/m/Y', strtotime($cliente['nascimento'])) . "</td>";
+                    echo "<td>" . ($cliente['sexo'] === 'm' ? 'Masculino' : 'Feminino') . "</td>";
+                    echo "<td>{$cliente['cidade']}</td>";
+                    echo "<td>{$cliente['uf']}</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='7' class='text-center'>Nenhum cliente encontrado.</td></tr>";
+            }
+
             ?>
-    </tbody>
-</table>
+        </tbody>
+
+    </table>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
