@@ -4,7 +4,12 @@
 
 <form method="post" action="src/cliente/inserir.php">
     <div class="row g-3">
-        <div class="col-sm-12 mb-3">
+        <div class="col-sm-3 mb-3">
+            <label for="txt-id" class="form-label">ID</label>
+            <input type="text" class="form-control" id="txt-id" name="txt-id" value="NOVO" readonly required>
+        </div>
+
+        <div class="col-sm-9 mb-3">
             <label for="txt-nome" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="txt-nome" name="txt-nome" placeholder="Ex: João Silva" required>
         </div>
@@ -98,6 +103,7 @@
                 <th scope="col">Sexo</th>
                 <th scope="col">Cidade</th>
                 <th scope="col">UF</th>
+                <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -119,8 +125,8 @@
                             <td>{$cliente['cidade']}</td>
                             <td>{$cliente['uf']}</td>
                             <td>
-                                <button><i class='btn bi bi-pencil-fill'></i></button>
-                                <button><i class='btn' onclick='excluir({$cliente['id_cliente']})' bi bi-trash'></i></button>
+                                <a class='btn' href='sistema.php?tela=clientes&editar={$cliente['id_cliente']}'><i class='bi bi-pencil-fill'></i></a>
+                                <button class='btn' onclick='excluir({$cliente['id_cliente']})'><i class='bi bi-trash3-fill'></i></button>
                             </td>
                         </tr>";
                     }
@@ -133,3 +139,56 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function excluir(id) {
+        var confirmou = confirm('Deseja realmente excluir este cliente?');
+        if (confirmou) {
+            window.location.href = 'src/cliente/excluir.php?id=' + id;
+        }
+    }
+</script>
+
+<?php
+   // Se existir `editar` na URL entra no if
+   if (isset($_GET['editar'])) {
+        // Validação
+        $id = $_GET['editar'] ?? null;
+        if (!$id) {
+            echo "<script>
+                alert('ID do cliente inválido!');
+            </script>";
+            exit;
+        }
+
+        // Consulta o Cliente no Banco
+        try {
+            $conexao = new PDO('mysql:host=localhost;port=3307;dbname=db_exemplo', 'root', 'masterkey');
+            $sql = 'SELECT * FROM clientes WHERE id_cliente = ?';
+            $stmt = $conexao->prepare($sql);
+            $stmt->execute([$id]);
+            $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($cliente) {
+                // Imprime um JS para passar os valores da cosulta no PHP para o formulário
+                echo "<script>
+                    document.getElementById('txt-id').value             = '{$cliente['id_cliente']}';
+                    document.getElementById('txt-nome').value           = '{$cliente['nome']}';
+                    document.getElementById('txt-cpf').value            = '{$cliente['cpf']}';
+                    document.getElementById('date-nascimento').value    = '{$cliente['nascimento']}';
+                    document.getElementById('txt-cidade').value         = '{$cliente['cidade']}';
+                    document.getElementById('list-uf').value            = '{$cliente['uf']}';
+                    if ('{$cliente['sexo']}' === 'f') {
+                        document.getElementById('rbt-fem').checked = true;
+                    } else {
+                        document.getElementById('rbt-masc').checked = true;
+                    }
+                </script>";
+            }
+        } catch(PDOException $erro) {
+            echo "<script>
+                alert(\"$erro\");
+            </script>";
+        }
+   }
+?>
