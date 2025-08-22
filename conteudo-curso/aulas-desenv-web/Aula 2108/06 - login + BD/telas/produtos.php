@@ -39,7 +39,14 @@
         </div>
     </div>
 </form>
-<div class='mt-5'>
+<?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+    <div class='alert alert-success alert-dismissible fade show mt-3' role='alert'>
+        Estoque atualizado com sucesso!
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+<?php endif; ?>
+
+<div class='mt-3'>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -68,8 +75,9 @@
                         echo "<td>R$ " . number_format($produto['preco_venda'], 2, ',', '.') . "</td>";
                         echo "<td>{$produto['quantidade']}</td>";
                         echo "<td>
-                                <a class='btn' href='sistema.php?tela=produtos&editar={$produto['id_produto']}'><i class='bi bi-pencil-fill'></i></a>
-                                <button class='btn' onclick='excluir({$produto['id_produto']})'><i class='bi bi-trash-fill'></i></button>
+                                <a class='btn' href='sistema.php?tela=produtos&editar={$produto['id_produto']}' title='Editar'><i class='bi bi-pencil-fill'></i></a>
+                                <a class='btn' href='sistema.php?tela=estoque&id={$produto['id_produto']}' title='Entrada de Estoque'><i class='bi bi-box-arrow-in-down'></i></a>
+                                <button class='btn' onclick='excluir({$produto['id_produto']})' title='Excluir'><i class='bi bi-trash-fill'></i></button>
                               </td>";
                         echo "</tr>";
                     }

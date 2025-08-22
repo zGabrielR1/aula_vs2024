@@ -98,6 +98,9 @@
                         case 'vendas':
                             include 'telas/vendas.php';
                             break;
+                        case 'estoque':
+                            include 'telas/estoque.php';
+                            break;
                         default:
                             echo "<h1 class='h2'>Bem-vindo {$_SESSION['nome']}!</h1>";
                             break;
