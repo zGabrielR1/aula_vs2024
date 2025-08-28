@@ -127,6 +127,7 @@
                 </script>";
             }
         } catch(PDOException $erro) {
+            $msg = $erro = $erro->getMessage();
             echo "<script>
                 alert(\"$erro\");
             </script>";
