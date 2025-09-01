@@ -166,7 +166,7 @@
         try {
             $banco = new BancoDeDados;
             $sql = 'SELECT * FROM clientes WHERE id_cliente = ?';
-            $parametros = [ id ];
+            $parametros = [ $id ];
             $cliente = $banco->consultar($sql, $parametros);
 
             if ($cliente) {

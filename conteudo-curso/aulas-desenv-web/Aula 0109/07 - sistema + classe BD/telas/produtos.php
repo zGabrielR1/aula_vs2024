@@ -23,12 +23,12 @@
             <label for="txt-estoque" class="form-label">Estoque</label>
             <input type="text" class="form-control" id="txt-estoque" name="txt-estoque" required>
         </div>
-    
-        <div class="col-sm-12">
-    <label for="file-produto" class="form-label">Imagem do Produto</label>
-    <input class="form-control" type="file" id="file-produto" name="file-produto" accept="image/*">
-</div>
 
+        <div class="col-sm-12">
+            <label for="file-produto" class="form-label">Imagem do Produto</label>
+            <input type="file" class="form-control" id="file-produto" name="file-produto" accept="image/*">
+        </div>
+    
         <div class="col-sm-6">
             <button type="reset" class="btn btn-secondary btn-lg w-100">
                 <i class="bi bi-x-lg"></i>&nbsp;
@@ -69,8 +69,8 @@
                         echo "<tr>
                             <td>{$produto['id_produto']}</td>
                             <td>{$produto['descricao']}</td>
-                            <td>R$ " . str_replace('.', ',', isset($produto['preco']) ? $produto['preco'] : '0,00') . "</td>
-                            <td>" . (isset($produto['estoque']) ? $produto['estoque'] : '0') . " un</td>
+                            <td>R$ " . str_replace('.', ',', $produto['preco']) . "</td>
+                            <td>{$produto['estoque']} un</td>
                             <td>
                                 <a class='btn' href='upload/{$produto['imagem']}' target='_blank'><i class='bi bi-image'></i></a>
                                 <a class='btn' href='sistema.php?tela=produtos&editar={$produto['id_produto']}'><i class='bi bi-pencil-fill'></i></a>

@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once '../class/BancoDeDados.php';
     date_default_timezone_set('America/Sao_Paulo');
 
@@ -7,55 +7,50 @@
     $form['id_produto'] = $_POST['list-produto'] ?? null;
     $form['quantidade'] = $_POST['txt-qtd'] ?? null;
 
-    if (in_array(null, $form)) { 
+    if (in_array(null, $form)) {
         echo "<script>
             alert('Existem dados faltando. Verifique!');
             window.history.back();
-        </script>"
+        </script>";
         exit;
     }
+    
+    // Pegar Data Hora
+    $form['data_hora'] = date('Y-m-d H:i:s');
 
-    // Processamento
-    $form['data_hora'] = date('d-M-Y H:i:s');
-    // Teste var_dump($form['data_hora'])
-
-    // Calcular Valor total da Venda
-    $banco = new BamancoDeDados;
-    $produto = $banco->consultar('SELECT preco FROM produto WHERE id_produto = ?', [$form['id_produto']]);
+    // Calcular Valor Total da Venda
+    $banco = new BancoDeDados;
+    $produto = $banco->consultar('SELECT preco FROM produtos WHERE id_produto = ?', [$form['id_produto']]);
     $form['valor_total'] = $form['quantidade'] * $produto['preco'];
-    // Teste var_dump($foprm['valor_total']);
 
-    // Gravar a venda no banco de dados
-
+    // Gravar a venda no Banco
     try {
         $sql = 'INSERT INTO vendas (
             quantidade,
             valor_total,
             data_hora,
-            id_cliente,
             id_produto,
-            cancelado        
-        ) VALUES (?, ?, ?, ?, ?, ?)'
+            id_cliente,
+            cancelado
+        ) VALUES (?,?,?,?,?,?)';
         $parametros = [
             $form['quantidade'],
             $form['valor_total'],
             $form['data_hora'],
-            $form['id_cliente'],
             $form['id_produto'],
+            $form['id_cliente'],
             0
         ];
         $banco->executarComando($sql, $parametros);
 
         echo "<script>
-            alert('Venda realizada com sucesso!');
+            alert('Venda feita com sucesso!');
             window.location.href = '../../sistema.php?tela=vendas';
-        </script>"
-        exit;
-        ]
-    } catch(PDOException $erro){
+        </script>";
+    } catch(PDOException $erro) {
         $msg = $erro->getMessage();
         echo "<script>
-            alert('Existem dados faltando. Verifique!');
+            alert(\"$msg\");
             window.history.back();
-        </script>"
+        </script>";
     }

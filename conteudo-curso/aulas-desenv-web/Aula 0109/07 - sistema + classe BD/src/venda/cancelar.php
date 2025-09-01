@@ -4,18 +4,18 @@
     
     if (!$id) {
         echo "<script>
-            alert('ID da venda inválido!');
+            alert('ID da venda inválida!');
             window.history.back();
         </script>";
         exit;
     }
 
-    // Atualizar o banco
+    // Atualizar no banco
     try {
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
         $sql = 'UPDATE vendas SET cancelado = 1 WHERE id_venda = ?';
-        $parametros = [$id];
+        $parametros = [ $id ];
         $banco->executarComando($sql, $parametros);
 
         echo "<script>
