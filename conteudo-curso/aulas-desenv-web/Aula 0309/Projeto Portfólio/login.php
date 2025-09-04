@@ -15,15 +15,15 @@
 </head>
 <body>
 <main class="form-signin w-100 m-auto">
-    <form method="post" action="">
+    <form method="post" action="src/login.php">
         <h1 class="h3 mb-3 fw-normal">Login:</h1>
         <div class="form-floating">
-            <input type="email" class="form-control" id="txt_email" name="txt_email" required>
-            <label for="txt_email">Email</label>
+            <input type="email" class="form-control" id="txt-email" name="txt-email" required>
+            <label for="txt-email">Email</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="txt_senha" name="txt_senha" required>
-            <label for="txt_senha">Senha</label>
+            <input type="password" class="form-control" id="txt-senha" name="txt-senha" required>
+            <label for="txt-senha">Senha</label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
     </form>

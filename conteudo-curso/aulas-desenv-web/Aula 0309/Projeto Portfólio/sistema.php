@@ -25,7 +25,7 @@
                         <h2>Sistema <strong>Portfólio de Produtos</strong></h2>
                     </div>
                     <div class="col-sm-6">
-                        <a href="" class="btn btn-danger"><i class="bi bi-box-arrow-right"></i> <span>Sair</span></a>
+                        <a onclick="sair()" class="btn btn-danger"><i class="bi bi-box-arrow-right"></i> <span>Sair</span></a>
                         <a onclick="abrirModal()" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus"></i> <span>Novo Produto</span></a>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
     <div id="modal-produto" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="form_produto" method="post" action="">
+                <form id="form_produto" method="post" action="src/produto/inserir.php">
                     <div class="modal-header">
                         <h4 class="modal-title">Novo Produto</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
@@ -90,6 +90,15 @@
             var modal = new bootstrap.Modal(document.getElementById('modal-produto'));
             modal.show();
         }
+        function sair() {
+            var confirmou = confirm("Deseja sair?");
+            if (confirmou) {
+                window.location.href = "src/logout.php";
+            }
+
+        }
     </script>
+
+
 </body>
 </html>
