@@ -4,7 +4,7 @@
     
     if (!$id) {
         echo "<script>
-            alert('ID do produto inválido!');
+            alert('ID do cliente inválido!');
             window.history.back();
         </script>";
         exit;
@@ -15,14 +15,14 @@
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
 
-        $sql = 'DELETE FROM produtos 
-                WHERE id_produto = ?';
+        $sql = 'DELETE FROM clientes 
+                WHERE id_cliente = ?';
         $parameros = [$id];
         $banco->executarComando($sql, $parameros);
 
         echo "<script>
-            alert('Produto removido com sucesso!');
-            window.location.href = '../../sistema.php?tela=produtos';
+            alert('Cliente removido com sucesso!');
+            window.location.href = '../../sistema.php?tela=clientes';
         </script>";
     } catch(PDOException $erro) {
         echo "<script>

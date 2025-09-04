@@ -1,6 +1,6 @@
 <?php
     // Validação
-    $email      = isset($_POST['txt-email'])       ? $_POST['txt-email']       : null;
+    $email   = isset($_POST['txt-email'])      ? $_POST['txt-email']     : null;
     $senha      = isset($_POST['txt-senha'])        ? $_POST['txt-senha']       : null;
     if ($email == null || $senha == null) {
         echo "<script>
@@ -14,7 +14,7 @@
         // Banco de dados
         require_once 'class/BancoDeDados.php';
         $banco = new BancoDeDados;
-        $sql = 'SELECT id_usuario, nome, email
+        $sql = 'SELECT id_usuario, nome
                 FROM usuarios 
                 WHERE email = ? AND senha = ?';
         $parametros = [
@@ -29,13 +29,11 @@
             $_SESSION['logado']     = true;
             $_SESSION['id_usuario'] = $dados_usuario['id_usuario'];
             $_SESSION['nome']       = $dados_usuario['nome'];
-            $_SESSION['email']       = $dados_usuario['email'];
-            $_SESSION['tipo']       = $dados_usuario['tipo'];
 
             header('location: ../sistema.php');
         } else {
             echo "<script>
-                alert('Email ou senha inválidos!');
+                alert('Usuário ou senha inválidos!');
                 window.history.back();
             </script>";
         }

@@ -40,7 +40,33 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>                   
+                <tbody>   
+                     <?php
+                require_once 'src/class/BancoDeDados.php';
+                $banco = new BancoDeDados;
+                $sql = 'SELECT * FROM produtos';
+                $produtos = $banco->consultar($sql, null, true);
+
+                if ($produtos) {
+                    foreach ($produtos as $produto) {
+                        echo "<tr>
+                            <td>{$produto['id_produto']}</td>
+                            <td>{$produto['nome']}</td>
+                            <td>{$produto['descricao']}</td>
+                            <td>R$ " . str_replace('.', ',', $produto['preco']) . "</td>
+                            <td>
+                                <a class='btn' href='upload/{$produto['imagem']}' target='_blank'><i class='bi bi-eye-fill'></i></a>
+                                <a class='btn' href='sistema.php?tela=produtos&editar={$produto['id_produto']}'><i class='bi bi-pencil-fill'></i></a>
+                                <button class='btn' onclick='excluir({$produto['id_produto']})'><i class='bi bi-trash3-fill'></i></button>
+                            </td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr>
+                        <td colspan='7' class='text-center'>Nenhum produto cadastrado.</td>
+                    </tr>";
+                }
+            ?>               
                 </tbody>
             </table>
         </div>
@@ -56,24 +82,24 @@
                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="txt_id" id="txt_id">
-                        <input type="hidden" name="txt_nome_imagem" id="txt_nome_imagem">
+                        <input type="hidden" name="txt-id" id="txt-id">
+                        <input type="hidden" name="txt-nome-imagem" id="txt-nome-imagem">
 
                         <div class="form-group">
                             <label>Nome</label>
-                            <input type="text" class="form-control" name="txt_nome" id="txt_nome" required>
+                            <input type="text" class="form-control" name="txt-nome" id="txt-nome" required>
                         </div>
                         <div class="form-group">
                             <label>Descrição</label>
-                            <textarea class="form-control" name="txt_descricao" id="txt_descricao" required></textarea>
+                            <textarea class="form-control" name="txt-descricao" id="txt-descricao" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Preço</label>
-                            <input type="text" class="form-control" name="txt_preco" id="txt_preco" required>
+                            <input type="text" class="form-control" name="txt-preco" id="txt-preco" required>
                         </div>
                         <div class="form-group">
                             <label>Imagem</label>
-                            <input type="file" class="form-control" name="file_imagem" id="file_imagem" required>
+                           <input type="file" class="form-control" id="file-produto" name="file-produto" accept="image/*">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -91,14 +117,11 @@
             modal.show();
         }
         function sair() {
-            var confirmou = confirm("Deseja sair?");
+            var confirmou = confirm('Tem certeza que deseja sair?');
             if (confirmou) {
-                window.location.href = "src/logout.php";
+                window.location.href = 'src/logout.php';
             }
-
         }
     </script>
-
-
 </body>
 </html>

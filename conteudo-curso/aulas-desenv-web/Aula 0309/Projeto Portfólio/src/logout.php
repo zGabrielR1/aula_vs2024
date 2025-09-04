@@ -4,4 +4,4 @@
     session_destroy();
 
     // Redirecionar
-    header('location: ../index.php');
+    header('location: ../login.php');
