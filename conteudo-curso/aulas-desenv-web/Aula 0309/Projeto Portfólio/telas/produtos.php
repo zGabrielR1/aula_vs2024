@@ -5,7 +5,7 @@
 <form method="post" action="src/produto/inserir.php" enctype="multipart/form-data">
     <div class="row g-3">
         <div class="col-sm-4">
-            <label for="txt-id" class="form-label">Nome</label>
+            <label for="txt-nome" class="form-label">Nome</label>
             <input type="text" class="form-control" id="txt-nome" name="txt-nome" value="NOVO" required readonly>
         </div>
 
@@ -56,27 +56,6 @@
                 require_once 'src/class/BancoDeDados.php';
                 $banco = new BancoDeDados;
                 $sql = 'SELECT * FROM produtos';
-                $produtos = $banco->consultar($sql, null, true);
-
-                if ($produtos) {
-                    foreach ($produtos as $produto) {
-                        echo "<tr>
-                            <td>{$produto['id_produto']}</td>
-                            <td>{$produto['descricao']}</td>
-                            <td>R$ " . str_replace('.', ',', $produto['preco']) . "</td>
-                            <td>{$produto['estoque']} un</td>
-                            <td>
-                                <a class='btn' href='upload/{$produto['imagem']}' target='_blank'><i class='bi bi-image'></i></a>
-                                <a class='btn' href='sistema.php?tela=produtos&editar={$produto['id_produto']}'><i class='bi bi-pencil-fill'></i></a>
-                                <button class='btn' onclick='excluir({$produto['id_produto']})'><i class='bi bi-trash3-fill'></i></button>
-                            </td>
-                        </tr>";
-                    }
-                } else {
-                    echo "<tr>
-                        <td colspan='7' class='text-center'>Nenhum produto cadastrado.</td>
-                    </tr>";
-                }
             ?>
         </tbody>
     </table>
@@ -113,9 +92,9 @@
             if ($produto) {
                 // Imprime um JS para passar os valores da cosulta no PHP para o formulário
                 echo "<script>
-                    document.getElementById('txt-id').value         = '{$produto['id_produto']}';
-                    document.getElementById('txt-descricao').value  = '{$produto['descricao']}';
-                    document.getElementById('txt-preco').value      = '" . str_replace('.', ',', $produto['preco']) . "';
+                    document.getElementById('txt-nome').value          = '{$produto['id_produto']}';
+                    document.getElementById('txt-descricao').value     = '{$produto['descricao']}';
+                    document.getElementById('txt-preco').value         = '" . str_replace('.', ',', $produto['preco']) . "';
                 </script>";
             }
         } catch(PDOException $erro) {

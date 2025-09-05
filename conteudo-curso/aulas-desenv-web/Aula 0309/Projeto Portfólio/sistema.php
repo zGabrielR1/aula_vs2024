@@ -40,7 +40,40 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>                   
+                <tbody>
+                    <?php
+                        require_once 'src/class/BancoDeDados.php';
+                        $banco = new BancoDeDados;
+                        $sql = 'SELECT * FROM produtos';
+                        
+                        try {
+                            $produtos = $banco->consultar($sql, null, true);
+                            
+                            if ($produtos && is_array($produtos) && count($produtos) > 0) {
+                                foreach ($produtos as $index => $produto) {
+                                    echo "<tr>
+                                        <td>" . ($index + 1) . "</td>
+                                        <td>" . ($produto['nome'] ?? 'N/A') . "</td>
+                                        <td>" . ($produto['descricao'] ?? 'N/A') . "</td>
+                                        <td>R$ " . str_replace('.', ',', $produto['preco']) . "</td>
+                                        <td>
+                                            <a class='btn btn-sm btn-info' href='upload/{$produto['imagem']}' target='_blank'><i class='bi bi-image'></i></a>
+                                            <a class='btn btn-sm btn-warning' href='#' onclick='editarProduto({$produto['id_produto']})'><i class='bi bi-pencil-fill'></i></a>
+                                            <button class='btn btn-sm btn-danger' onclick='excluir({$produto['id_produto']})'><i class='bi bi-trash3-fill'></i></button>
+                                        </td>
+                                    </tr>";
+                                }
+                            } else {
+                                echo "<tr>
+                                    <td colspan='5' class='text-center'>Nenhum produto cadastrado.</td>
+                                </tr>";
+                            }
+                        } catch(PDOException $erro) {
+                            echo "<tr>
+                                <td colspan='5' class='text-center'>Erro ao carregar produtos.</td>
+                            </tr>";
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -50,7 +83,7 @@
     <div id="modal-produto" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="form_produto" method="post" action="src/produto/inserir.php">
+                <form id="form_produto" method="post" action="src/produto/inserir.php" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h4 class="modal-title">Novo Produto</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
@@ -87,6 +120,18 @@
     <!-- JS -->
     <script>
         function abrirModal() {
+            // Reset form for new product
+            document.getElementById('txt_id').value = '';
+            document.getElementById('txt_nome').value = '';
+            document.getElementById('txt_descricao').value = '';
+            document.getElementById('txt_preco').value = '';
+            document.getElementById('txt_nome_imagem').value = '';
+            document.getElementById('file_imagem').value = '';
+            
+            // Reset modal title
+            document.querySelector('.modal-title').textContent = 'Novo Produto';
+            
+            // Open modal
             var modal = new bootstrap.Modal(document.getElementById('modal-produto'));
             modal.show();
         }
@@ -95,7 +140,41 @@
             if (confirmou) {
                 window.location.href = "src/logout.php";
             }
-
+        }
+        function excluir(id) {
+            var confirmou = confirm('Deseja realmente excluir este produto?');
+            if (confirmou) {
+                window.location.href = 'src/produto/excluir.php?id=' + id;
+            }
+        }
+        function editarProduto(id) {
+            // Fetch product data and populate modal
+            fetch('src/produto/buscar.php?id=' + id)
+                .then(response => response.json())
+                .then(produto => {
+                    if (produto.erro) {
+                        alert('Erro ao buscar produto: ' + produto.erro);
+                        return;
+                    }
+                    
+                    // Populate form fields
+                    document.getElementById('txt_id').value = produto.id_produto;
+                    document.getElementById('txt_nome').value = produto.nome || '';
+                    document.getElementById('txt_descricao').value = produto.descricao || '';
+                    document.getElementById('txt_preco').value = produto.preco ? produto.preco.replace('.', ',') : '';
+                    document.getElementById('txt_nome_imagem').value = produto.imagem || '';
+                    
+                    // Change modal title
+                    document.querySelector('.modal-title').textContent = 'Editar Produto';
+                    
+                    // Open modal
+                    var modal = new bootstrap.Modal(document.getElementById('modal-produto'));
+                    modal.show();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Erro ao carregar dados do produto');
+                });
         }
     </script>
 
