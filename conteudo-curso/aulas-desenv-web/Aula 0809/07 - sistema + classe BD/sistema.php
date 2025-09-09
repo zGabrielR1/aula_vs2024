@@ -62,12 +62,6 @@
                                             <i class='bi bi-box-fill'></i>
                                             Produtos
                                         </a>
-                                    </li>
-                                    <li class='nav-item'>
-                                        <a class='nav-link d-flex align-items-center gap-2' href='sistema.php?tela=pessoas'>
-                                            <i class='bi bi-person-badge-fill'></i>
-                                            Pessoas
-                                        </a>
                                     </li>";
                                 }
                             ?>
@@ -100,9 +94,6 @@
                             break;
                         case 'produtos':
                             include 'telas/produtos.php';
-                            break;
-                        case 'pessoas':
-                            include 'telas/pessoas.php';
                             break;
                         case 'vendas':
                             include 'telas/vendas.php';
