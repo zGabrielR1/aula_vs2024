@@ -20,17 +20,8 @@
 
     // Calcular Valor Total da Venda
     $banco = new BancoDeDados;
-    $produto = $banco->consultar('SELECT preco, estoque FROM produtos WHERE id_produto = ?', [$form['id_produto']]);
+    $produto = $banco->consultar('SELECT preco FROM produtos WHERE id_produto = ?', [$form['id_produto']]);
     $form['valor_total'] = $form['quantidade'] * $produto['preco'];
-
-    // Verificar estoque disponível
-    if ($form['quantidade'] > $produto['estoque']) {
-        echo "<script>
-            alert('Estoque insuficiente! Quantidade disponível: {$produto['estoque']}');
-            window.history.back();
-        </script>";
-        exit;
-    }
 
     // Gravar a venda no Banco
     try {
@@ -51,11 +42,6 @@
             0
         ];
         $banco->executarComando($sql, $parametros);
-
-        // Reduzir estoque após venda bem-sucedida
-        $sql_estoque = 'UPDATE produtos SET estoque = estoque - ? WHERE id_produto = ?';
-        $parametros_estoque = [$form['quantidade'], $form['id_produto']];
-        $banco->executarComando($sql_estoque, $parametros_estoque);
 
         echo "<script>
             alert('Venda feita com sucesso!');

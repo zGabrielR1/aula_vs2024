@@ -16,7 +16,7 @@
 
         <div class="col-sm-6 mb-3">
             <label for="txt-cpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="txt-cpf" name="txt-cpf" placeholder="123.456.789-10" required>
+            <input type="text" class="form-control" id="txt-cpf" name="txt-cpf" placeholder="123.456.789-10" maxlength="14" required>
         </div>
 
         <div class="col-sm-6 mb-3">
@@ -27,7 +27,7 @@
         <div class="col-sm-12 mb-3">
             <label for="file-foto" class="form-label">Foto</label>
             <input type="file" class="form-control" id="file-foto" name="file-foto" accept="image/*" required>
-            <div class="form-text">Selecione uma imagem (JPG, PNG, GIF). Máximo 5MB.</div>
+            <div class="form-text">Selecione uma imagem (JPEG, PNG, GIF). Máximo 2MB.</div>
         </div>
 
         <div class="col-sm-6">
@@ -61,12 +61,12 @@
         </thead>
         <tbody>
             <?php
-                require_once 'src/class/BancoDadosPessoas.php';
+                require_once 'src/class/BancoDeDados.php';
+                $banco = new BancoDeDados;
+                $sql = 'SELECT * FROM pessoas ORDER BY nome';
                 
                 try {
-                    $banco = new BancoDados;
-                    $sql = 'SELECT * FROM pessoas ORDER BY nome';
-                    $pessoas = $banco->consultar($sql, [], true);
+                    $pessoas = $banco->consultar($sql, null, true);
 
                     if ($pessoas) {
                         foreach ($pessoas as $pessoa) {
@@ -75,20 +75,18 @@
                                 <td>{$pessoa['nome']}</td>
                                 <td>{$pessoa['cpf']}</td>
                                 <td>" . date('d/m/Y', strtotime($pessoa['data_nascimento'])) . "</td>
-                                <td>";
-                            
-                            if ($pessoa['nome_arquivo_foto']) {
-                                echo "<button class='btn btn-sm btn-outline-primary' onclick='visualizarFoto(\"{$pessoa['nome_arquivo_foto']}\")'>
-                                        <i class='bi bi-image'></i> Ver Foto
-                                      </button>";
-                            } else {
-                                echo "<span class='text-muted'>Sem foto</span>";
-                            }
-                            
-                            echo "</td>
                                 <td>
-                                    <a class='btn' href='sistema.php?tela=pessoas&editar={$pessoa['id']}'><i class='bi bi-pencil-fill'></i></a>
-                                    <button class='btn' onclick='excluir({$pessoa['id']})'><i class='bi bi-trash3-fill'></i></button>
+                                    <button class='btn btn-sm btn-info' onclick='visualizarFoto(\"{$pessoa['foto']}\", \"{$pessoa['nome']}\")'>
+                                        <i class='bi bi-eye-fill'></i> Ver Foto
+                                    </button>
+                                </td>
+                                <td>
+                                    <a class='btn btn-sm btn-warning' href='sistema.php?tela=pessoas&editar={$pessoa['id']}'>
+                                        <i class='bi bi-pencil-fill'></i>
+                                    </a>
+                                    <button class='btn btn-sm btn-danger' onclick='excluir({$pessoa['id']})'>
+                                        <i class='bi bi-trash3-fill'></i>
+                                    </button>
                                 </td>
                             </tr>";
                         }
@@ -99,7 +97,7 @@
                     }
                 } catch(PDOException $erro) {
                     echo "<tr>
-                        <td colspan='6' class='text-center text-danger'>Erro ao carregar dados: {$erro->getMessage()}</td>
+                        <td colspan='6' class='text-center text-danger'>Erro ao carregar dados: " . $erro->getMessage() . "</td>
                     </tr>";
                 }
             ?>
@@ -112,11 +110,11 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Visualizar Foto</h5>
+                <h5 class="modal-title" id="modalFotoTitulo">Foto da Pessoa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">
-                <img id="imgFoto" src="" alt="Foto da pessoa" class="img-fluid">
+                <img id="imagemFoto" src="" alt="Foto da pessoa" class="img-fluid" style="max-height: 500px;">
             </div>
         </div>
     </div>
@@ -130,10 +128,15 @@
         }
     }
 
-    function visualizarFoto(nomeArquivo) {
-        document.getElementById('imgFoto').src = 'src/pessoa/visualizar_foto.php?foto=' + nomeArquivo;
-        var modal = new bootstrap.Modal(document.getElementById('modalFoto'));
-        modal.show();
+    function visualizarFoto(nomeArquivo, nomePessoa) {
+        if (nomeArquivo && nomeArquivo !== '') {
+            document.getElementById('modalFotoTitulo').textContent = 'Foto de ' + nomePessoa;
+            document.getElementById('imagemFoto').src = 'uploads/' + nomeArquivo;
+            var modal = new bootstrap.Modal(document.getElementById('modalFoto'));
+            modal.show();
+        } else {
+            alert('Esta pessoa não possui foto cadastrada.');
+        }
     }
 
     function limparFormulario() {
@@ -144,6 +147,17 @@
         document.getElementById('file-foto').value = '';
         document.getElementById('file-foto').required = true;
     }
+
+    // Máscara para CPF
+    document.getElementById('txt-cpf').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length <= 11) {
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        }
+    });
 </script>
 
 <?php
@@ -160,9 +174,10 @@
 
         // Consulta a Pessoa no Banco
         try {
-            $banco = new BancoDados;
+            $banco = new BancoDeDados;
             $sql = 'SELECT * FROM pessoas WHERE id = ?';
-            $pessoa = $banco->consultar($sql, [$id]);
+            $parametros = [ $id ];
+            $pessoa = $banco->consultar($sql, $parametros);
 
             if ($pessoa) {
                 // Imprime um JS para passar os valores da consulta no PHP para o formulário
@@ -183,6 +198,7 @@
             $msg = $erro->getMessage();
             echo "<script>
                 alert(\"Erro ao carregar dados: $msg\");
+                window.location.href = 'sistema.php?tela=pessoas';
             </script>";
         }
    }

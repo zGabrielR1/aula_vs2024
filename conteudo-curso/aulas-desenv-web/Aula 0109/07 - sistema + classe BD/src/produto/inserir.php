@@ -1,6 +1,6 @@
 <?php
     // Validação de dados (com operação de coalescência)
-    $form['id']         = !empty($_POST['txt-id']) ? $_POST['txt-id'] : 'NOVO' ?? null;
+    $form['id']         = $_POST['txt-id']              ?? null;
     $form['descricao']  = $_POST['txt-descricao']       ?? null;
     $form['preco']      = isset($_POST['txt-preco'])    ? str_replace(',', '.', $_POST['txt-preco']) : null;
     $form['estoque']    = $_POST['txt-estoque']         ?? null;
