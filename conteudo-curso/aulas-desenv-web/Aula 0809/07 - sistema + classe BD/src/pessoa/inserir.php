@@ -7,9 +7,9 @@
     $form['foto']           = $_FILES['file-foto']      ?? null;
 
     // Verificar se todos os campos obrigatórios foram preenchidos
-    if (!$form['nome'] || !$form['cpf'] || !$form['data_nascimento']) {
+    if (in_array(null, $form)) {
         echo "<script>
-            alert('Existem dados obrigatórios faltando. Verifique!');
+            alert('Existem dados faltando. Verifique!');
             window.history.back();
         </script>";
         exit;
@@ -185,4 +185,4 @@
                 window.history.back();
             </script>";
     }
-?>
+?>  

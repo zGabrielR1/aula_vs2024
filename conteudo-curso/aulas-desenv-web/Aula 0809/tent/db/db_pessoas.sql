@@ -30,4 +30,4 @@ ENGINE = InnoDB;
 
 -- Inserir usuário padrão
 INSERT INTO `db_pessoas`.`usuarios` (`nome`, `usuario`, `senha`, `tipo`) VALUES
-('Administrador', 'admin', '123456', 'a');
+('Administrador', 'admin', '123', 'a');
