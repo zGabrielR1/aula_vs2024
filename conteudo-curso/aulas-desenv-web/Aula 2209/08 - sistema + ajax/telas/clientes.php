@@ -2,7 +2,7 @@
     <h1 class="h2">Cadastro de <strong>Clientes</strong></h1>
 </div>
 
-<form id=form152 onsubmit="return false">
+<form id="form-cliente" onsubmit="return false">
     <div class="row g-3">
         <div class="col-sm-3 mb-3">
             <label for="txt-id" class="form-label">ID</label>
@@ -109,7 +109,7 @@
             </tr>
         </thead>
         <tbody id="tbody-clientes">
-            <!-- Aqui vão ser impressos clientes via JS -->
+            <!-- Aqui vão ser impressos os clientes via JS -->
         </tbody>
     </table>
 </div>
@@ -129,7 +129,7 @@
         var sexo        = document.getElementById('rbt-fem').checked ? 'f' : 'm';
         var cidade      = document.getElementById('txt-cidade').value;
         var uf          = document.getElementById('list-uf').value;
-        var destino = id === 'NOVO' ? 'src/cliente/inserir.php' : 'src/cliente/atualizar.php';
+        var destino     = id === 'NOVO' ? 'src/cliente/inserir.php' : 'src/cliente/atualizar.php';
 
         $.ajax({
             type: 'post',
@@ -148,8 +148,8 @@
                 alert(resposta['mensagem']);
 
                 if (resposta['status'] === 'sucesso') {
-                    document.getElementById('form-cliente').reset();
-                    listarClientes(); // Atualizar a listagem de clientes
+                    document.getElementById('form-cliente').reset(); // Limpar formulário
+                    listarClientes();                                // Atualizar a listagem de clientes
                 }
             },
             error: function(erro) {
@@ -165,14 +165,13 @@
             url: 'src/cliente/selecionarTodos.php',
             dataType: 'json',
             success: function(resposta) {
+                // Javascript para imprimir os dados da resposta dentro da tabela
                 var tabelaClientes = document.getElementById('tbody-clientes');
-
                 tabelaClientes.innerHTML = ''; // Limpar a tabela antes de imprimir os clientes
-                var clientes = resposta['clientes'];
-                clientes.forEach(function (cliente) {
-                    // Cria as linhas da tabela
-                    var linha = document.createElement('tr');
 
+                var clientes = resposta['clientes'];
+                clientes.forEach(function(cliente) {
+                    var linha = document.createElement('tr');
                     linha.innerHTML = `
                         <td>${cliente['id_cliente']}</td>
                         <td>${cliente['nome']}</td>
@@ -182,10 +181,11 @@
                         <td>${cliente['cidade']}</td>
                         <td>${cliente['uf']}</td>
                         <td>
-                            <button class='btn' onclick='editar(${cliente['id_cliente']})'>
+                            <button class='btn' onclick='editarCliente(${cliente['id_cliente']})'>
                                 <i class='bi bi-pencil-fill'></i>
                             </button>
-                            <button class='btn' onclick='excluir(${cliente['id_cliente']})'>
+
+                            <button class='btn' onclick='excluirCliente(${cliente['id_cliente']})'>
                                 <i class='bi bi-trash-fill'></i>
                             </button>
                         </td>
@@ -199,22 +199,22 @@
         });
     }
 
-
-
-    function excluir(id) {
+    // Excluir
+    function excluirCliente(idCliente) {
         var confirmou = confirm('Deseja realmente excluir este cliente?');
         if (confirmou) {
             $.ajax({
                 type: 'post',
-                url: 'src/cliente/excluir.php'
+                url: 'src/cliente/excluir.php',
+                dataType: 'json',
                 data: {
                     'id': idCliente,
-                },  
+                },
                 success: function(resposta) {
                     alert(resposta['mensagem']);
 
-                    if (resposa['status'] === 'sucesso') {
-                        listarClientes(); // Atualizar listagem de clientes
+                    if (resposta['status'] === 'sucesso') {
+                        listarClientes(); // Atualizar a listagem de clientes
                     }
                 },
                 error: function(erro) {
@@ -222,34 +222,35 @@
                 }
             });
         }
-        }
     }
 
+    // Editar
     function editarCliente(idCliente) {
         $.ajax({
             type: 'post',
-            url: 'src/cliente/selecionarPorId.php'
+            url: 'src/cliente/selecionarPorId.php',
             dataType: 'json',
             data: {
-                id: idCliente
+                'id': idCliente,
             },
-            sucess: function(resposta) {
-                var cliente = resposta['cliente'];
-                document.getElementById('txt-id').value = cliente['id_cliente'];
-                document.getElementById('txt-nome').value = cliente['nome'];
-                document.getElementById('txt-cpf').value = cliente['cpf'];
-                document.getElementById('date-nascimento').value = cliente['nascimento'];
-                document.getElementById('txt-cidade').value = cliente['cidade'];
-                document.getElementById('list-uf').value = cliente['uf'];
-                if (cliente['sexo'] == 'f') {
-                    document.getElementById('rbt-fem').checked = true;
+            success: function(resposta) {
+                if (resposta['status'] === 'sucesso') {
+                    var cliente = resposta['cliente'];
+                    document.getElementById('txt-id').value             = cliente['id_cliente'];
+                    document.getElementById('txt-nome').value           = cliente['nome'];
+                    document.getElementById('txt-cpf').value            = cliente['cpf'];
+                    document.getElementById('date-nascimento').value    = cliente['nascimento'];
+                    document.getElementById('txt-cidade').value         = cliente['cidade'];
+                    document.getElementById('list-uf').value            = cliente['uf'];
+                    if (cliente['sexo'] === 'f') {
+                        document.getElementById('rbt-fem').checked = true;
+                    } else {
+                        document.getElementById('rbt-masc').checked = true;
+                    }
                 } else {
-                    document.getElementById('rbt-masc').checked = true;
-                } 
-            } else {
-                alert(resposta['mensagem']);
-            }
-        },
+                    alert(resposta['mensagem']);
+                }
+            },
             error: function(erro) {
                 alert('Ocorreu um erro na requisição: ' + erro);
             }
