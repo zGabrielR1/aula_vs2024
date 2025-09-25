@@ -13,25 +13,28 @@
         echo json_encode($resposta);
         exit;
     }
-
+    
     // Enviar arquivo para o servidor
-    if ($_FILES['file-produto']['size'] > 0) {
+    if (isset($_FILES['file-produto']) && $_FILES['file-produto']['size'] > 0) {
         $nome_imagem = uniqid() . '.jpg';
-        $destino     = '../../upload/' . $nome_imagem;
-        $origem      = $_FILES['file-produto']['tmp_name'];
-        move_uploaded_file($origem, $destino);
+        $destino = '../../upload/' . $nome_imagem;
+        $origem = $_FILES['file-produto']['tmp_name'];
+        
+        if (!move_uploaded_file($origem, $destino)) {
+            echo json_encode([
+                'status'    => 'erro',
+                'mensagem'  => 'Erro ao fazer upload da imagem. Verifique!'
+            ]);
+            exit;
+        }
     } else {
-        $resposta = [
+        echo json_encode([
             'status'    => 'erro',
-            'mensagem'  => 'A imagem do produto é obrigatória. Verifique!',
-        ];
-        echo json_encode($resposta);
-        exit;
-            alert('A imagem do produto é obrigatória. Verifique!');
-            window.history.back();
-        </script>";
+            'mensagem'  => 'A imagem do produto é obrigatória. Verifique!'
+        ]);
         exit;
     }
+
 
     // Banco de dados
     try {

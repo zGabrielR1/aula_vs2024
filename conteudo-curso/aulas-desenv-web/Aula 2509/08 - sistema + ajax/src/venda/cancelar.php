@@ -18,13 +18,17 @@
         $parametros = [ $id ];
         $banco->executarComando($sql, $parametros);
 
-        echo "<script>
-            alert('Venda cancelada com sucesso!');
-            window.location.href = '../../sistema.php?tela=vendas';
-        </script>";
+        $resposta = [
+            'status'    => 'sucesso',
+            'mensagem'  => 'Venda cancelada com sucesso!'
+        ];
+
+        echo json_encode($resposta);    // Imprimindo o Json para o cliente
+        exit;                           // Encerra o script
     } catch(PDOException $erro) {
-        echo "<script>
-            alert(\"$erro\");
-            window.history.back();
-        </script>";
+        $resposta = [
+            'status'    => 'erro',
+            'mensagem'  => $erro->getMessage(),
+        ];
+         echo json_encode($resposta);  // Imprimindo o Json para o cliente
     }
