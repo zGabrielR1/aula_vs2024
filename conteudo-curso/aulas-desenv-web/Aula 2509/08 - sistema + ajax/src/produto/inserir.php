@@ -1,9 +1,9 @@
 <?php
     // Validação de dados (com operação de coalescência)
-    $form['id']         = $_POST['txt-id']              ?? null;
-    $form['descricao']  = $_POST['txt-descricao']       ?? null;
-    $form['preco']      = isset($_POST['txt-preco'])    ? str_replace(',', '.', $_POST['txt-preco']) : null;
-    $form['estoque']    = $_POST['txt-estoque']         ?? null;
+    $form['id']         = $_POST['id']              ?? null;
+    $form['descricao']  = $_POST['descricao']       ?? null;
+    $form['preco']      = isset($_POST['preco'])    ? str_replace(',', '.', $_POST['preco']) : null;
+    $form['estoque']    = $_POST['estoque']         ?? null;
 
     if (in_array(null, $form)) {
         $resposta = [
@@ -13,64 +13,45 @@
         echo json_encode($resposta);
         exit;
     }
-    
+
     // Enviar arquivo para o servidor
-    if (isset($_FILES['file-produto']) && $_FILES['file-produto']['size'] > 0) {
+    if ($_FILES['file-produto']['size'] > 0) {
         $nome_imagem = uniqid() . '.jpg';
-        $destino = '../../upload/' . $nome_imagem;
-        $origem = $_FILES['file-produto']['tmp_name'];
-        
-        if (!move_uploaded_file($origem, $destino)) {
-            echo json_encode([
-                'status'    => 'erro',
-                'mensagem'  => 'Erro ao fazer upload da imagem. Verifique!'
-            ]);
-            exit;
-        }
+        $destino     = '../../upload/' . $nome_imagem;
+        $origem      = $_FILES['file-produto']['tmp_name'];
+        move_uploaded_file($origem, $destino);
     } else {
-        echo json_encode([
+        $resposta = [
             'status'    => 'erro',
-            'mensagem'  => 'A imagem do produto é obrigatória. Verifique!'
-        ]);
+            'mensagem'  => 'Houve um problema para enviar a imagem. Tente novamente.'
+        ];
+        echo json_encode($resposta);
         exit;
     }
-
 
     // Banco de dados
     try {
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
         
-        if ($form['id'] === 'NOVO') {
-            $sql = 'INSERT INTO produtos (descricao, preco, estoque, imagem) VALUES (?,?,?,?)';
-            $parametros = [
-                $form['descricao'],
-                $form['preco'],
-                $form['estoque'],
-                $nome_imagem
-            ];
-            $banco->executarComando($sql, $parametros);
-            $msg = 'Produto cadastrado com sucesso!';
-        } else {
-            $sql = 'UPDATE produtos SET descricao = ?, preco = ?, estoque = ? WHERE id_produto = ?';
-            $parametros = [
-                $form['descricao'],
-                $form['preco'],
-                $form['estoque'],
-                $form['id']
-            ];
-            $banco->executarComando($sql, $parametros);
-            $msg = 'Produto alterado com sucesso!';
-        }
+        $sql = 'INSERT INTO produtos (descricao, preco, estoque, imagem) VALUES (?,?,?,?)';
+        $parametros = [
+            $form['descricao'],
+            $form['preco'],
+            $form['estoque'],
+            $nome_imagem
+        ];
+        $banco->executarComando($sql, $parametros);
         
-        echo "<script>
-                alert('{$msg}');
-                window.location.href = '../../sistema.php?tela=produtos';
-            </script>";
+        $resposta = [
+            'status'    => 'sucesso',
+            'mensagem'  => 'Produto cadastrado com sucesso!'
+        ];
+        echo json_encode($resposta);
     } catch(PDOException $erro) {
-        $msg = $erro->getMessage();
-        echo "<script>
-                alert(\"$msg\");
-                window.history.back();
-            </script>";
+        $resposta = [
+            'status'    => 'erro',
+            'mensagem'  => $erro->getMessage()
+        ];
+        echo json_encode($resposta);
     }

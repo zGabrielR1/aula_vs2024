@@ -1,16 +1,13 @@
 <?php
     // Validação
-    $id = $_GET['id'] ?? null;
-    
-    if (!$id) {
-        $.ajax({
-            url: '../../sistema.php?tela=produtos',
-            type: 'GET',
-            success: function() {
-                window.location.href = '../../sistema.php?tela=produtos';
-            }
-        });
-    exit;
+    $id = $_POST['id'] ?? null;
+    if (empty($id)) {
+        $resposta = [
+            'status'   => 'erro',
+            'mensagem' => 'ID do produto inválido',
+        ];
+        echo json_encode($resposta);
+        exit;
     }
 
     // Exclusão do banco
@@ -18,25 +15,20 @@
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
 
-        $sql = 'DELETE FROM produtos WHERE id_produto = ?';
-        $parametros = [$id];
-        $banco->executarComando($sql, $parametros);
+        $sql = 'DELETE FROM produtos 
+                WHERE id_produto = ?';
+        $parameros = [$id];
+        $banco->executarComando($sql, $parameros);
 
-        $.ajax({
-            url: '../../sistema.php?tela=produtos',
-            type: 'GET',
-            success: function() {
-                alert('Produto removido com sucesso!');
-                window.location.href = '../../sistema.php?tela=produtos';
-            }
-        });
-} catch(PDOException $erro) {
-        $.ajax({
-            url: '../../sistema.php?tela=produtos',
-            type: 'GET',
-            success: function() {
-                alert('Erro ao excluir produto: " . $erro->getMessage() . "');
-                window.history.back();
-            }
-        });
+        $resposta = [
+            'status'   => 'sucesso',
+            'mensagem' => 'Produto removido com sucesso!',
+        ];
+        echo json_encode($resposta);
+    } catch(PDOException $erro) {
+        $resposta = [
+            'status'   => 'erro',
+            'mensagem' => $erro->getCode() == 23000 ? 'Este produto não pode ser excluido!' : $erro->getMessage(),
+        ];
+        echo json_encode($resposta);
     }

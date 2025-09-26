@@ -2,31 +2,31 @@
     <h1 class="h2">Cadastro de <strong>Produtos</strong></h1>
 </div>
 
-<form method="post" action="src/produto/inserir.php" enctype="multipart/form-data">
+<form id="form-produto" onsubmit="return false" enctype="multipart/form-data">
     <div class="row g-3">
         <div class="col-sm-4">
             <label for="txt-id" class="form-label">ID</label>
-            <input type="text" class="form-control" id="txt-id" name="txt-id" value="NOVO" required readonly>
+            <input type="text" class="form-control" name="id" id="txt-id" value="NOVO" required readonly>
         </div>
 
         <div class="col-sm-8">
-            <label for="txt-descricao," class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="txt-descricao" name="txt-descricao" required>
+            <label for="txt-descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" name="descricao" id="txt-descricao" required>
         </div>
 
         <div class="col-sm-6">
             <label for="txt-preco" class="form-label">Preço</label>
-            <input type="text" class="form-control" id="txt-preco" name="txt-preco" required>
+            <input type="text" class="form-control" name="preco" id="txt-preco" required>
         </div>
 
         <div class="col-sm-6">
             <label for="txt-estoque" class="form-label">Estoque</label>
-            <input type="text" class="form-control" id="txt-estoque" name="txt-estoque" required>
+            <input type="text" class="form-control" name="estoque" id="txt-estoque" required>
         </div>
 
         <div class="col-sm-12">
             <label for="file-produto" class="form-label">Imagem do Produto</label>
-            <input type="file" class="form-control" id="file-produto" name="file-produto" accept="image/*">
+            <input type="file" class="form-control" name="file-produto" id="file-produto" accept="image/*">
         </div>
     
         <div class="col-sm-6">
@@ -36,7 +36,7 @@
             </button>
         </div>
         <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary btn-lg w-100">
+            <button onclick="salvarProduto()" class="btn btn-primary btn-lg w-100">
                 <i class="bi bi-floppy-fill"></i>&nbsp;
                 Salvar
             </button>
@@ -57,79 +57,132 @@
                 <th scope="col">Ações</th>
             </tr>
         </thead>
-        <tbody>
-            <?php
-                require_once 'src/class/BancoDeDados.php';
-                $banco = new BancoDeDados;
-                $sql = 'SELECT * FROM produtos';
-                $produtos = $banco->consultar($sql, null, true);
-
-                if ($produtos) {
-                    foreach ($produtos as $produto) {
-                        echo "<tr>
-                            <td>{$produto['id_produto']}</td>
-                            <td>{$produto['descricao']}</td>
-                            <td>R$ " . str_replace('.', ',', $produto['preco']) . "</td>
-                            <td>{$produto['estoque']} un</td>
-                            <td>
-                                <a class='btn' href='upload/{$produto['imagem']}' target='_blank'><i class='bi bi-image'></i></a>
-                                <a class='btn' href='sistema.php?tela=produtos&editar={$produto['id_produto']}'><i class='bi bi-pencil-fill'></i></a>
-                                <button class='btn' onclick='excluir({$produto['id_produto']})'><i class='bi bi-trash3-fill'></i></button>
-                            </td>
-                        </tr>";
-                    }
-                } else {
-                    echo "<tr>
-                        <td colspan='7' class='text-center'>Nenhum produto cadastrado.</td>
-                    </tr>";
-                }
-            ?>
+        <tbody id="tbody-produtos">
+            <!-- Aqui vão ser impressos os produtos via JS -->
         </tbody>
     </table>
 </div>
 
 <script>
-    function excluir(id) {
+    // Carregar a Página
+    window.onload = function() {
+        listarProdutos();
+    }
+
+    // Salvar
+    function salvarProduto() {
+        var destino    = document.getElementById('txt-id').value === 'NOVO' 
+                            ? 'src/produto/inserir.php' 
+                            : 'src/produto/atualizar.php';
+        var formulario = new FormData(document.getElementById('form-produto'));
+
+        $.ajax({
+            type: 'post',
+            url: destino,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            data: formulario ,
+            success: function(resposta) {
+                alert(resposta['mensagem']);
+
+                if (resposta['status'] === 'sucesso') {
+                    document.getElementById('form-produto').reset(); // Limpar formulário
+                    listarProdutos();                                // Atualizar a listagem de produtos
+                }
+            },
+            error: function(erro) {
+                alert('Ocorreu um erro na requisição: ' + erro);
+            }
+        });
+    }
+
+    // Listar Produto
+    function listarProdutos() {
+        $.ajax({
+            type: 'post',
+            url: 'src/produto/selecionarTodos.php',
+            dataType: 'json',
+            success: function(resposta) {
+                // Javascript para imprimir os dados da resposta dentro da tabela
+                var tabelaProdutos = document.getElementById('tbody-produtos');
+                tabelaProdutos.innerHTML = ''; // Limpar a tabela antes de imprimir os produtos
+
+                var produtos = resposta['produtos'];
+                produtos.forEach(function(produto) {
+                    var linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td>${produto['id_produto']}</td>
+                        <td>${produto['descricao']}</td>
+                        <td>${produto['preco']}</td>
+                        <td>${produto['estoque']}</td>
+                        <td>
+                            <button class='btn' onclick='editarProduto(${produto['id_produto']})'>
+                                <i class='bi bi-pencil-fill'></i>
+                            </button>
+
+                            <button class='btn' onclick='excluirProduto(${produto['id_produto']})'>
+                                <i class='bi bi-trash-fill'></i>
+                            </button>
+                        </td>
+                    `;
+                    tabelaProdutos.appendChild(linha);
+                });
+            },
+            error: function(erro) {
+                alert('Ocorreu um erro na requisição: ' + erro);
+            }
+        });
+    }
+
+    // Excluir
+    function excluirProduto(idProduto) {
         var confirmou = confirm('Deseja realmente excluir este produto?');
         if (confirmou) {
-            window.location.href = 'src/produto/excluir.php?id=' + id;
+            $.ajax({
+                type: 'post',
+                url: 'src/produto/excluir.php',
+                dataType: 'json',
+                data: {
+                    'id': idProduto,
+                },
+                success: function(resposta) {
+                    alert(resposta['mensagem']);
+
+                    if (resposta['status'] === 'sucesso') {
+                        listarProdutos(); // Atualizar a listagem de produtos
+                    }
+                },
+                error: function(erro) {
+                    alert('Ocorreu um erro na requisição: ' + erro);
+                }
+            });
         }
     }
-</script>
 
-<?php
-   // Se existir `editar` na URL entra no if
-   if (isset($_GET['editar'])) {
-        // Validação
-        $id = $_GET['editar'] ?? null;
-        if (!$id) {
-            echo "<script>
-                alert('ID do produto inválido!');
-            </script>";
-            exit;
-        }
-
-        // Consulta o produto no Banco
-        try {
-            $banco = new BancoDeDados;
-            $sql = 'SELECT * FROM produtos WHERE id_produto = ?';
-            $parametros = [ $id ];
-            $produto = $banco->consultar($sql, $parametros);
-
-            if ($produto) {
-                // Imprime um JS para passar os valores da cosulta no PHP para o formulário
-                echo "<script>
-                    document.getElementById('txt-id').value         = '{$produto['id_produto']}';
-                    document.getElementById('txt-descricao').value  = '{$produto['descricao']}';
-                    document.getElementById('txt-preco').value      = '" . str_replace('.', ',', $produto['preco']) . "';
-                    document.getElementById('txt-estoque').value    = '{$produto['estoque']}';
-                </script>";
+    // Editar
+    function editarProduto(idProduto) {
+        $.ajax({
+            type: 'post',
+            url: 'src/produto/selecionarPorId.php',
+            dataType: 'json',
+            data: {
+                'id': idProduto,
+            },
+            success: function(resposta) {
+                if (resposta['status'] === 'sucesso') {
+                    var produto = resposta['produto'];
+                    document.getElementById('txt-id').value        = produto['id_produto'];
+                    document.getElementById('txt-descricao').value = produto['descricao'];
+                    document.getElementById('txt-preco').value     = produto['preco'];
+                    document.getElementById('txt-estoque').value   = produto['estoque'];
+                } else {
+                    alert(resposta['mensagem']);
+                }
+            },
+            error: function(erro) {
+                alert('Ocorreu um erro na requisição: ' + erro);
             }
-        } catch(PDOException $erro) {
-            $msg = $erro->getMessage();
-            echo "<script>
-                alert(\"$msg\");
-            </script>";
-        }
-   }
-?>
+        });
+    }
+</script>

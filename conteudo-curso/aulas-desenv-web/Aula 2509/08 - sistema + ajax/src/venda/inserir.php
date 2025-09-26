@@ -48,12 +48,12 @@
             'mensagem' => 'Venda feita com sucesso!'
 
         ];
-         window.location.href = '../../sistema.php?tela=vendas';
+        window.location.href = '../../sistema.php?tela=vendas';
 
     } catch(PDOException $erro) {
-        $msg = $erro->getMessage();
-        echo "<script>
-            alert(\"$msg\");
-            window.history.back();
-        </script>";
+        $resposta = [
+            'status'    => 'erro',
+            'mensagem'  => $erro->getMessage()
+        ];
+        echo json_encode($resposta);
     }
