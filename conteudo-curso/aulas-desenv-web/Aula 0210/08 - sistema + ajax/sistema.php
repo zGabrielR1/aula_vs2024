@@ -95,19 +95,19 @@
     <!-- Importar JS de cada tela -->
     <script src="assets/js/cliente.js"></script>
     <script src="assets/js/produto.js"></script>
+    <script src="assets/js/venda.js"></script>
 
     <script>
         // Carregar Telas
         function carregarTela(tela) {
-            $.ajax({
-                type: 'get',
-                dataType: 'html',
+            $.ajax ({
+                type: 'post',
                 url: 'telas/' + tela + '.php',
-                success: function(resposta) {
-                    var elementoMain = document.getElementById('main');
-                    elementoMain.innerHTML = resposta;
-                    
-                    switch (tela) {
+                dataType: 'html',
+                sucess: function(resposta) {
+                    var elemento = document.getElementById('main');
+                    elemento.innerHTML(resposta);
+                    switch (resposta) {
                         case 'clientes':
                             listarClientes();
                             break;
@@ -117,32 +117,58 @@
                         case 'vendas':
                             listarVendas();
                             break;
-                        default:
-                            break;
+
                     }
                 },
                 error: function(erro) {
-                    alert('Ocorreu um erro na requisição: ' + erro);
+                    alert('Houve um erro na requisição' + erro);
                 }
             });
         }
-
+        // function carregarTela(tela) {
+        //     $.ajax({
+        //         type: 'get',
+        //         dataType: 'html',
+        //         url: 'telas/' + tela + '.php',
+        //         success: function(resposta) {
+        //             var elementoMain = document.getElementById('main');
+        //             elementoMain.innerHTML = resposta;
+                    
+        //             switch (tela) {
+        //                 case 'clientes':
+        //                     listarClientes();
+        //                     break;
+        //                 case 'produtos':
+        //                     listarProdutos();
+        //                     break;
+        //                 case 'vendas':
+        //                     listarVendas();
+        //                     break;
+        //                 default:
+        //                     break;
+        //             }
+        //         },
+        //         error: function(erro) {
+        //             alert('Ocorreu um erro na requisição: ' + erro);
+        //         }
+        //     });
+        // }
+        
         // Sair
-        function logout() {
+        function logout () {
             var confirmou = confirm('Tem certeza que deseja sair?');
             if (confirmou) {
                 $.ajax({
                     type: 'post',
                     url: 'src/usuario/logout.php',
                     success: function() {
-                        window.location.href = 'index.php';
+                        window.location.href = "index.php"; // Redireciona para a página de login 
                     },
                     error: function(erro) {
-                        alert('Ocorreu um erro na requisição: ' + erro);
+                        alert('Houve um erro na requisição: ' + erro);
                     }
                 });
             }
         }
-    </script>
 </body>
 </html>
