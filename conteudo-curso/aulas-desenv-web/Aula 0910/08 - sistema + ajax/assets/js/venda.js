@@ -53,18 +53,31 @@ function listarProdutosNaVenda() {
 // Adicionar Produto
 var produtos = [];
 function adicionarProduto() {
-    var [id, preco] = document.getElementById('list-produto').value.split('|');
+    // Capturar os dados do produto
+    var [id, descricao, preco] = document.getElementById('list-produto').value.split('|');
     var qtd = document.getElementById('txt-qtd').value;
     //Validar    
     if (id == null || preco == null || qtd == null) {
         alert('Existem campos vazios. Verifique!');
         return
     }
+    // Validar se o produto já foi adicionado na venda
+    produtos.forEach(function(produto) {
+        if (produto['id'] == id) {
+            alert('Produto já foi adicionado na venda!');
+            return;
+        }
+    });
+    if (validou) {
+        return
+    }
+
     var valorTotal = qtd * preco; // Calcula o valor total do produto
 
     // Salvar os dados do produto
     var produto = {
         'id': id,
+        'descricao': descricao,
         'qtd': qtd,
         'valor': valorTotal,
     };
@@ -74,6 +87,29 @@ function adicionarProduto() {
 
     }
     // Limpar formulário
+//    document.getElementById('form-venda').reset();
+    document.getElementById('list-produto').value = null;
+
+    // Imprimir os dados na tabela de produtos
+    var tabelaProdutosVenda = document.getElementById('tabela-produtos-venda');
+    tabelaProdutosVenda.innerHTML = '';
+
+    produtos.forEachfunction(produto) {
+        var precoBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto['preco']);
+        var valorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto['valor']);
+        var linha = document.createElement('tr');
+        linha.innerHTML = `
+            <td>${produto['id']}</td>
+            <td>${produto['descricao']}</td>
+            <td>${produto['qtd']}</td>
+            <td>:${produto['valor']}</td>
+            <td>
+                <button class='btn' onclick='removerProduto(${produto['id']})'>Excluir</button>
+                    <i class='bi bi-trash-fill'></i>
+            </td>
+        `;
+        tabelaProdutosVenda.appendChild(linha);
+    }
     // var valorTotal = qtd * 
 
     // produtos.push();
