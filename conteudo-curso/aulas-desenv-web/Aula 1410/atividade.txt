@@ -24,3 +24,8 @@ XAMPP: Apache WebServer 8.1.1;
 
 
 Descrição, Marca, Preço, Quantidade em estoque.
+
+Nome, Email, telefone, CPF.
+
+O sistema deve ter uma tela de login onde cada usuário faz o login no sistema.
+É necessário que no sistema, seja possível registrar o empréstimo de itens entre os 
