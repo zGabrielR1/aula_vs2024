@@ -23,4 +23,4 @@ MySQL Workbench 8.0.33;
 XAMPP: Apache WebServer 8.1.1;
 
 
-Descrição, Marca, Preço, Quantidade em estoque
+Descrição, Marca, Preço, Quantidade em estoque.
