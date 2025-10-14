@@ -1,0 +1,26 @@
+script sql: av_diag_pratica
+Interface dos sistema:
+Interface de cadastro e Controle de Itens:
+Listar os itens;;
+Cadastrar novos itens;
+Alterar um item cadastros
+Excluir item do sistema
+
+Interface de cadastro e controle de colaboradores
+Listar os itens;;
+Cadastrar novos itens;
+Alterar um item cadastros
+Excluir item do sistema
+
+Listar todos os empréstimos de itens realizados
+Cadastrar um novo empréstimo de itens
+Alterar informações de um empréstimo de itens
+Alterar status de um empréstimo;
+
+Requisitos de infraestrutura do sistema;
+Windows 11 24H2;
+MySQL Workbench 8.0.33;
+XAMPP: Apache WebServer 8.1.1;
+
+
+Descrição, Marca, Preço, Quantidade em estoque
