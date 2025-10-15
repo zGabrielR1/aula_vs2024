@@ -19,7 +19,7 @@
     try {
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
-        $sql = 'UPDATE itens SET descricao = ?, preco = ?, estoque = ? WHERE id_item = ?';
+        $sql = 'UPDATE itens SET descricao = ?, marca = ?, preco = ?,  estoque = ? WHERE id_item = ?';
         $parametros = [
             $form['descricao'],
             $form['marca']

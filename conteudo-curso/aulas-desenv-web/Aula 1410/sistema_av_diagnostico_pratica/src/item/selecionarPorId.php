@@ -4,7 +4,7 @@
     if (empty($id)) {
         $resposta = [
             'status'   => 'erro',
-            'mensagem' => 'ID do produto inválido!',
+            'mensagem' => 'ID do item inválido!',
         ];
         echo json_encode($resposta);
         exit;
