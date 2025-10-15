@@ -40,7 +40,7 @@ function salvarColaborador() {
 function listarColaboradores() {
     $.ajax({
         type: 'post',
-        url: 'src/cliente/selecionarTodos.php',
+        url: 'src/colaborador/selecionarTodos.php',
         dataType: 'json',
         success: function(resposta) {
             // Javascript para imprimir os dados da resposta dentro da tabela
@@ -113,14 +113,14 @@ function editarColaborador(idColaborador) {
         },
         success: function(resposta) {
             if (resposta['status'] === 'sucesso') {
-                var cliente = resposta['cliente'];
-                document.getElementById('txt-id').value             = cliente['id_colaborador'];
-                document.getElementById('txt-nome').value           = cliente['nome'];
-                document.getElementById('txt-email').value          = cliente['email'];
-                document.getElementById('txt-telefone').value       = cliente['telefone'];
-                document.getElementById('txt-cpf').value            = cliente['cpf'];
-                document.getElementById('date-nascimento').value    = cliente['nascimento'];
-                if (cliente['sexo'] === 'f') {
+                var colaborador = resposta['colaborador'];
+                document.getElementById('txt-id').value             = colaborador['id_colaborador'];
+                document.getElementById('txt-nome').value           = colaborador['nome'];
+                document.getElementById('txt-email').value          = colaborador['email'];
+                document.getElementById('txt-telefone').value       = colaborador['telefone'];
+                document.getElementById('txt-cpf').value            = colaborador['cpf'];
+                document.getElementById('date-nascimento').value    = colaborador['nascimento'];
+                if (colaborador['sexo'] === 'f') {
                     document.getElementById('rbt-fem').checked = true;
                 } else {
                     document.getElementById('rbt-masc').checked = true;

@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `av_diag_pratica`.`usuarios` (
   `nome` VARCHAR(255) NULL,
   `email` VARCHAR(255) NULL,
   `telefone` VARCHAR(255) NULL,
+  `sexo` TINYINT NULL,
   `usuario` VARCHAR(255) NULL,
   `senha` VARCHAR(255) NULL,
   PRIMARY KEY (`id_colaborador`))
