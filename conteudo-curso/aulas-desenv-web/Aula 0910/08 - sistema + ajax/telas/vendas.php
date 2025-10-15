@@ -49,7 +49,7 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Produto</th>
+                        <th scope="col">Item</th>
                         <th scope="col">Preço</th>
                         <th scope="col">Qtd.</th>
                         <th scope="col">Total</th>
@@ -59,7 +59,7 @@
                 <tbody id="tbody-produtos-venda">
                     <!-- Aqui vão ser inseridos os produtos da venda -->
                     <tr>
-                        <td colspan='6' class="text-center">Nenhum propduto inserido.</td>
+                        <td colspan='6' class="text-center">Nenhum item inserido.</td>
                     </tr>
                 </tbody>
             </table>
@@ -72,7 +72,7 @@
             </button>
         </div>
         <div class="col-sm-6">
-            <button class="btn btn-primary btn-lg w-100" onclick="salvarVenda()">
+            <button class="btn btn-primary btn-lg w-100" onclick="salvarEmprestimo()">
                 <i class="bi bi-floppy-fill"></i>&nbsp;
                 Salvar
             </button>
@@ -89,7 +89,7 @@
                 <th scope="col">Nº</th>
                 <th scope="col">Data - Hora</th>
                 <th scope="col">Total</th>
-                <th scope="col">Cliente</th>
+                <th scope="col">Colaborador</th>
                 <th scope="col">Cancelado</th>
                 <th scope="col">Ações</th>
             </tr>

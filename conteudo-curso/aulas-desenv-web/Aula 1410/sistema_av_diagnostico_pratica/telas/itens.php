@@ -14,6 +14,11 @@
             <label for="txt-descricao" class="form-label">Descrição</label>
             <input type="text" class="form-control" name="descricao" id="txt-descricao" required>
         </div>
+        
+        <div class="col-sm-6">
+            <label for="txt-marca" class="form-label">Marca</label>
+            <input type="text" class="form-control" name="marca" id="txt-marca" required>
+        </div>
 
         <div class="col-sm-6">
             <label for="txt-preco" class="form-label">Preço</label>
@@ -26,7 +31,7 @@
         </div>
 
         <div class="col-sm-12">
-            <label for="file-produto" class="form-label">Imagem do Produto</label>
+            <label for="file-produto" class="form-label">Imagem do Item</label>
             <input type="file" class="form-control" name="file-produto" id="file-produto" accept="image/*">
         </div>
     
@@ -53,6 +58,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Descrição</th>
+                <th scope="col">Marca</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Estoque</th>
                 <th scope="col">Ações</th>
