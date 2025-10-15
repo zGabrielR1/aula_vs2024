@@ -1,4 +1,3 @@
-
 // Listar Clientes no Select
 function listarClientesNaVenda() {
     $.ajax({
@@ -27,16 +26,16 @@ function listarItensNoEmprestimo() {
     $.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'src/itens/selecionarTodos.php',
+        url: 'src/item/selecionarTodos.php',
         success: function(resposta) {
             var listaItens = document.getElementById('list-produto');
             listaItens.innerHTML = '';
 
-            var produtos = resposta['produtos'];
+            var produtos = resposta['itens'];
             var opcao = "<option value=''>Selecione o produto...</option>";
             produtos.forEach(function(produto) {
                 var precoBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto['preco']);
-                opcao += `<option value='${produto['id_produto']}|${produto['descricao']}|${produto['preco']}'>
+                opcao += `<option value='${produto['id_item']}|${produto['descricao']}|${produto['preco']}'>
                                 ${produto['descricao']} | 
                                 ${precoBRL} | 
                                 ${produto['estoque']}
@@ -51,22 +50,22 @@ function listarItensNoEmprestimo() {
 }
 
 // Adicionar Produto
-var produtos = [];
+var itens = [];
 var totalVenda = 0;
 function adicionarItens() {
     // Pegar os dados do formulário
-    var [id, descricao, marca, preco] = document.getElementById('list-item').value.split('|');
+    var [id, descricao, preco] = document.getElementById('list-produto').value.split('|');
     var qtd = document.getElementById('txt-qtd').value;
     
     // Validar campos vazios
-    if (id == null || descricao == null || marca == null || preco == null || qtd == '') {
+    if (id == null || descricao == null || preco == null || qtd == '') {
         alert('Existem campos vazios. Verifique!');
         return;
     }
 
     // Validar se o produto já foi inserido na venda
     var validou = true;
-    item.forEach(function(item) {
+    itens.forEach(function(item) {
         if (item['id'] == id) {
             alert('Este item ja foi inserido na venda!');
             validou = false;
@@ -84,7 +83,6 @@ function adicionarItens() {
     var item = {
         'id':        id,
         'descricao': descricao,
-        'marca':     marca,
         'qtd':       qtd,
         'preco':     preco,
         'valor':     valorTotal,
@@ -93,8 +91,8 @@ function adicionarItens() {
     // Incrementar valor total da venda
     totalVenda += valorTotal;
 
-    // Adicionar os dados do produto no array produtos
-    items.push(item);
+    // Adicionar os dados do produto no array itens
+    itens.push(item);
 
     // Limpar formulario
     //document.getElementById('form-venda').reset(); não vai da pra usar, pq reseta o campo do cliente também
@@ -107,7 +105,7 @@ function adicionarItens() {
 
 function removerItem(id) {
     // Decrementar o valor total
-    var itemRemovido = itens.find(item => item.id === id);
+    var itemRemovido = itens.find(item => item.id == id);
     if (itemRemovido) {
         totalVenda -= itemRemovido.valor;
     }
@@ -121,7 +119,7 @@ function imprimirItemNaTabela() {
     console.log(totalVenda);
     // document.getElementById('txt-valor-total').value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(isNaN(totalVenda) || totalVenda == null ? 0 : totalVenda);
     var tabelaItensVenda = document.getElementById('tbody-produtos-venda');
-    tabelaProdutosVenda.innerHTML = ''; // Limpar a tabela antes de imprimir os produtos
+    tabelaItensVenda.innerHTML = ''; // Limpar a tabela antes de imprimir os produtos
 
     if (itens.length > 0) {
         itens.forEach(function(item) {
@@ -131,7 +129,6 @@ function imprimirItemNaTabela() {
             linha.innerHTML = `
                 <td>${item['id']}</td>
                 <td>${item['descricao']}</td>
-                <td>${item['marca']}</td>
                 <td>${precoBRL}</td>
                 <td>${item['qtd']}</td>
                 <td>${valorBRL}</td>
@@ -149,5 +146,5 @@ function imprimirItemNaTabela() {
 }
 
 // function salvarVenda() {
-//     console.log(produtos);
+//     console.log(itens);
 // }

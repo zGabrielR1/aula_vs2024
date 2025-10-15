@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Sistema de Controle de <strong>Itens</strong></h1>
-    <h1><a href="index.php">Bem-vindo, Admin Sistema</a></h1>
+
+    <h2><a href="index.php">Bem-vindo, <?php echo htmlspecialchars($_SESSION['logado']['nome'] ?? 'Usuário'); ?></a></h2>
 </div>
 
 <form id="form-item" onsubmit="return false" enctype="multipart/form-data">
@@ -14,7 +15,7 @@
             <label for="txt-descricao" class="form-label">Descrição</label>
             <input type="text" class="form-control" name="descricao" id="txt-descricao" required>
         </div>
-        
+
         <div class="col-sm-6">
             <label for="txt-marca" class="form-label">Marca</label>
             <input type="text" class="form-control" name="marca" id="txt-marca" required>

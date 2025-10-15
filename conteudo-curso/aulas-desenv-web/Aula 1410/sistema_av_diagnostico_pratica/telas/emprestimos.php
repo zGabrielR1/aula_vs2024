@@ -2,46 +2,43 @@
     <h1 class="h2">Cadastro de <strong>Empréstimos</strong></h1>
 </div>
 
-<form id="form-produto" onsubmit="return false" enctype="multipart/form-data">
+<form id="form-emprestimo" onsubmit="return false">
     <div class="row g-3">
-        <div class="col-sm-4">
-            <label for="txt-id" class="form-label">ID</label>
-            <input type="text" class="form-control" name="id" id="txt-id" value="NOVO" required readonly>
-        </div>
-
-        <div class="col-sm-8">
-            <label for="txt-descricao" class="form-label">Descrição</label>
-            <input type="text" class="form-control" name="descricao" id="txt-descricao" required>
-        </div>
-
         <div class="col-sm-6">
-            <label for="txt-preco" class="form-label">Preço</label>
-            <input type="text" class="form-control" name="preco" id="txt-preco" required>
+            <label for="list-cliente" class="form-label">Cliente</label>
+            <select class="form-select" id="list-cliente" required>
+                <option value="">Carregando clientes...</option>
+            </select>
         </div>
+        
         <div class="col-sm-6">
-            <label for="txt-preco" class="form-label">Marca</label>
-            <input type="text" class="form-control" name="marca" id="txt-marca" required>
+            <label for="list-produto" class="form-label">Produto</label>
+            <select class="form-select" id="list-produto" required>
+                <option value="">Carregando produtos...</option>
+            </select>
         </div>
+        
         <div class="col-sm-6">
-            <label for="txt-estoque" class="form-label">Estoque</label>
-            <input type="text" class="form-control" name="estoque" id="txt-estoque" required>
+            <label for="txt-qtd" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="txt-qtd" min="1" required>
         </div>
-
-        <div class="col-sm-12">
-            <label for="file-produto" class="form-label">Imagem do Item</label>
-            <input type="file" class="form-control" name="file-produto" id="file-produto" accept="image/*">
-        </div>
-    
+        
         <div class="col-sm-6">
-            <button type="reset" class="btn btn-secondary btn-lg w-100">
-                <i class="bi bi-x-lg"></i>&nbsp;
-                Cancelar
+            <label for="txt-valor-total" class="form-label">Valor Total</label>
+            <input type="text" class="form-control" id="txt-valor-total" readonly>
+        </div>
+        
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-success btn-lg w-100" onclick="adicionarItens()">
+                <i class="bi bi-plus-circle"></i>&nbsp;
+                Adicionar Item
             </button>
         </div>
+        
         <div class="col-sm-6">
-            <button onclick="salvarProduto()" class="btn btn-primary btn-lg w-100">
-                <i class="bi bi-floppy-fill"></i>&nbsp;
-                Salvar
+            <button type="button" class="btn btn-primary btn-lg w-100" onclick="salvarVenda()">
+                <i class="bi bi-cash-coin"></i>&nbsp;
+                Finalizar Empréstimo
             </button>
         </div>
     </div>
@@ -49,22 +46,21 @@
 
 <hr class="my-4">
 
-<div class="mt-5">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Estoque</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody id="tbody-itens">
-            <tr>
-                <td colspan="6" class="text-center">Nenhum item cadastrado</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<h3>Itens do Empréstimo</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody id="tbody-produtos-venda">
+        <tr>
+            <td colspan="6" class="text-center">Nenhum item adicionado</td>
+        </tr>
+    </tbody>
+</table>

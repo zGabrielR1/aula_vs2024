@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Sistema de Controle de <strong>Colaboradores</strong></h1>
-    <h1><a href="index.php">Bem-vindo, Admin Sistema</a></h1>
+    
+    <h2><a href="index.php">Bem-vindo, <?php echo htmlspecialchars($_SESSION['logado']['nome'] ?? 'Usuário'); ?></a></h2>
 </div>
 
 <form id="form-colaborador" onsubmit="return false">

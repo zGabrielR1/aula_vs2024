@@ -18,8 +18,10 @@ Alterar informações de um empréstimo de itens
 Alterar status de um empréstimo;
 
 Requisitos de infraestrutura do sistema;
-Windows 11 24H2;
-MySQL Workbench 8.0.33;
+Sistema Operacional: Windows 11 24H2;
+Linguagem: PHP 8;
+
+SGBD: MySQL Workbench 8.0.33;
 XAMPP: Apache WebServer 8.1.1;
 
 

@@ -35,7 +35,7 @@
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
         
-        $sql = 'INSERT INTO itens (descricao, marca, preco, estoque, imagem) VALUES (?,?,?,?)';
+        $sql = 'INSERT INTO itens (descricao, marca, preco, estoque, imagem) VALUES (?,?,?,?,?)';
         $parametros = [
             $form['descricao'],
             $form['marca'],

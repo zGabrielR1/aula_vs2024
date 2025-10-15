@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `av_diag_pratica`.`usuarios` (
   `marca` VARCHAR(255) NULL,
   `preco` VARCHAR(255) NULL,
   `estoque` VARCHAR(255) NULL,
+  `imagem` VARCHAR(255) NULL,
   PRIMARY KEY (`id_item`));
   INSERT INTO `av_diag_pratica`.`itens` (`id_item`, `descricao`, `marca`, `preco`, `estoque`) VALUES ('1', 'coca', 'Coca-Cola', '12', '100');
 ENGINE = InnoDB;

@@ -93,10 +93,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Importar JS de cada tela -->
-    <script src="assets/js/cliente.js"></script>
-    <script src="assets/js/produto.js"></script>
-    <script src="assets/js/venda.js"></script>
     <script src="assets/js/colaborador.js"></script>
+    <script src="assets/js/item.js"></script>
+    <script src="assets/js/emprestimo.js"></script>
 
     <script>
         // Carregar Telas
@@ -111,7 +110,8 @@
 
                     switch (tela) {
                         case 'emprestimos':
-                            listarColaboradoresNaVenda();
+                            listarClientesNaVenda();
+                            listarItensNoEmprestimo();
                             break;
                         case 'itens':
                             listarItens();
