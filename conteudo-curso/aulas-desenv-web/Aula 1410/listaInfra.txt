@@ -1,0 +1,6 @@
+Requisitos de infraestrutura do sistema;
+Sistema Operacional: Windows 11 24H2;
+Linguagem: PHP 8;
+SGBD: MySQL Workbench 8.0.33;
+XAMPP v3.3.0: Apache WebServer 8.1.1;
+Navegador: Google Chrome Versão 141.0.7390.66 (Versão oficial) 64 bits
