@@ -7,7 +7,6 @@ function salvarColaborador() {
     var sexo        = document.getElementById('rbt-fem').checked ? 'f' : 'm';
     var email       = document.getElementById('txt-email').value;
     var telefone    = document.getElementById('txt-telefone').value;
-    var uf          = document.getElementById('list-uf').value;
     var destino     = id === 'NOVO' ? 'src/colaborador/inserir.php' : 'src/colaborador/atualizar.php';
 
     $.ajax({
@@ -27,8 +26,8 @@ function salvarColaborador() {
             alert(resposta['mensagem']);
 
             if (resposta['status'] === 'sucesso') {
-                document.getElementById('form-cliente').reset(); // Limpar formulário
-                listarClientes();                                // Atualizar a listagem de clientes
+                document.getElementById('form-colaborador').reset(); // Limpar formulário
+                listarColaboradores();                                // Atualizar a listagem de colaboradores
             }
         },
         error: function(erro) {
@@ -45,26 +44,26 @@ function listarColaboradores() {
         dataType: 'json',
         success: function(resposta) {
             // Javascript para imprimir os dados da resposta dentro da tabela
-            var tabelaColaboradores = document.getElementById('tbody-clientes');
+            var tabelaColaboradores = document.getElementById('tbody-colaboradores');
             tabelaColaboradores.innerHTML = ''; // Limpar a tabela antes de imprimir os clientes
 
             var colaborador = resposta['colaboradores'];
             colaborador.forEach(function(colaborador) {
                 var linha = document.createElement('tr');
                 linha.innerHTML = `
-                    <td>${cliente['id_cliente']}</td>
-                    <td>${cliente['nome']}</td>
-                    <td>${cliente['cpf']}</td>
-                    <td>${cliente['nascimento']}</td>
-                    <td>${cliente['sexo']}</td>
-                    <td>${cliente['cidade']}</td>
-                    <td>${cliente['uf']}</td>
+                    <td>${colaborador['id_colaborador']}</td>
+                    <td>${colaborador['nome']}</td>
+                    <td>${colaborador['cpf']}</td>
+                    <td>${colaborador['nascimento']}</td>
+                    <td>${colaborador['sexo']}</td>
+                    <td>${colaborador['cidade']}</td>
+                    <td>${colaborador['uf']}</td>
                     <td>
-                        <button class='btn' onclick='editarCliente(${cliente['id_cliente']})'>
+                        <button class='btn' onclick='editarColaborador(${colaborador['id_colaborador']})'>
                             <i class='bi bi-pencil-fill'></i>
                         </button>
 
-                        <button class='btn' onclick='excluirCliente(${cliente['id_cliente']})'>
+                        <button class='btn' onclick='excluirColaborador(${colaborador['id_colaborador']})'>
                             <i class='bi bi-trash-fill'></i>
                         </button>
                     </td>
@@ -79,21 +78,21 @@ function listarColaboradores() {
 }
 
 // Excluir
-function excluirCliente(idCliente) {
-    var confirmou = confirm('Deseja realmente excluir este cliente?');
+function excluirColaborador(idColaborador) {
+    var confirmou = confirm('Deseja realmente excluir este colaborador?');
     if (confirmou) {
         $.ajax({
             type: 'post',
-            url: 'src/cliente/excluir.php',
+            url: 'src/colaborador/excluir.php',
             dataType: 'json',
             data: {
-                'id': idCliente,
+                'id': idColaborador,
             },
             success: function(resposta) {
                 alert(resposta['mensagem']);
 
                 if (resposta['status'] === 'sucesso') {
-                    listarClientes(); // Atualizar a listagem de clientes
+                    listarColaboradores(); // Atualizar a listagem de colaboradores
                 }
             },
             error: function(erro) {
@@ -104,23 +103,23 @@ function excluirCliente(idCliente) {
 }
 
 // Editar
-function editarCliente(idCliente) {
+function editarColaborador(idColaborador) {
     $.ajax({
         type: 'post',
-        url: 'src/cliente/selecionarPorId.php',
+        url: 'src/colaborador/selecionarPorId.php',
         dataType: 'json',
         data: {
-            'id': idCliente,
+            'id': idColaborador,
         },
         success: function(resposta) {
             if (resposta['status'] === 'sucesso') {
                 var cliente = resposta['cliente'];
-                document.getElementById('txt-id').value             = cliente['id_cliente'];
+                document.getElementById('txt-id').value             = cliente['id_colaborador'];
                 document.getElementById('txt-nome').value           = cliente['nome'];
+                document.getElementById('txt-email').value          = cliente['email'];
+                document.getElementById('txt-telefone').value       = cliente['telefone'];
                 document.getElementById('txt-cpf').value            = cliente['cpf'];
                 document.getElementById('date-nascimento').value    = cliente['nascimento'];
-                document.getElementById('txt-cidade').value         = cliente['cidade'];
-                document.getElementById('list-uf').value            = cliente['uf'];
                 if (cliente['sexo'] === 'f') {
                     document.getElementById('rbt-fem').checked = true;
                 } else {

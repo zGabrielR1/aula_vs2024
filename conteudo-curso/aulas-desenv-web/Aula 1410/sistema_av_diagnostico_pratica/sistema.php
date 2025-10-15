@@ -116,9 +116,9 @@
                             listarProduto();
                             break;
                         case 'colaboradores':
-                            listarClientesNaVenda();
-                            listarProdutosNaVenda();
-                            listarVendas();
+                            listarColaboradoresNaVenda();
+                            listarItensNaVenda();
+                            listarEmprestimos();
                             break;
                     }
                 },
