@@ -22,7 +22,7 @@
 </head>
 <body>
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">TEItech</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Sistema</a>
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
                 <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
@@ -38,7 +38,7 @@
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
                 <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="">TEItech</h5>
+                        <h5 class="offcanvas-title" id="">Sistema</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
@@ -50,21 +50,21 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link d-flex align-items-center gap-2 active" onclick="carregarTela('clientes')">
+                                <button class="nav-link d-flex align-items-center gap-2 active" onclick="carregarTela('colaboradores')">
                                     <i class="bi bi-people-fill"></i>
-                                    Clientes
+                                    Colaboradores
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('produtos')">
+                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('itens')">
                                     <i class="bi bi-box-fill"></i>
-                                    Produtos
+                                    Itens
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('vendas')">
+                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('emprestimos')">
                                     <i class="bi bi-cash-coin"></i>
-                                    Vendas
+                                    Empréstimos
                                 </button>
                             </li>
                         </ul>
@@ -96,6 +96,7 @@
     <script src="assets/js/cliente.js"></script>
     <script src="assets/js/produto.js"></script>
     <script src="assets/js/venda.js"></script>
+    <script src="assets/js/colaborador.js"></script>
 
     <script>
         // Carregar Telas
@@ -110,15 +111,13 @@
 
                     switch (tela) {
                         case 'emprestimos':
-                            listarClientes();
+                            listarColaboradoresNaVenda();
                             break;
                         case 'itens':
-                            listarProduto();
+                            listarItens();
                             break;
                         case 'colaboradores':
-                            listarColaboradoresNaVenda();
-                            listarItensNaVenda();
-                            listarEmprestimos();
+                            listarColaboradores();
                             break;
                     }
                 },
