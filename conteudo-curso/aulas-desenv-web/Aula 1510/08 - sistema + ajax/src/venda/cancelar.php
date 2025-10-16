@@ -1,12 +1,13 @@
 <?php
     // Validação
-    $id = $_GET['id'] ?? null;
+    $id = $_POST['id'] ?? null;
     
     if (!$id) {
-        echo "<script>
-            alert('ID da venda inválida!');
-            window.history.back();
-        </script>";
+        $resposta = [
+            'status' => 'sucesso',
+            'mensagem' => 'Nenhuma venda foi selecionada.'
+        ];
+        echo json_encode($resposta);
         exit;
     }
 
@@ -18,13 +19,15 @@
         $parametros = [ $id ];
         $banco->executarComando($sql, $parametros);
 
-        echo "<script>
-            alert('Venda cancelada com sucesso!');
-            window.location.href = '../../sistema.php?tela=vendas';
-        </script>";
+        $resposta = [
+            'status' => 'sucesso',
+            'mensagem' => 'Venda cancelada com sucesso!'
+        ];
+        echo json_encode($resposta);
     } catch(PDOException $erro) {
-        echo "<script>
-            alert(\"$erro\");
-            window.history.back();
-        </script>";
+        $resposta = [
+            'status' => 'erro',
+            'mensagem' => $erro->getMessage(),
+        ];
+        echo json_encode($resposta);
     }

@@ -18,7 +18,7 @@
 
         <div class="col-sm-2 mb-3">
             <label for="txt-valor-total" class="form-label">Valor Total</label>
-            <input type="text" class="form-control" id="txt-valor-total" readonly required>
+            <input type="text" class="form-control" id="txt-valor-total" value="R$ 0,00" readonly required>
         </div>
 
         <fieldset class="border rounded-3 p-3">
@@ -34,7 +34,7 @@
 
                 <div class="col-sm-2 mb-3">
                     <label for="txt-qtd" class="form-label">Qtd.</label>
-                    <input type="number" class="form-control" id="txt-qtd" min="1">
+                    <input type="number" class="form-control" id="txt-qtd" min="1" value="1">
                 </div>
 
                 <div class="col-sm-1 mb-3">
@@ -66,9 +66,9 @@
         </fieldset>
 
         <div class="col-sm-6">
-            <button class="btn btn-secondary btn-lg w-100" type="reset">
+            <button class="btn btn-secondary btn-lg w-100" onclick="cancelarVenda()">
                 <i class="bi bi-x-lg"></i>&nbsp;
-                Cancelar
+                Limpar 
             </button>
         </div>
         <div class="col-sm-6">

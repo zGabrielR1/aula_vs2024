@@ -110,15 +110,13 @@ function removerProduto(id) {
     if (produtoRemovido) {
         totalVenda -= produtoRemovido.valor;
     }
-
     // Remover o produto do array
     produtos = produtos.filter(produto => produto.id != id);
     imprimirProdutoNaTabela();
 }
 
 function imprimirProdutoNaTabela() {
-    console.log(totalVenda);
-    // document.getElementById('txt-valor-total').value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(isNaN(totalVenda) || totalVenda == null ? 0 : totalVenda);
+    document.getElementById('txt-valor-total').value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalVenda); 
     var tabelaProdutosVenda = document.getElementById('tbody-produtos-venda');
     tabelaProdutosVenda.innerHTML = ''; // Limpar a tabela antes de imprimir os produtos
 
@@ -146,6 +144,57 @@ function imprimirProdutoNaTabela() {
     }
 }
 
-// function salvarVenda() {
-//     console.log(produtos);
-// }
+function limparVenda() {
+    // Limpar o formulário
+    document.getElementById('form-venda').reset();
+
+    // Limpar as variáveis
+    totalVenda = 0;
+    produtos = [];
+
+    // Atualizar (limpar) os itens da venda na tabela
+    imprimirProdutoNaTabela();
+}
+
+function cancelarVendda(id) {
+    $.ajax({
+        type: 'post',
+        url: 'src/venda/cancelar.php',
+        dataType: 'json',
+        data: {
+            'id': id
+        },
+        success: function(resposta) {
+            console.log(resposta)
+        },
+        error: function(erro) {
+            alert('Ocorreu um erro na requisição ' + erro);
+
+
+    });
+}
+
+function salvarVenda() {
+    // Pegar dados
+    var idCliente = document.getElementById('list-cliente').value
+
+    $.ajax({
+        type: 'post',
+        url: 'src/venda/inserir.php',
+        dataType: 'json',
+        data: {
+            'idCliente': idCliente,
+            'total_venda': totalVenda,
+            'produtos': produtos
+        },
+        success: function(resposta) {
+            // if (resposta['status'] === 'sucesso') {
+            //     alert('Venda salva com sucesso!');
+            // }
+        },
+        error: function(erro) {
+            alert('Ocorreu um erro na requisição ' + erro);
+        }
+    })
+
+}

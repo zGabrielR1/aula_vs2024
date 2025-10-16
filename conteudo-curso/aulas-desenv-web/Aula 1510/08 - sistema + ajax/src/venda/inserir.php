@@ -3,50 +3,61 @@
     date_default_timezone_set('America/Sao_Paulo');
 
     // Validação
-    $form['id_cliente'] = $_POST['list-cliente'] ?? null;
-    $form['id_produto'] = $_POST['list-produto'] ?? null;
-    $form['quantidade'] = $_POST['txt-qtd'] ?? null;
+    $id_cliente = $_POST['list-cliente'] ?? null;
+    $produtos = $_POST['produtos'] ?? null;
 
-    if (in_array(null, $form)) {
-        echo "<script>
-            alert('Existem dados faltando. Verifique!');
-            window.history.back();
-        </script>";
+
+    if (empty($id_cliente) || count($produtos) == 0) {
+        $resposta = [
+            'status' => 'erro',
+            'mensagem' => 'Existem dados faltando. Verifique!'
+        ];
+        echo json_encode($resposta);
         exit;
     }
     
     // Pegar Data Hora
-    $form['data_hora'] = date('Y-m-d H:i:s');
-
-    // Calcular Valor Total da Venda
-    $banco = new BancoDeDados;
-    $produto = $banco->consultar('SELECT preco FROM produtos WHERE id_produto = ?', [$form['id_produto']]);
-    $form['valor_total'] = $form['quantidade'] * $produto['preco'];
-
+    $dat_hora = date('Y-m-d H:i:s');
+    //
     // Gravar a venda no Banco
     try {
+        $banco = new BancoDeDados;
         $sql = 'INSERT INTO vendas (
             quantidade,
             valor_total,
             data_hora,
-            id_produto,
-            id_cliente,
-            cancelado
+            cancelado,
+            id_cliente
         ) VALUES (?,?,?,?,?,?)';
         $parametros = [
-            $form['quantidade'],
-            $form['valor_total'],
-            $form['data_hora'],
-            $form['id_produto'],
-            $form['id_cliente'],
-            0
+            $qtd_total,
+            $valor_total,
+            $data_hora,
+            0,
+            $id_cliente
         ];
         $banco->executarComando($sql, $parametros);
 
-        echo "<script>
-            alert('Venda feita com sucesso!');
-            window.location.href = '../../sistema.php?tela=vendas';
-        </script>";
+        // Pegar o ID recém gerado da venda
+        $sql = 'SELECT MAX(id_venda) FROM vendas';
+        $id_venda = $banco->consultar($sql);
+        foreach($produtos as $produto) {
+            $sql = 'INSERT INTO detalhes (
+                qtd,
+                valor,
+                id_produto,
+                id_venda,
+            '
+            ) VALUES (?,?,?,?);
+            $parametros = [
+                $produto['qtd'],
+                $produto['valor'],
+                $produto['id'],
+                $id_venda
+            ];
+            $banco->executarComando($sql, $parametros);
+        }
+
     } catch(PDOException $erro) {
         $msg = $erro->getMessage();
         echo "<script>
