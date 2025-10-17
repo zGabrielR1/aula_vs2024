@@ -177,7 +177,7 @@ function cancelarVendda(id) {
             'id': id
         },
         success: function(resposta) {
-            console.log(resposta)
+            alert(resposta);
         },
         error: function(erro) {
             alert('Ocorreu um erro na requisição ' + erro);
