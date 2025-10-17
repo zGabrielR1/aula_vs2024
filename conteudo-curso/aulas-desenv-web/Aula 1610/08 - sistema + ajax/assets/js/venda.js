@@ -181,7 +181,7 @@ function cancelarVendda(id) {
         },
         error: function(erro) {
             alert('Ocorreu um erro na requisição ' + erro);
-
+        return;
 
     });
 }
