@@ -164,6 +164,11 @@ function limparVenda() {
 }
 
 function cancelarVendda(id) {
+
+    var confirmou = confirm('Tem certeza que deseja cancelar esta venda?');
+    if (!confirmou) {
+        return;
+    }
     $.ajax({
         type: 'post',
         url: 'src/venda/cancelar.php',
@@ -190,19 +195,58 @@ function salvarVenda() {
         url: 'src/venda/inserir.php',
         dataType: 'json',
         data: {
-            'idCliente': idCliente,
+            'id_cliente': idCliente,
             'total_venda': totalVenda,
             'qtd_total': qtdTotal,
             'produtos': produtos,
         },
         success: function(resposta) {
-            // if (resposta['status'] === 'sucesso') {
-            //     alert('Venda salva com sucesso!');
-            // }
-        },
+            alert(resposta['mensagem']);
+
+            if (resposta['status'] === 'sucesso') {
+                listarVendas();
+                limparVenda();
+            }
+                    },
         error: function(erro) {
             alert('Ocorreu um erro na requisição ' + erro);
         }
     })
 
+}
+
+function listarVendas() {
+    $.ajax ({
+        type: 'post',
+        url: 'src/venda/selecionar.php',
+        dataType: 'json',
+        sucess: function(resposta) {
+                var tabelaVendas = document.getElementById('tbody-vendas');
+                tabelaVendas.innerHTML = ''; // Limpar a tabela antes de imprimir os produtos
+
+                var vendas = resposta['vendas'];
+                vendas.forEach(function(venda) {
+                var linha = document.createElement('tr');
+                var dataHora = new Date(venda['data_hora'].replace(' ', 'T')).toLocaleString('pt-BR');
+                var valorTotalBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto['valor']);
+                var cancelado = venda['cancelado'] == 0 ? 'Não' : 'Sim';
+                linha.innerHTML = `
+                    <td>${venda['id_venda']}</td>
+                    <td>${data_hora}</td>
+                    <td>${valortotalBRL}</td>
+                    <td>${venda['nome']}</td>
+                    <td>${cancelado}</td>
+                    <td>
+                        <button class='btn' onclick='editarProduto(${venda['id_venda']})'>
+                            <i class='bi bi-x-circle-fill'></i>
+                        </button>
+                    </td>
+                `;
+                tabelaVendas.appendChild(linha);
+            });
+        },
+        error: function(erro) {
+            alert('Ocorreu um erro na requisição ' + erro);
+        }
+    }); 
 }

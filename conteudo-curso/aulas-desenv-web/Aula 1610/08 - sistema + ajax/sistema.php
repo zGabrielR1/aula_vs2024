@@ -113,7 +113,7 @@
                             listarClientes();
                             break;
                         case 'produtos':
-                            listarProduto();
+                            listarProdutos();
                             break;
                         case 'vendas':
                             listarClientesNaVenda();

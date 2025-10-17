@@ -28,4 +28,22 @@
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             }
         }
+
+        // Método Iniciar Transação
+        public function iniciarTransacao() {
+            $this->conexao->beginTransaction();
+
+        }
+
+        // Método Salvar Transação
+        public function salvarTransacao() {
+            $this->conexao->commit();
+
+        }
+
+        public function voltarTransacao() {
+            $this->conexao->rollBack();
+
+        }
     }
+
