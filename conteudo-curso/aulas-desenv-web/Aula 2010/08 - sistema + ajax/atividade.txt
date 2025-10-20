@@ -1,0 +1,4 @@
+No projeto 'Sistema + Ajax' implementar:
+1) Baixa de qtd de estoque de produtos ao salvar a venda;
+2) Estorno da qtd de estoque dos produtos ao cancelar a venda;
+3) Validação de qtd de estoque ao inserir produto na venda (não permitir que seja inserido um produto com qtd de estoque maior do que a existente no estoque)
