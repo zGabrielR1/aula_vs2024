@@ -35,12 +35,12 @@ function listarProdutosNaVenda() {
             var produtos = resposta['produtos'];
             var opcao = "<option value=''>Selecione o produto...</option>";
             produtos.forEach(function(produto) {
-                var precoBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto['preco']);
-                opcao += `<option value='${produto['id_produto']}|${produto['descricao']}|${produto['preco']}'>
-                                ${produto['descricao']} | 
-                                ${precoBRL} | 
-                                ${produto['estoque']}
-                            </option>`;
+            var precoBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto['preco']);
+            opcao += `<option value='${produto['id_produto']}|${produto['descricao']}|${produto['preco']}|${produto['estoque']}'>
+            ${produto['descricao']} | 
+            ${precoBRL} | 
+            ${produto['estoque']}
+            </option>`;
             });
             listaProdutos.innerHTML = opcao;
         },
@@ -56,12 +56,18 @@ var totalVenda = 0;
 var qtdTotal = 0;
 function adicionarProduto() {
     // Pegar os dados do formulário
-    var [id, descricao, preco] = document.getElementById('list-produto').value.split('|');
+    var [id, descricao, preco, estoque] = document.getElementById('list-produto').value.split('|');
     var qtd = document.getElementById('txt-qtd').value;
-    
+
     // Validar campos vazios
     if (id == null || preco == null || qtd == '') {
         alert('Existem campos vazios. Verifique!');
+        return;
+    }
+
+    // Validar quantidade em estoque
+    if (Number(qtd) > Number(estoque)) {
+        alert('Quantidade solicitada maior que o estoque disponível!');
         return;
     }
 

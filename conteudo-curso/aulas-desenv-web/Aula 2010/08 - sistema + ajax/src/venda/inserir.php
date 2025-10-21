@@ -61,6 +61,16 @@
             $banco->executarComando($sql, $parametros);
         }
 
+        // Decrementar estoque dos produtos
+        foreach ($produtos as $produto) {
+            $sql = 'UPDATE produtos SET estoque = estoque - ? WHERE id_produto = ?';
+            $parametros = [
+                $produto['qtd'],
+                $produto['id']
+            ];
+            $banco->executarComando($sql, $parametros);
+        }
+
         $banco->salvarTRansacao();
 
         $resposta = [
