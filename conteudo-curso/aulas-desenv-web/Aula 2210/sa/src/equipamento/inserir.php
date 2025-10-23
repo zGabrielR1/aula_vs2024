@@ -2,7 +2,6 @@
     // Validação
     $descricao          = $_POST['descricao']          ?? null;
     $quantidade_estoque = $_POST['quantidade_estoque'] ?? 0;
-    $foto               = $_POST['foto']               ?? null;
     $codigo_barras      = $_POST['codigo_barras']      ?? null;
 
     if ($descricao == null) {
@@ -12,6 +11,22 @@
         ];
         echo json_encode($resposta);
         exit;
+    }
+
+    // Enviar arquivo para o servidor
+    $nome_imagem = null;
+    if (isset($_FILES['file-equipamento']) && $_FILES['file-equipamento']['size'] > 0) {
+        $nome_imagem = uniqid() . '.jpg';
+        $destino     = '../../upload/' . $nome_imagem;
+        $origem      = $_FILES['file-equipamento']['tmp_name'];
+        if (!move_uploaded_file($origem, $destino)) {
+            $resposta = [
+                'status'    => 'erro',
+                'mensagem'  => 'Houve um problema para enviar a imagem do equipamento. Tente novamente.'
+            ];
+            echo json_encode($resposta);
+            exit;
+        }
     }
 
     try {
@@ -24,7 +39,7 @@
         $parametros = [
             $descricao,
             $quantidade_estoque,
-            $foto,
+            $nome_imagem,
             $codigo_barras
         ];
         $banco->executarComando($sql, $parametros);
