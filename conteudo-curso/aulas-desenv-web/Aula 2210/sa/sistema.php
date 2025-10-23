@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema - EXEMPLO</title>
+    <title>Sistema de Controle de EPI</title>
     <link href="assets/css/sistema.css" rel="stylesheet">
 
     <!-- Bootstrap -->
@@ -22,7 +22,7 @@
 </head>
 <body>
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">TEItech</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Controle de EPI</a>
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
                 <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
@@ -38,7 +38,7 @@
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
                 <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="">TEItech</h5>
+                        <h5 class="offcanvas-title" id="">Controle de EPI</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
@@ -50,21 +50,27 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link d-flex align-items-center gap-2 active" onclick="carregarTela('clientes')">
+                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('usuarios')">
+                                    <i class="bi bi-person-badge-fill"></i>
+                                    Usuários
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('colaboradores')">
                                     <i class="bi bi-people-fill"></i>
-                                    Clientes
+                                    Colaboradores
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('produtos')">
-                                    <i class="bi bi-box-fill"></i>
-                                    Produtos
+                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('equipamentos')">
+                                    <i class="bi bi-shield-shaded"></i>
+                                    Equipamentos
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('vendas')">
-                                    <i class="bi bi-cash-coin"></i>
-                                    Vendas
+                                <button class="nav-link d-flex align-items-center gap-2" onclick="carregarTela('emprestimos')">
+                                    <i class="bi bi-arrow-left-right"></i>
+                                    Empréstimos
                                 </button>
                             </li>
                         </ul>
@@ -93,6 +99,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Importar JS de cada tela -->
+    <script src="assets/js/usuario.js"></script>
+    <script src="assets/js/colaborador.js"></script>
+    <script src="assets/js/equipamento.js"></script>
+    <script src="assets/js/emprestimo.js"></script>
     <script src="assets/js/cliente.js"></script>
     <script src="assets/js/produto.js"></script>
     <script src="assets/js/venda.js"></script>
@@ -109,6 +119,20 @@
                     elemento.innerHTML = resposta;
 
                     switch (tela) {
+                        case 'usuarios':
+                            listarUsuarios();
+                            break;
+                        case 'colaboradores':
+                            listarColaboradores();
+                            break;
+                        case 'equipamentos':
+                            listarEquipamentos();
+                            break;
+                        case 'emprestimos':
+                            listarColaboradoresNaEmprestimo();
+                            listarEquipamentosNaEmprestimo();
+                            listarEmprestimos();
+                            break;
                         case 'clientes':
                             listarClientes();
                             break;

@@ -2,7 +2,7 @@
     class BancoDeDados {
         // Atributos
         private $conexao;
-        private $dbName = 'db_exemplo';
+        private $dbName = 'db_epis';
         private $dbUser = 'root';
         private $dbPassword = 'masterkey';
 

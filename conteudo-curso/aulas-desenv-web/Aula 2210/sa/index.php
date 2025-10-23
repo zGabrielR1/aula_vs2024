@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - EXEMPLO</title>
+    <title>Login - Sistema de Controle de EPI</title>
     <link href="assets/css/index.css" rel="stylesheet">
 
     <!-- Bootstrap -->
