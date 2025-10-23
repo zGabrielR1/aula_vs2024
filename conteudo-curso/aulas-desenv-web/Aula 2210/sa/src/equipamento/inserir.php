@@ -14,23 +14,22 @@
     }
 
     // Enviar arquivo para o servidor
-    $nome_imagem = null;
-    if (isset($_FILES['file-equipamento']) && $_FILES['file-equipamento']['size'] > 0) {
+    if ($_FILES['file-equipamento']['size'] > 0) {
         $nome_imagem = uniqid() . '.jpg';
         $destino     = '../../upload/' . $nome_imagem;
         $origem      = $_FILES['file-equipamento']['tmp_name'];
-        if (!move_uploaded_file($origem, $destino)) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Houve um problema para enviar a imagem do equipamento. Tente novamente.'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
+        move_uploaded_file($origem, $destino)
+    } else {
+        $resposta = [
+            'status'    => 'erro',
+            'mensagem'  => 'Houve um problema para enviar a imagem. Tente novamente.'
+        ];
+        echo json_encode($resposta);
+        exit;
     }
 
+    // Banco de dados
     try {
-        // Banco de dados
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
         
