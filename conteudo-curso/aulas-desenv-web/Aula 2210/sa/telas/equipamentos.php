@@ -21,7 +21,7 @@
 
         <div class="col-sm-4 mb-3">
             <label for="txt-foto" class="form-label">Foto</label>
-            <input type="text" class="form-control" id="txt-foto">
+            <input type="text" class="form-control" name="file-equipamento" id="file-equipamento" accept="image/*" >
         </div>
 
         <div class="col-sm-4 mb-3">
