@@ -1,13 +1,11 @@
 // Salvar
 function salvarEquipamento() {
-    // Add defensive checks to prevent errors
     var idElement = document.getElementById('txt-id');
     var descricaoElement = document.getElementById('txt-descricao');
     var quantidadeElement = document.getElementById('txt-quantidade');
     var codigoBarrasElement = document.getElementById('txt-codigo-barras');
     var fileEquipamentoElement = document.getElementById('file-equipamento');
     
-    // Check if all elements exist
     if (!idElement || !descricaoElement || !quantidadeElement || !codigoBarrasElement || !fileEquipamentoElement) {
         alert('Erro: Não foi possível encontrar todos os elementos do formulário.');
         return;
@@ -66,7 +64,6 @@ function listarEquipamentos() {
             // Javascript para imprimir os dados da resposta dentro da tabela
             var tabelaEquipamentos = document.getElementById('tbody-equipamentos');
             
-            // Add defensive check
             if (!tabelaEquipamentos) {
                 alert('Erro: Não foi possível encontrar a tabela de equipamentos.');
                 return;
@@ -144,7 +141,6 @@ function editarEquipamento(idEquipamento) {
             if (resposta['status'] === 'sucesso') {
                 var equipamento = resposta['equipamento'];
                 
-                // Add defensive checks
                 var idElement = document.getElementById('txt-id');
                 var descricaoElement = document.getElementById('txt-descricao');
                 var quantidadeElement = document.getElementById('txt-quantidade');
