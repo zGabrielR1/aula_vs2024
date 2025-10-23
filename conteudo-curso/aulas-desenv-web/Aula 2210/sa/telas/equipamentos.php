@@ -21,7 +21,7 @@
 
         <div class="col-sm-4 mb-3">
             <label for="txt-foto" class="form-label">Foto</label>
-            <input type="text" class="form-control" id="txt-foto" placeholder="URL da foto">
+            <input type="text" class="form-control" id="txt-foto">
         </div>
 
         <div class="col-sm-4 mb-3">
