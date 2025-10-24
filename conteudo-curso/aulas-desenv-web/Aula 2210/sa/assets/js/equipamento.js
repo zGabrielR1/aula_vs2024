@@ -17,7 +17,7 @@ function salvarEquipamento() {
 
                 if (resposta['status'] === 'sucesso') {
                     document.getElementById('form-equipamento').reset(); // Limpar formulário
-                    listarProdutos();                                // Atualizar a listagem de produtos
+                    listarEquipamentos();                                // Atualizar a listagem de equipamentos
                 }
             },
             error: function(erro) {
@@ -154,4 +154,31 @@ function gerarCodigoBarras() {
     // Simular geração de código de barras com base no ID
     var codigoBarras = 'EPI' + id.toString().padStart(5, '0');
     codigoBarrasElement.value = codigoBarras;
+    
+    // Atualizar o código de barras no banco de dados
+    atualizarCodigoBarras(id, codigoBarras);
+}
+
+// Atualizar código de barras no banco de dados
+function atualizarCodigoBarras(id, codigoBarras) {
+    $.ajax({
+        type: 'post',
+        url: 'src/equipamento/atualizarCodigoBarras.php',
+        dataType: 'json',
+        data: {
+            'id': id,
+            'codigo_barras': codigoBarras
+        },
+        success: function(resposta) {
+            if (resposta['status'] === 'sucesso') {
+                console.log('Código de barras atualizado com sucesso');
+                listarEquipamentos(); // Atualizar a listagem
+            } else {
+                alert('Erro ao atualizar código de barras: ' + resposta['mensagem']);
+            }
+        },
+        error: function(erro) {
+            alert('Ocorreu um erro na requisição: ' + erro);
+        }
+    });
 }
