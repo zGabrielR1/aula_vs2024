@@ -1,58 +1,30 @@
 // Salvar
 function salvarEquipamento() {
-    var idElement = document.getElementById('txt-id');
-    var descricaoElement = document.getElementById('txt-descricao');
-    var quantidadeElement = document.getElementById('txt-quantidade');
-    var codigoBarrasElement = document.getElementById('txt-codigo-barras');
-    var fileEquipamentoElement = document.getElementById('file-equipamento');
-    
-    if (!idElement || !descricaoElement || !quantidadeElement || !codigoBarrasElement || !fileEquipamentoElement) {
-        alert('Erro: Não foi possível encontrar todos os elementos do formulário.');
-        return;
-    }
-    
-    var id = idElement.value;
-    var descricao = descricaoElement.value;
-    var quantidade = quantidadeElement.value;
-    var codigo_barras = codigoBarrasElement.value;
-    var fileEquipamento = fileEquipamentoElement.files[0];
-    var destino = id === 'NOVO' ? 'src/equipamento/inserir.php' : 'src/equipamento/atualizar.php';
+        var destino    = document.getElementById('txt-id').value === 'NOVO' 
+                            ? 'src/equipamento/inserir.php' 
+                            : 'src/equipamento/atualizar.php';
+        var formulario = new FormData(document.getElementById('form-equipamento'));
 
-    if (descricao === '') {
-        alert('Por favor, informe a descrição do equipamento!');
-        return;
-    }
+        $.ajax({
+            type: 'post',
+            url: destino,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            data: formulario ,
+            success: function(resposta) {
+                alert(resposta['mensagem']);
 
-    var formData = new FormData();
-    formData.append('id', id);
-    formData.append('descricao', descricao);
-    formData.append('quantidade_estoque', quantidade);
-    formData.append('codigo_barras', codigo_barras);
-    if (fileEquipamento) {
-        formData.append('file-equipamento', fileEquipamento);
-    }
-
-    $.ajax({
-        type: 'post',
-        url: destino,
-        dataType: 'json',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(resposta) {
-            alert(resposta['mensagem']);
-
-            if (resposta['status'] === 'sucesso') {
-                document.getElementById('form-equipamento').reset(); // Limpar formulário
-                if (idElement) idElement.value = 'NOVO'; // Resetar ID
-                listarEquipamentos();                                // Atualizar a listagem de equipamentos
+                if (resposta['status'] === 'sucesso') {
+                    document.getElementById('form-equipamento').reset(); // Limpar formulário
+                    listarProdutos();                                // Atualizar a listagem de produtos
+                }
+            },
+            error: function(erro) {
+                alert('Ocorreu um erro na requisição: ' + erro);
             }
-        },
-        error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
-        }
-    });
-}
+        });
+    }
 
 // Listar Equipamentos
 function listarEquipamentos() {
