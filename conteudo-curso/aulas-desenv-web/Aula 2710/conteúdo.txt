@@ -1,0 +1,2 @@
+Continuação da SA.
+Importante: Desconsiderar o uso da API do código de barras;

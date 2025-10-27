@@ -6,32 +6,22 @@
     <div class="row g-3">
         <div class="col-sm-3 mb-3">
             <label for="txt-id" class="form-label">ID</label>
-            <input type="text" class="form-control" id="txt-id" value="NOVO" readonly required>
+            <input type="text" class="form-control" id="txt-id" name="id" value="NOVO" readonly required>
         </div>
 
         <div class="col-sm-9 mb-3">
             <label for="txt-descricao" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="txt-descricao" placeholder="Ex: Capacete de segurança" required>
+            <input type="text" class="form-control" id="txt-descricao" name="descricao" placeholder="Ex: Capacete de segurança" required>
         </div>
 
         <div class="col-sm-4 mb-3">
             <label for="txt-quantidade" class="form-label">Quantidade em Estoque</label>
-            <input type="number" class="form-control" id="txt-quantidade" placeholder="0" min="0" required>
+            <input type="number" class="form-control" id="txt-quantidade" name="quantidade_estoque" placeholder="0" min="0" required>
         </div>
 
         <div class="col-sm-4 mb-3">
             <label for="file-equipamento" class="form-label">Foto</label>
             <input type="file" class="form-control" name="file-equipamento" id="file-equipamento" accept="image/*" >
-        </div>
-
-        <div class="col-sm-4 mb-3">
-            <label for="txt-codigo-barras" class="form-label">Código de Barras</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="txt-codigo-barras" placeholder="Código de barras" readonly>
-                <button class="btn btn-outline-secondary" type="button" onclick="gerarCodigoBarras()">
-                    <i class="bi bi-upc-scan"></i> Gerar
-                </button>
-            </div>
         </div>
 
         <div class="col-sm-6">

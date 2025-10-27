@@ -1,6 +1,13 @@
 // Salvar
 function salvarEquipamento() {
-        var destino    = document.getElementById('txt-id').value === 'NOVO' 
+        // Verificar se o elemento txt-id existe antes de acessar seu valor
+        var idElement = document.getElementById('txt-id');
+        if (!idElement) {
+            alert('Erro: Não foi possível encontrar o formulário de equipamento.');
+            return;
+        }
+        
+        var destino    = idElement.value === 'NOVO' 
                             ? 'src/equipamento/inserir.php' 
                             : 'src/equipamento/atualizar.php';
         var formulario = new FormData(document.getElementById('form-equipamento'));
@@ -116,65 +123,15 @@ function editarEquipamento(idEquipamento) {
                 var idElement = document.getElementById('txt-id');
                 var descricaoElement = document.getElementById('txt-descricao');
                 var quantidadeElement = document.getElementById('txt-quantidade');
-                var codigoBarrasElement = document.getElementById('txt-codigo-barras');
                 var fileEquipamentoElement = document.getElementById('file-equipamento');
                 
                 if (idElement) idElement.value = equipamento['id_equipamento'];
                 if (descricaoElement) descricaoElement.value = equipamento['descricao'];
                 if (quantidadeElement) quantidadeElement.value = equipamento['quantidade_estoque'];
-                if (codigoBarrasElement) codigoBarrasElement.value = equipamento['codigo_barras'] || '';
                 // Limpar o campo de arquivo, pois não podemos preencher com o valor anterior
                 if (fileEquipamentoElement) fileEquipamentoElement.value = '';
             } else {
                 alert(resposta['mensagem']);
-            }
-        },
-        error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
-        }
-    });
-}
-
-// Gerar código de barras
-function gerarCodigoBarras() {
-    var idElement = document.getElementById('txt-id');
-    var codigoBarrasElement = document.getElementById('txt-codigo-barras');
-    
-    if (!idElement || !codigoBarrasElement) {
-        alert('Erro: Não foi possível encontrar os elementos necessários.');
-        return;
-    }
-    
-    var id = idElement.value;
-    if (id === 'NOVO') {
-        alert('Por favor, salve o equipamento primeiro para gerar o código de barras.');
-        return;
-    }
-    
-    // Simular geração de código de barras com base no ID
-    var codigoBarras = 'EPI' + id.toString().padStart(5, '0');
-    codigoBarrasElement.value = codigoBarras;
-    
-    // Atualizar o código de barras no banco de dados
-    atualizarCodigoBarras(id, codigoBarras);
-}
-
-// Atualizar código de barras no banco de dados
-function atualizarCodigoBarras(id, codigoBarras) {
-    $.ajax({
-        type: 'post',
-        url: 'src/equipamento/atualizarCodigoBarras.php',
-        dataType: 'json',
-        data: {
-            'id': id,
-            'codigo_barras': codigoBarras
-        },
-        success: function(resposta) {
-            if (resposta['status'] === 'sucesso') {
-                console.log('Código de barras atualizado com sucesso');
-                listarEquipamentos(); // Atualizar a listagem
-            } else {
-                alert('Erro ao atualizar código de barras: ' + resposta['mensagem']);
             }
         },
         error: function(erro) {

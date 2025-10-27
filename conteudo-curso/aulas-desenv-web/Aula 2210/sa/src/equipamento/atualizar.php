@@ -3,7 +3,6 @@
     $id                 = $_POST['id']                 ?? null;
     $descricao          = $_POST['descricao']          ?? null;
     $quantidade_estoque = $_POST['quantidade_estoque'] ?? 0;
-    $codigo_barras      = $_POST['codigo_barras']      ?? null;
 
     if ($id == null || $descricao == null) {
         $resposta = [
@@ -55,12 +54,11 @@
         }
         
         // Atualizar equipamento
-        $sql = 'UPDATE equipamentos SET descricao = ?, quantidade_estoque = ?, foto = ?, codigo_barras = ? WHERE id_equipamento = ?';
+        $sql = 'UPDATE equipamentos SET descricao = ?, quantidade_estoque = ?, foto = ? WHERE id_equipamento = ?';
         $parametros = [
             $descricao,
             $quantidade_estoque,
             $nome_imagem,
-            $codigo_barras,
             $id
         ];
         $banco->executarComando($sql, $parametros);
