@@ -54,6 +54,15 @@
             echo json_encode($resposta);
             exit;
         }
+        if ($quantidade <= 0) {
+            $resposta = [
+                'status'    => 'erro',
+                'mensagem'  => 'Quantidade deve ser maior que zero!'
+            ];
+            echo json_encode($resposta);
+            exit;
+
+        }
         
         // Iniciar transação
         $banco->iniciarTransacao();
