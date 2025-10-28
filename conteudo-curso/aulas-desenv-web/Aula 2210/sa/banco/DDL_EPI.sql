@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `db_epis`.`equipamentos` (
   `descricao` VARCHAR(255) NOT NULL,
   `quantidade_estoque` INT NOT NULL DEFAULT 0,
   `foto` VARCHAR(255) NULL,
-  `codigo_barras` VARCHAR(255) NULL,
   PRIMARY KEY (`id_equipamento`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
@@ -60,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `db_epis`.`emprestimos` (
     REFERENCES `db_epis`.`colaboradores` (`id_colaborador`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_emprestimos_equipamentos`
+  CONSTRAINT `fk_emprestimos_equipamentos` 
     FOREIGN KEY (`id_equipamento`)
     REFERENCES `db_epis`.`equipamentos` (`id_equipamento`)
     ON DELETE NO ACTION

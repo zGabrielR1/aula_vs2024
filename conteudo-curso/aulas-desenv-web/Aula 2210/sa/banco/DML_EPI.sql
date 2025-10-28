@@ -9,8 +9,8 @@ INSERT INTO colaboradores (nome, cpf, data_nascimento) VALUES
 ('Carlos Souza', '456.789.123-34', '1990-11-30');
 
 -- Inserir alguns equipamentos de exemplo
-INSERT INTO equipamentos (descricao, quantidade_estoque, foto, codigo_barras) VALUES 
-('Capacete de Segurança', 10, NULL, 'EPI00001'),
-('Luvas de Proteção', 50, NULL, 'EPI00002'),
-('Óculos de Proteção', 25, NULL, 'EPI00003'),
-('Protetor Auricular', 15, NULL, 'EPI00004');
+INSERT INTO equipamentos (descricao, quantidade_estoque, foto) VALUES 
+('Capacete de Segurança', 10, NULL),
+('Luvas de Proteção', 50, NULL),
+('Óculos de Proteção', 25, NULL),
+('Protetor Auricular', 15, NULL);
