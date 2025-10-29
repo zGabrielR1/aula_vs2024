@@ -38,14 +38,9 @@
             </div>
         </div>
 
-        <div class="col-sm-8 mb-3">
-            <label for="txt-cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="txt-cidade" placeholder="Ex: Concórdia" required>
-        </div>
-
         <div class="col-sm-4 mb-3">
             <label class="form-label">UF</label>
-            <select class="form-select" id="list-uf">
+            <select class="form-select" id="list-uf" onchange="listarCidades(this)">
                 <option selected>Selecione a UF</option>
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
@@ -76,6 +71,13 @@
                 <option value="TO">TO</option>
             </select>
         </div>
+        <div class="col-sm-8 mb-3">
+            <label class="form-label">Cidade</label>
+            <select class="form-select" id="list-cidade">
+</select>
+        </div>
+
+
 
         <div class="col-sm-6">
             <button type="reset" class="btn btn-secondary btn-lg w-100">
