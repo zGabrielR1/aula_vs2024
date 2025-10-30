@@ -103,9 +103,6 @@
     <script src="assets/js/colaborador.js"></script>
     <script src="assets/js/equipamento.js"></script>
     <script src="assets/js/emprestimo.js"></script>
-    <script src="assets/js/cliente.js"></script>
-    <script src="assets/js/produto.js"></script>
-    <script src="assets/js/venda.js"></script>
 
     <script>
         // Carregar Telas
