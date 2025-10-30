@@ -39,6 +39,26 @@
         </div>
 
         <div class="col-sm-4 mb-3">
+            <label for="txt-cep" class="form-label">CEP</label>
+            <div class="input-group">
+                <span class="input-group-text"><button class="btn">Buscar</button></span>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="txt-cep" placeholder="Ex: 89700-000" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+            <label for="txt-rua" class="form-label">Rua</label>
+            <input type="text" class="form-control" id="txt-rua" placeholder="Ex: Av. Brasil" required>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+            <label for="txt-bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="txt-bairro" placeholder="Ex: Centro" required>
+        </div>
+        
+        <div class="col-sm-4 mb-3">
             <label class="form-label">UF</label>
             <select class="form-select" id="list-uf" onchange="listarCidades(this)">
                 <option selected>Selecione a UF</option>

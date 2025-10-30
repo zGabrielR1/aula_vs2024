@@ -22,3 +22,49 @@ function listarCidadaes(input) {
         },
     });
 };
+
+// Buscar endereço por CEP
+function buscarEnderecoPorCep() {
+    var cep = document.getElementById('txt-cep').value.replace(/\D/g, '');
+
+    if (cep.length != 8) {
+        alert('CEP inválido! Digite um CEP com 8 dígitos.');
+        return;
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: 'https://viacep.com.br/ws/' + cep + '/json/',
+        dataType: 'json',
+        success: function(resposta) {
+            if (resposta.erro) {
+                alert('CEP não encontrado.');
+                return;
+            }
+
+            // Preenche os campos com os dados retornados
+            $('#txt-rua').val(resposta.logradouro);
+            $('#txt-bairro').val(resposta.bairro);
+            $('#list-uf').val(resposta.uf);
+
+            // Atualiza a lista de cidades e seleciona a cidade automaticamente
+            listarCidades({ value: resposta.uf });
+
+            setTimeout(function() {
+                $('#list-cidade option').each(function() {
+                    if ($(this).text() == resposta.localidade) {
+                        $(this).prop('selected', true);
+                    }
+                });
+            }, 500);
+        },
+        error: function() {
+            alert('Erro ao buscar o CEP.');
+        }
+    });
+}
+
+// Liga o botão de busca do CEP
+$(document).ready(function() {
+    $('#txt-cep').closest('.input-group').find('button').click(buscarEnderecoPorCep);
+});
