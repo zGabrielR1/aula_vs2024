@@ -1,70 +1,48 @@
-// Listar cidades
-function listarCidadaes(input) {
-    var uf = inputUF.value
+function listarCidades(inputUF){
+    var uf = inputUF.value;
     $.ajax({
-        type: '',
-        url: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios',
+        type: 'get',
+        url: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + uf + '/municipios',
         dataType: 'json',
-        sucess: function() {
-            
+        success: function(resposta) {
             var listaCidades = document.getElementById('list-cidade');
-            listaClientes.innerHTML = '';
-
-            var opcao = "<option value=''>Selecione o cliente...</option>";
+            listaCidades.innerHTML = '';
+            var opcao = "<option value=''>Selecione a cidade...</option>";
             resposta.forEach(function(cidade) {
-                opcao += `<option value='${cidadee['nome']}'>${cidade['nome']}</option>`;
+                opcao += `<option value='${cidade['nome']}'>${cidade['nome']}</option>`;
             });
-            listaClientes.innerHTML = opcao;
+            listaCidades.innerHTML = opcao;
         },
         error: function(erro) {
-            alert('Ocorreu um erro na requisição '+ erro);
-
-        },
+            alert('Houve um erro na requisição ' + erro);
+        }
     });
-};
+}   
 
-// Buscar endereço por CEP
-function buscarEnderecoPorCep() {
-    var cep = document.getElementById('txt-cep').value.replace(/\D/g, '');
-
-    if (cep.length != 8) {
-        alert('CEP inválido! Digite um CEP com 8 dígitos.');
-        return;
-    }
-
+function buscarEnderecoPorCep(){
+    var cep = document.getElementById('txt-cep').value; // Valor fixo para testes
     $.ajax({
-        type: 'GET',
+        type: 'get',
         url: 'https://viacep.com.br/ws/' + cep + '/json/',
         dataType: 'json',
         success: function(resposta) {
-            if (resposta.erro) {
-                alert('CEP não encontrado.');
-                return;
-            }
+            var cidade = resposta['localidade'];
+            var uf     = resposta['uf'];
+            var bairro  = resposta['bairro'];
+            var rua     = resposta['logradouro'];
 
-            // Preenche os campos com os dados retornados
-            $('#txt-rua').val(resposta.logradouro);
-            $('#txt-bairro').val(resposta.bairro);
-            $('#list-uf').val(resposta.uf);
+            document.getElementById('txt-rua').value = rua;
+            document.getElementById('txt-bairro').value = bairro;
+            document.getElementById('list-uf').value = uf;
+            listarCidades(document.getElementById('list-uf'));
 
-            // Atualiza a lista de cidades e seleciona a cidade automaticamente
-            listarCidades({ value: resposta.uf });
-
+            // Aguarda o carregamento das cidades antes de definir o valor
             setTimeout(function() {
-                $('#list-cidade option').each(function() {
-                    if ($(this).text() == resposta.localidade) {
-                        $(this).prop('selected', true);
-                    }
-                });
-            }, 500);
+                document.getElementById('list-cidade').value = cidade;
+            }, 50);
         },
-        error: function() {
-            alert('Erro ao buscar o CEP.');
+        error: function(erro) {
+            alert('Houve um erro na requisição ' + erro);
         }
     });
 }
-
-// Liga o botão de busca do CEP
-$(document).ready(function() {
-    $('#txt-cep').closest('.input-group').find('button').click(buscarEnderecoPorCep);
-});
