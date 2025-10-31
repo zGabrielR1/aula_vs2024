@@ -43,4 +43,9 @@
         public function voltarTransacao() {
             $this->conexao->rollBack();
         }
+
+        // Método Obter Último ID Inserido
+        public function obterUltimoIdInserido() {
+            return $this->conexao->lastInsertId();
+        }
     }

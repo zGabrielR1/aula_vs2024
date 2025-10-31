@@ -56,13 +56,18 @@ function listarEquipamentos() {
                     `<img src="upload/${equipamento['foto']}" alt="Foto" style="width: 50px; height: 50px; object-fit: cover;">` : 
                     'Sem foto';
                 
+                // Exibir código de barras como imagem se existir, senão mostrar mensagem
+                var codigoBarrasHtml = equipamento['codigo_barras'] ? 
+                    `<img src="${equipamento['codigo_barras']}" alt="Código de Barras" style="max-width: 200px; height: 50px; object-fit: contain;" title="ID: ${equipamento['id_equipamento']}">` : 
+                    '<span class="text-muted">Sem código</span>';
+                
                 var linha = document.createElement('tr');
                 linha.innerHTML = `
                     <td>${equipamento['id_equipamento']}</td>
                     <td>${equipamento['descricao']}</td>
                     <td>${equipamento['quantidade_estoque']}</td>
                     <td>${fotoHtml}</td>
-                    <td>${equipamento['codigo_barras'] || 'Sem código'}</td>
+                    <td>${codigoBarrasHtml}</td>
                     <td>
                         <button class='btn' onclick='editarEquipamento(${equipamento['id_equipamento']})'>
                             <i class='bi bi-pencil-fill'></i>

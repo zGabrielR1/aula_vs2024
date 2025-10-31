@@ -42,9 +42,24 @@
         ];
         $banco->executarComando($sql, $parametros);
 
+        // Obter o ID do equipamento inserido
+        $id_equipamento = $banco->obterUltimoIdInserido();
+
+        // Gerar código de barras baseado no ID do equipamento usando API externa
+        // Usando barcodeapi.org - Code128 (formato mais comum)
+        $codigo_barras_url = 'https://barcodeapi.org/api/code128/' . $id_equipamento;
+
+        // Atualizar o equipamento com o código de barras
+        $sql = 'UPDATE equipamentos SET codigo_barras = ? WHERE id_equipamento = ?';
+        $parametros = [
+            $codigo_barras_url,
+            $id_equipamento
+        ];
+        $banco->executarComando($sql, $parametros);
+
         $resposta = [
             'status'    => 'sucesso',
-            'mensagem'  => 'Equipamento cadastrado com sucesso!'
+            'mensagem'  => 'Equipamento cadastrado com sucesso! Código de barras gerado automaticamente.'
         ];
         echo json_encode($resposta);
     } catch(PDOException $erro) {

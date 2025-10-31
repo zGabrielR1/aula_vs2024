@@ -14,7 +14,7 @@
     try {
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
-        $sql = 'SELECT id_equipamento, descricao, quantidade_estoque, foto FROM equipamentos WHERE id_equipamento = ?';
+        $sql = 'SELECT id_equipamento, descricao, quantidade_estoque, foto, codigo_barras FROM equipamentos WHERE id_equipamento = ?';
         $parametros = [$id];
         $equipamento = $banco->consultar($sql, $parametros);
 
