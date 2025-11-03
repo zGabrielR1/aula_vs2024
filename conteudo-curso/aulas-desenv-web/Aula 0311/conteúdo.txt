@@ -1,0 +1,22 @@
+TLDR: continuação
+Situação de Aprendizagem:
+
+Pasta '!Enunciado'
+
+Fazer duplas (ou sozinho)
+Ler com atenção:
+	-Contextualização
+	-Desafio
+	-Resultados e entregas
+	-Critérios de Avaliação
+Desenvolver o projeto
+- Entrega no fim de novembro
+Desconsiderar:
+Controle de Versionamento no GitHub
+-projeto padrão MVC
+Para funcionalidade de código de barras:
+	*barcodeapi.org
+	*quickchartapi.org
+	*qualquer outra que você queira (desde que seja via API)
+Para a refatoração do projeto para POO:
+	-Aguardar a conclusão das aulas de POO.
