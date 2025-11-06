@@ -1,13 +1,23 @@
 <?php
-    // Include
+    header('Content-Type: application/json');
+    
     include 'BancoDeDados.php';
 
     // Pegar os dados
-    $id_tarefa  = $_POST['txt_id'];
-    $situacao   = $_POST['list_situacao'];
+    $id_tarefa  = $_POST['id_tarefa'] ?? null;
+    $situacao   = $_POST['situacao'] ?? null;
 
-    // Atualizar
+    // Validar dados
+    if (!$id_tarefa || !$situacao) {
+        echo json_encode([
+            'status' => 'erro',
+            'mensagem' => 'Dados incompletos para atualização.'
+        ]);
+        exit;
+    }
+
     try {
+        // Atualizar
         $banco = new BancoDeDados;
         $sql = 'UPDATE tarefas SET situacao = ? WHERE id_tarefa = ?';
         $parametros = [
@@ -15,16 +25,11 @@
             $id_tarefa 
         ];
         $banco->executarComando($sql, $parametros);
-
+        
         echo json_encode([
             'status' => 'sucesso',
             'mensagem' => 'Status atualizado com sucesso!'
         ]);
-        // Alerta e retorno para a página inicial
-        echo "<script>
-                alert('Status alterado!'); 
-                window.location.href = '../index.php'
-            </script>";
     } catch (PDOException $e) {
         echo json_encode([
             'status' => 'erro',
