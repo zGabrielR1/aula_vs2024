@@ -92,35 +92,12 @@ function exibirTarefas(tarefas) {
     });
 }
 
-// Função auxiliar para escapar HTML
-function escapeHtml(text) {
-    var map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
-    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-}
-
 // Cadastrar tarefa
 function cadastrarTarefa() {
     var descricao = $('#txt_descricao').val().trim();
     var idColaborador = $('#list_colaborador').val();
     var prioridade = $('#list_prioridade').val();
-    
-    // Validação básica no cliente
-    if (!descricao) {
-        alert('Por favor, preencha a descrição');
-        return;
-    }
-    
-    if (!idColaborador) {
-        alert('Por favor, selecione um responsável');
-        return;
-    }
-    
+  
     // Enviar via AJAX
     $.ajax({
         url: 'src/api/cadastrar-tarefa.php',
@@ -172,22 +149,3 @@ function concluirTarefa(idTarefa) {
         }
     });
 }
-
-// Event listeners
-$(document).ready(function() {
-    // Carregar tarefas ao carregar a página
-    carregarTarefas();
-    
-    // Submeter formulário
-    $('#form-tarefa').on('submit', function(e) {
-        e.preventDefault();
-        cadastrarTarefa();
-    });
-    
-    // Fechar modal ao clicar fora
-    $(window).on('click', function(e) {
-        if ($(e.target).is(modal)) {
-            fecharModal();
-        }
-    });
-});

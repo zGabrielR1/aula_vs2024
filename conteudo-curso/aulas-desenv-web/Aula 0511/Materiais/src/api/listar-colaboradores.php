@@ -1,4 +1,5 @@
 <?php
+    
     include '../BancoDeDados.php';
 
     try {
@@ -10,10 +11,10 @@
         $colaboradores = $banco->consultar($sql, [], true);
         
         // Retornar JSON
-        echo json_encode([
+        $resposta = [
             'success' => true,
             'data' => $colaboradores
-        ], JSON_UNESCAPED_UNICODE);
+        ];
         
     } catch (PDOException $erro) {
         $resposta = [
