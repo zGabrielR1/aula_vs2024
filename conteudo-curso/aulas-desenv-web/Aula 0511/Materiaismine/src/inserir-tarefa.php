@@ -14,8 +14,6 @@
     $situacao   = 'A Fazer';
     $id_usuario = $_POST['list_usuario'];
 
-
-
     if (in_array(null, [$form['descricao'], $form['prioridade'], $form['id_colaborador']])) {
         $resposta = [
             'status'    => 'erro',
@@ -24,18 +22,10 @@
         echo json_encode($resposta);
         exit;
     }
-
     
-    // Alerta e retorno para a página de cadastro
-    echo "<script>
-            alert('{$mensagem}'); 
-            window.location.href = '../cad-tarefas.php'
-        </script>";
-
-   try {
-
-    // Banco de Dados
-    $banco = new BancoDeDados;
+    try {
+        // Banco de Dados
+        $banco = new BancoDeDados;
         // Verificar se deve inserir ou atualizar
         if ($id_tarefa == 'Novo') {
             // Inserir
@@ -49,7 +39,7 @@
                 $id_usuario,
             ];
             $mensagem = 'Tarefa cadastrada!';
-            // Executar
+        // Executar
         $banco->executarComando($sql, $parametros);
         } else {
             // Atualizar
@@ -62,14 +52,13 @@
                 $id_tarefa
             ];
             $mensagem = 'Tarefa alterada!';
-            // Executar
+        // Executar
         $banco->executarComando($sql, $parametros);
         }
-
-   } catch (PDOException $erro) {
-        $resposta = [
-            'status'   => 'erro',
-            'mensagem' => $erro->getMessage(),
-        ];
-        echo json_encode($resposta);
-   }
+    } catch (PDOException $erro) {
+            $resposta = [
+                'status'   => 'erro',
+                'mensagem' => $erro->getMessage(),
+            ];
+            echo json_encode($resposta);
+    }

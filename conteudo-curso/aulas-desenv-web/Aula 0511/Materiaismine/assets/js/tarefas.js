@@ -94,6 +94,7 @@ function listarColaboradores(){
 }
 
 function atualizarStatusTarefa(idTarefa, novaSituacao) {
+    
     if (!confirm('Tem certeza que deseja marcar esta tarefa como concluída?')) {
         return;
     }

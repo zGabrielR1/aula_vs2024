@@ -25,10 +25,10 @@
                 alert('Status alterado!'); 
                 window.location.href = '../index.php'
             </script>";
-    } catch (PDOException $e) {
+    } catch (PDOException $erro) {
         echo json_encode([
             'status' => 'erro',
-            'mensagem' => $e->getMessage()
+            'mensagem' => $erro->getMessage()
         ]);
     }
 ?>

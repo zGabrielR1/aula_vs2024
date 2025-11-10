@@ -20,59 +20,11 @@
         <div class="tarefas-container-wrapper">
             <h2 class="page-title">Tarefas</h2>
             <div class="tarefas-container">
-                <div class="card">
-                    <p><strong>Descrição:</strong> Tarefa D</p>
-                    <p><strong>Prioridade:</strong> Alta</p>
-                    <p><strong>Status:</strong> Pendente</p>
-                    <p><strong>Responsável:</strong> Teilor Golunski</p>
-                    <div class="card-actions">
-                        <a href="#" class="btn-link">Concluir</a>
-                    </div>
-                </div>
-        
-                <div class="card">
-                    <p><strong>Descrição:</strong> Tarefa B</p>
-                    <p><strong>Prioridade:</strong> Alta</p>
-                    <p><strong>Status:</strong> Pendente</p>
-                    <p><strong>Responsável:</strong> Mônica Prior</p>
-                    <div class="card-actions">
-                        <a href="#" class="btn-link">Concluir</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <p><strong>Descrição:</strong> Tarefa C</p>
-                    <p><strong>Prioridade:</strong> Baixa</p>
-                    <p><strong>Status:</strong> Pendente</p>
-                    <p><strong>Responsável:</strong> Cícero Nicodem</p>
-                    <div class="card-actions">
-                        <a href="#" class="btn-link">Concluir</a>
-                    </div>
-                </div>
-    
-                <div class="card">
-                    <p><strong>Descrição:</strong> Tarefa A</p>
-                    <p><strong>Prioridade:</strong> Alta</p>
-                    <p><strong>Status:</strong> Concluída</p>
-                    <p><strong>Responsável:</strong> Teilor Golunski</p>
-                    <div class="card-actions">
-                        <a href="#" class="btn-link desativado">Concluir</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <p><strong>Descrição:</strong> Tarefa E</p>
-                    <p><strong>Prioridade:</strong> Baixa</p>
-                    <p><strong>Status:</strong> Concluída</p>
-                    <p><strong>Responsável:</strong> Raquel Vernes</p>
-                    <div class="card-actions">
-                        <a href="#" class="btn-link desativado">Concluir</a>
-                    </div>
-                </div>
+                <!-- Tarefas serão carregadas aqui dinamicamente -->
             </div>
         </div>
     </main>
-
+    
     <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -84,23 +36,23 @@
                 </div> -->
                 <div class="form-group">
                     <label>Descrição</label>
-                    <input type="text" id="txt_descricao">
+                    <input type="text" id="txt-descricao">
                 </div>
                 <div class="form-group">
                     <label>Responsável</label>
-                    <select id="list_colaborador">
-                        <option value="">Escolha...</option>
+                    <select id="list-colaborador">
+                        <!-- ajax -->
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Prioridade</label>
-                    <select id="list_prioridade">
+                    <select id="list-prioridade">
                         <option value="Alta">Alta</option>
                         <option value="Baixa">Baixa</option>
                     </select>
                 </div>
                 <div class="form-group buttons">
-                    <button type="submit" class="btn-link">Cadastrar</button>
+                    <button type="button" class="btn-link" onclick="cadastrarTarefa()">Cadastrar</button>
                     <button type="button" class="btn-link" onclick="fecharModal()">Fechar</button>
                 </div>
             </form>
@@ -112,5 +64,13 @@
 
     <!-- Importar JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/tarefas.js"></script>
+    
+    <!-- Inicialização -->
+    <script>
+        listarTarefas();
+        listarColaboradores();
+    </script>
+    
 </body>
 </html>
