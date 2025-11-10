@@ -13,17 +13,17 @@ function cadastrarTarefa(){
     }
     
     $.ajax({
-        url: 'src/inserir.php',
+        url: 'src/inserir-tarefa.php',
         type: 'POST',
         data: formData,
         dataType: 'json',
         success: function(resposta) {
-            if (resposta['status'] === 'sucesso') {
-                alert(resposta['mensagem']);
+            if (resposta.success) {
+                alert(resposta.message);
                 document.getElementById('form-tarefa').reset(); // Limpar formulário
                 listarTarefas();
             } else {
-                alert('Erro: ' + resposta['mensagem']);
+                alert('Erro: ' + resposta.message);
             }
         },
         error: function(erro) {
@@ -108,11 +108,11 @@ function atualizarStatusTarefa(idTarefa, novaSituacao) {
         },
         dataType: 'json',
         success: function(resposta) {
-            if (resposta.status === 'sucesso') {
-                alert(resposta.mensagem);
+            if (resposta.success) {
+                alert(resposta.message);
                 listarTarefas(); // Atualizar a listagem
             } else {
-                alert('Erro: ' + resposta.mensagem);
+                alert('Erro: ' + resposta.message);
             }
         },
         error: function(erro) {

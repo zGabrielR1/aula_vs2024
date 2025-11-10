@@ -3,16 +3,14 @@
     include 'BancoDeDados.php';
 
     // Pegar os dados
-    $descricao  = $_POST['txt-descricao'] ?? '';
-    $prioridade = $_POST['list-prioridade'] ?? '';
-    $id_colaborador = $_POST['list-colaborador'] ?? '';
-    $situacao   = 'Pendente';
+    $id_tarefa = $_POST['id_tarefa'] ?? '';
+    $situacao = $_POST['situacao'] ?? '';
 
     // Validar campos
-    if (empty($descricao) || empty($prioridade) || empty($id_colaborador)) {
+    if (empty($id_tarefa) || empty($situacao)) {
         $resposta = [
             'success' => false,
-            'message' => 'Existem dados faltando. Verifique!',
+            'message' => 'Dados incompletos para atualizar o status!',
         ];
         echo json_encode($resposta);
         exit;
@@ -22,20 +20,18 @@
         // Banco de Dados
         $banco = new BancoDeDados;
         
-        // Inserir
-        $sql = 'INSERT INTO tarefas (descricao, prioridade, situacao, id_colaborador) VALUES (?,?,?,?)';
+        // Atualizar status
+        $sql = 'UPDATE tarefas SET situacao = ? WHERE id_tarefa = ?';
         $parametros = [
-            $descricao,
-            $prioridade,
             $situacao,
-            $id_colaborador,
+            $id_tarefa
         ];
         
         $banco->executarComando($sql, $parametros);
         
         $resposta = [
             'success' => true,
-            'message' => 'Tarefa cadastrada!',
+            'message' => 'Status da tarefa atualizado!',
         ];
         echo json_encode($resposta);
     } catch (Exception $erro) {
