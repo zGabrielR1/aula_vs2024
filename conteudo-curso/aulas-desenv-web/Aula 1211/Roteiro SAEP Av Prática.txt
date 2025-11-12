@@ -1,0 +1,22 @@
+Sistema de Gestão de Estoque:
+1) Login
+2) Menu principal
+     a) Nome do usuário logado (usar SESSION)
+     b) Botão acesso CRUD PRODUTOS
+     c) Botão acesso GESTÃO ESTOQUE
+3) CRUD PRODUTOS
+     a) Campo para consultas na listagem (tabela)
+	Como fazer: Criar um input text e um botão ao lado, ao clicar no botão faz uma requisição para o mesmo arquivo (selecionarTodos.php) que lista todos os produtos, mas o script do backend deverá possuir uma verificação, se for uma busca o sql muda ("SELECT * FROM produto WHERE nome_campo LIKE %?%") senão mantém a query normal ("SELECT * FROM produtos") 
+4) GESTÃO ESTOQUE
+     a) Listar os produtos cadastrados em ordem alfabética (order by campo asc)
+     b) Cada produto deverá ter um botão para fazer "entrada" ou "saída"
+     c) Pegar a data da movimentação
+     d) A cada "entrada" fazer o incremento da quantidade no estoque
+     d) A cada "saída" (além de decrementar o estoque) fazer uma verificação da quantidade mínima, caso atingida enviar um alerta informando.
+
+Apêndices:
+-Modelo ER do banco (Desenho das tabelas / reverse engineer do workbench)
+-Script de criação do banco (create database) e script de inserção de alguns produtos (insert)
+-Requisitos funcionais (autenticar usuário, cadastrar produto, atualizar produto...)
+-Lista de infra: (SO Windows 11, PHP 8, MySQL 8)
+-Caso de teste
