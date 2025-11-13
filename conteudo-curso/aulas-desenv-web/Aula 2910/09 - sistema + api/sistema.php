@@ -97,6 +97,7 @@
     <script src="assets/js/produto.js"></script>
     <script src="assets/js/venda.js"></script>
     <script src="assets/js/comum.js"></script>
+
     <script>
         // Carregar Telas
         function carregarTela(tela) {

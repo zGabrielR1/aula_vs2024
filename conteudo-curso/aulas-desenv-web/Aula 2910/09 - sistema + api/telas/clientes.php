@@ -38,20 +38,29 @@
             </div>
         </div>
 
-        <!-- Campo CEP agora vem antes de UF, Cidade, Bairro e Rua -->
         <div class="col-sm-4 mb-3">
             <label for="txt-cep" class="form-label">CEP</label>
-            <div class="input-group">   
-                <input type="text" class="form-control" id="txt-cep" placeholder="12345-678" required>
-                <button class="btn btn-outline-secondary" type="button" id="btn-buscar-cep" onclick="buscarEnderecoPorCep()">
-                    <i class="bi bi-search"></i>
-                </button>
+            <div class="input-group">
+                <span class="input-group-text"><button class="btn">Buscar</button></span>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="txt-cep" placeholder="Ex: 89700-000" required>
+                </div>
             </div>
         </div>
 
         <div class="col-sm-4 mb-3">
+            <label for="txt-rua" class="form-label">Rua</label>
+            <input type="text" class="form-control" id="txt-rua" placeholder="Ex: Av. Brasil" required>
+        </div>
+
+        <div class="col-sm-4 mb-3">
+            <label for="txt-bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="txt-bairro" placeholder="Ex: Centro" required>
+        </div>
+
+        <div class="col-sm-4 mb-3">
             <label class="form-label">UF</label>
-            <select class="form-select" id="list-uf" onchange='listarCidades(this)' required>
+            <select class="form-select" id="list-uf" onchange="listarCidades(this)">
                 <option selected>Selecione a UF</option>
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
@@ -85,19 +94,8 @@
 
         <div class="col-sm-8 mb-3">
             <label class="form-label">Cidade</label>
-            <select class="form-select" id="list-cidade" required>
-                <option selected>Selecione a Cidade</option>
-            </select>
-        </div>
-
-        <div class="col-sm-8 mb-3">
-            <label for="txt-rua" class="form-label">Rua</label>
-            <input type="text" class="form-control" id="txt-rua" placeholder="Ex: Rua das Flores, 123" required>
-        </div>
-
-        <div class="col-sm-4 mb-3">
-            <label for="txt-bairro" class="form-label">Bairro</label>
-            <input type="text" class="form-control" id="txt-bairro" placeholder="Ex: Centro" required>
+            <select class="form-select" id="list-cidade">
+            </select>       
         </div>
 
         <div class="col-sm-6">
