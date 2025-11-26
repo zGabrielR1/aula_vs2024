@@ -181,10 +181,13 @@ function listarEquipamentosNaEmprestimo() {
 
             var equipamentos = resposta['equipamentos'];
             equipamentos.forEach(function(equipamento) {
-                var option = document.createElement('option');
-                option.value = equipamento['id_equipamento'];
-                option.textContent = `${equipamento['descricao']} (Estoque: ${equipamento['quantidade_estoque']})`;
-                selectEquipamento.appendChild(option);
+                // Filtrar equipamentos sem estoque (melhora UX, mas backend também valida)
+                if (equipamento['quantidade_estoque'] > 0) {
+                    var option = document.createElement('option');
+                    option.value = equipamento['id_equipamento'];
+                    option.textContent = `${equipamento['descricao']} (Estoque: ${equipamento['quantidade_estoque']})`;
+                    selectEquipamento.appendChild(option);
+                }
             });
         },
         error: function(erro) {

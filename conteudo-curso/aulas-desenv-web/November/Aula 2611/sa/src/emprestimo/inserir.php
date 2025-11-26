@@ -61,7 +61,23 @@
             ];
             echo json_encode($resposta);
             exit;
-
+        }
+        
+        // Verificar se o colaborador já possui um empréstimo ativo deste equipamento
+        $sql = 'SELECT id_emprestimo FROM emprestimos 
+                WHERE id_colaborador = ? 
+                AND id_equipamento = ? 
+                AND status = "emprestado"';
+        $parametros = [$id_colaborador, $id_equipamento];
+        $emprestimo_ativo = $banco->consultar($sql, $parametros);
+        
+        if ($emprestimo_ativo) {
+            $resposta = [
+                'status'    => 'erro',
+                'mensagem'  => 'Este colaborador já possui um empréstimo ativo deste equipamento. É permitido apenas um tipo de equipamento por vez. Por favor, devolva o equipamento antes de realizar um novo empréstimo.'
+            ];
+            echo json_encode($resposta);
+            exit;
         }
         
         // Iniciar transação
