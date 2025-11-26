@@ -1,2 +1,0 @@
-C:\Users\Administrador\Desktop\PLANOS DE ENSINO\UC - Programação de Aplicativos\Avaliações Práticas\2 - Avaliação Prática - Programação Integrada com Banco de Dados\1 - Avaliação Prática\bin\Debug\Hospital_2.0.exe.config
-C:\Users\Administrador\Desktop\PLANOS DE ENSINO\UC - Programação de Aplicativos\Avaliações Práticas\2 - Avaliação Prática - Programação Integrada com Banco de Dados\1 - Avaliação Prática\bin\Debug\Hospital_2.exe.config
