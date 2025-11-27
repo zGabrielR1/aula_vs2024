@@ -1,0 +1,33 @@
+continuação da SA do dia 2210
+Desenvolva uma funcionalidade pro meu projeto de EPI: 
+A funcionalide deve ser a de código de barras ao adicionar um equipamento:
+Aqui está mais contexto:
+```
+Sua equipe de desenvolvimento foi encarregada de criar um sistema web completo de controle de
+empréstimos de EPIs que permita a gestão de equipamentos, colaboradores e usuários que operam o
+sistema. Além disso, o sistema precisa integrar funções de controle de estoque e empréstimos de forma a
+garantir que não haja falhas, como empréstimos sem estoque disponível.
+A interface do sistema deve ser amigável e intuitiva, utilizando Bootstrap ou CSS próprio, e todas as
+operações de cadastro, atualização e exclusão de registros devem ocorrer de forma assíncrona com o uso
+de requisições AJAX. O sistema deverá seguir a arquitetura MVC para garantir a organização do código e
+fácil manutenção.
+Especificações Técnicas do Sistema:
+• Login: Deve haver uma tela de login para controlar o acesso dos usuários ao sistema.
+• Menu Principal: Deve conter um menu com links para todas as funcionalidades disponíveis no
+sistema, além da opção de logout.
+• CRUD de Usuários: Controle de usuários que podem acessar o sistema, com campos como ID,
+nome, usuário e senha.
+• CRUD de Colaboradores: Controle de colaboradores que utilizam os EPIs, com campos como
+ID, nome, CPF e data de nascimento.
+Geração de Código de Barras: Deve haver uma funcionalidade para gerar códigos de barras
+para os equipamentos com base no ID de cada equipamento, utilizando uma API externa.
+```
+Para funcionalidade de código de barras: 
+    - Usar a seguinte API:
+        *barcodeapi.org
+        *quickchart.io
+        *qualquer outra que você queira (desde que seja via API)
+
+Você deve readicionar a funcionalidade do código de barras que fora introduzida no commit(), e que posteriormente fora descartada por incapacidades técnicas. Agora a tarefa é sua de realocar e readicionar e refatorar o código de barras. Entendido?
+Para a refatoração do projeto para POO:
+    -Aguardar a conclusão das Aulas de POO

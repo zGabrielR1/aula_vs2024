@@ -1,11 +1,10 @@
 <?php
     // Validação
-    $id              = $_POST['id']              ?? null;
-    $nome            = $_POST['nome']            ?? null;
-    $cpf             = $_POST['cpf']             ?? null;
+    $nome           = $_POST['nome']            ?? null;
+    $cpf            = $_POST['cpf']             ?? null;
     $data_nascimento = $_POST['data_nascimento'] ?? null;
 
-    if ($id == null || $nome == null || $cpf == null || $data_nascimento == null) {
+    if ($nome == null || $cpf == null || $data_nascimento == null) {
         $resposta = [
             'status'    => 'erro',
             'mensagem'  => 'Por favor, preencha todos os campos!'
@@ -19,33 +18,32 @@
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
         
-        // Verificar se o CPF já existe (exceto para o próprio colaborador)
-        $sql = 'SELECT id_colaborador FROM colaboradores WHERE cpf = ? AND id_colaborador != ?';
-        $parametros = [$cpf, $id];
+        // Verificar se o CPF já existe
+        $sql = 'SELECT id_colaborador FROM colaboradores WHERE cpf = ?';
+        $parametros = [$cpf];
         $colaborador_existente = $banco->consultar($sql, $parametros);
         
         if ($colaborador_existente) {
             $resposta = [
                 'status'    => 'erro',
-                'mensagem'  => 'Este CPF já está cadastrado para outro colaborador!'
+                'mensagem'  => 'Este CPF já está cadastrado!'
             ];
             echo json_encode($resposta);
             exit;
         }
         
-        // Atualizar colaborador
-        $sql = 'UPDATE colaboradores SET nome = ?, cpf = ?, data_nascimento = ? WHERE id_colaborador = ?';
+        // Inserir novo colaborador
+        $sql = 'INSERT INTO colaboradores (nome, cpf, data_nascimento) VALUES (?, ?, ?)';
         $parametros = [
             $nome,
             $cpf,
-            $data_nascimento,
-            $id
+            $data_nascimento
         ];
         $banco->executarComando($sql, $parametros);
 
         $resposta = [
             'status'    => 'sucesso',
-            'mensagem'  => 'Colaborador atualizado com sucesso!'
+            'mensagem'  => 'Colaborador cadastrado com sucesso!'
         ];
         echo json_encode($resposta);
     } catch(PDOException $erro) {
