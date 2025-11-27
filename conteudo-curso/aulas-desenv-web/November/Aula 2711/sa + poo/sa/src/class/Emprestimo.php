@@ -2,7 +2,7 @@
 
 require_once 'BancoDeDados.php';
 
-class Venda {
+class Emprestimo {
     // Atributos
     public string $id;
     public string $data_retirada;
@@ -80,33 +80,6 @@ class Venda {
         }
     }
 
-    // Método Cancelar
-    public function cancelar()
-    {
-        try {
-            $sql = 'UPDATE emprestimos SET status = "cancelado" WHERE id_emprestimo = ? AND status = "emprestado"';
-            $parametros = [ $this->id ];
-            $this->banco->executarComando($sql, $parametros);
-        } catch (PDOException $erro) {
-            throw new PDOException;
-        }
-    }
-
-    // Método Selecionar
-    public function selecionar()
-    {
-        try {
-            $sql = 'SELECT emprestimos.*, colaboradores.nome as nome_colaborador, equipamentos.descricao as descricao_equipamento
-                    FROM emprestimos
-                    INNER JOIN colaboradores USING(id_colaborador)
-                    INNER JOIN equipamentos USING(id_equipamento)
-                    ORDER BY data_retirada DESC';
-            return $this->banco->consultar($sql, [], true); 
-        } catch (PDOException $erro) {
-            throw new PDOException;
-        }
-    }
-
     // Método Devolver
     public function devolver()
     {
@@ -138,6 +111,81 @@ class Venda {
             $this->banco->salvarTransacao();
         } catch (PDOException $erro) {
             $this->banco->voltarTransacao();
+            throw new PDOException;
+        }
+    }
+
+    // Método Cancelar
+    public function cancelar()
+    {
+        try {
+            $sql = 'UPDATE emprestimos SET status = "cancelado" WHERE id_emprestimo = ? AND status = "emprestado"';
+            $parametros = [$this->id];
+            $this->banco->executarComando($sql, $parametros);
+        } catch (PDOException $erro) {
+            throw new PDOException;
+        }
+    }
+
+    // Método Selecionar
+    public function selecionar()
+    {
+        try {
+            $sql = 'SELECT emprestimos.*, colaboradores.nome as nome_colaborador, equipamentos.descricao as descricao_equipamento
+                    FROM emprestimos
+                    INNER JOIN colaboradores USING(id_colaborador)
+                    INNER JOIN equipamentos USING(id_equipamento)
+                    ORDER BY data_retirada DESC';
+            return $this->banco->consultar($sql, [], true);
+        } catch (PDOException $erro) {
+            throw new PDOException;
+        }
+    }
+
+    // Método Selecionar por ID
+    public function selecionarPorId()
+    {
+        try {
+            $sql = 'SELECT emprestimos.*, colaboradores.nome as nome_colaborador, equipamentos.descricao as descricao_equipamento
+                    FROM emprestimos
+                    INNER JOIN colaboradores USING(id_colaborador)
+                    INNER JOIN equipamentos USING(id_equipamento)
+                    WHERE id_emprestimo = ?';
+            $parametros = [$this->id];
+            return $this->banco->consultar($sql, $parametros);
+        } catch (PDOException $erro) {
+            throw new PDOException;
+        }
+    }
+
+    // Método Selecionar Em Aberto
+    public function selecionarEmAberto()
+    {
+        try {
+            $sql = 'SELECT emprestimos.*, colaboradores.nome as nome_colaborador, equipamentos.descricao as descricao_equipamento
+                    FROM emprestimos
+                    INNER JOIN colaboradores USING(id_colaborador)
+                    INNER JOIN equipamentos USING(id_equipamento)
+                    WHERE status = "emprestado"
+                    ORDER BY data_retirada DESC';
+            return $this->banco->consultar($sql, [], true);
+        } catch (PDOException $erro) {
+            throw new PDOException;
+        }
+    }
+
+    // Método Selecionar por Colaborador
+    public function selecionarPorColaborador()
+    {
+        try {
+            $sql = 'SELECT emprestimos.*, equipamentos.descricao as descricao_equipamento
+                    FROM emprestimos
+                    INNER JOIN equipamentos USING(id_equipamento)
+                    WHERE id_colaborador = ?
+                    ORDER BY data_retirada DESC';
+            $parametros = [$this->id_colaborador];
+            return $this->banco->consultar($sql, $parametros, true);
+        } catch (PDOException $erro) {
             throw new PDOException;
         }
     }
