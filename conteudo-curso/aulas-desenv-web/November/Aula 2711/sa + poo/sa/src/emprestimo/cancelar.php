@@ -27,46 +27,12 @@
             exit;
     }    
         
-        if ($emprestimo['status'] == 'devolvido') {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Não é possível cancelar um empréstimo já devolvido!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
         
-        // Iniciar transação
-        $banco->iniciarTransacao();
+        $emprestimo->cancelar();
         
-        // Atualizar o status do empréstimo para cancelado
-        $sql = 'UPDATE emprestimos SET status = "devolvido", data_devolucao = NOW() WHERE id_emprestimo = ?';
-        $parametros = [$id_emprestimo];
-        $banco->executarComando($sql, $parametros);
-        
-        // Atualizar o estoque do equipamento (devolver a quantidade emprestada)
-        $sql = 'UPDATE equipamentos SET quantidade_estoque = quantidade_estoque + ? WHERE id_equipamento = ?';
-        $parametros = [
-            $emprestimo['quantidade'],
-            $emprestimo['id_equipamento']
-        ];
-        $banco->executarComando($sql, $parametros);
-        
-        // Salvar transação
-        $banco->salvarTransacao();
-
         $resposta = [
             'status'    => 'sucesso',
             'mensagem'  => 'Empréstimo cancelado com sucesso!'
-        ];
-        echo json_encode($resposta);
-    } catch(PDOException $erro) {
-        // Reverter transação em caso de erro
-        $banco->voltarTransacao();
-        
-        $resposta = [
-            'status'    => 'erro',
-            'mensagem'  => $erro->getMessage(),
         ];
         echo json_encode($resposta);
     }
