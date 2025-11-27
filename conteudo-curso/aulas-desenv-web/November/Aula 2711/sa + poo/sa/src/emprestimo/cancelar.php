@@ -18,21 +18,10 @@
     $emprestimo = new Venda;
     $emprestimo->id = $id_emprestimo;
     
-    if (!$emprestimo) {
-        $resposta = [
-            'status'    => 'erro',
-                'mensagem'  => 'Empréstimo não encontrado!'
-            ];
-            echo json_encode($resposta);
-            exit;
-    }    
+    $emprestimo->cancelar();
         
-        
-        $emprestimo->cancelar();
-        
-        $resposta = [
-            'status'    => 'sucesso',
-            'mensagem'  => 'Empréstimo cancelado com sucesso!'
-        ];
-        echo json_encode($resposta);
-    }
+    $resposta = [
+        'status'    => 'sucesso',
+        'mensagem'  => 'Empréstimo cancelado com sucesso!'
+    ];
+    echo json_encode($resposta);
