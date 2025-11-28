@@ -3,6 +3,7 @@
     $nome       = $_POST['nome']        ?? null;
     $usuario    = $_POST['usuario']     ?? null;
     $senha      = $_POST['senha']       ?? null;
+    $tipo       = $_POST['tipo']        ?? 'comum'; // Valor padrão
 
     if ($nome == null || $usuario == null || $senha == null) {
         $resposta = [
@@ -14,32 +15,17 @@
     }
 
     try {
-        // Banco de dados
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
+        require_once '../class/Usuario.php';
+        $usuario_obj = new Usuario;
         
-        // Verificar se o usuário já existe
-        $sql = 'SELECT id_usuario FROM usuarios WHERE usuario = ?';
-        $parametros = [$usuario];
-        $usuario_existente = $banco->consultar($sql, $parametros);
+        // Configurar propriedades do usuário
+        $usuario_obj->nome = $nome;
+        $usuario_obj->usuario = $usuario;
+        $usuario_obj->senha = $senha;
+        $usuario_obj->tipo = $tipo;
         
-        if ($usuario_existente) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Este nome de usuário já está em uso!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        // Inserir novo usuário
-        $sql = 'INSERT INTO usuarios (nome, usuario, senha) VALUES (?, ?, ?)';
-        $parametros = [
-            $nome,
-            $usuario,
-            $senha
-        ];
-        $banco->executarComando($sql, $parametros);
+        // Usar o método que já gerencia validações
+        $usuario_obj->inserir();
 
         $resposta = [
             'status'    => 'sucesso',

@@ -15,11 +15,11 @@
     $usuario->id = $id;
 
     // Consultar
-    $dados = $cliente->selecionarPorId();
+    $dados = $usuario->selecionarPorId();
 
     // Retorno para o Front
     $resposta = [
         'status'  => 'sucesso',
-        'cliente' => $dados,
+        'usuario' => $dados,
     ];
     echo json_encode($resposta);

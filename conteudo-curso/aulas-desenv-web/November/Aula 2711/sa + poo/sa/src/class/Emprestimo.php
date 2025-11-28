@@ -47,6 +47,22 @@ class Emprestimo {
                 throw new Exception('Estoque insuficiente para este empréstimo!');
             }
 
+            if ($this->quantidade <= 0) {
+                throw new Exception('Quantidade deve ser maior que zero!');
+            }
+
+            // Verificar se o colaborador já possui um empréstimo ativo deste equipamento
+            $sql = 'SELECT id_emprestimo FROM emprestimos 
+                    WHERE id_colaborador = ? 
+                    AND id_equipamento = ? 
+                    AND status = "emprestado"';
+            $parametros = [$this->id_colaborador, $this->id_equipamento];
+            $emprestimo_ativo = $this->banco->consultar($sql, $parametros);
+            
+            if ($emprestimo_ativo) {
+                throw new Exception('Este colaborador já possui um empréstimo ativo deste equipamento. É permitido apenas um tipo de equipamento por vez. Por favor, devolva o equipamento antes de realizar um novo empréstimo.');
+            }
+
             // Inserir o empréstimo
             $sql = 'INSERT INTO emprestimos (
                 data_retirada,
@@ -55,9 +71,8 @@ class Emprestimo {
                 id_equipamento,
                 quantidade,
                 status
-            ) VALUES (?,?,?,?,?,?)';
+            ) VALUES (NOW(), ?, ?, ?, ?, ?)';
             $parametros = [
-                $this->data_retirada,
                 $this->data_devolucao,
                 $this->id_colaborador,
                 $this->id_equipamento,

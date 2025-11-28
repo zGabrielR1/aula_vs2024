@@ -14,94 +14,17 @@
     }
 
     try {
-        // Banco de dados
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
+        require_once '../class/Emprestimo.php';
+        $emprestimo = new Emprestimo;
         
-        // Verificar se o colaborador existe
-        $sql = 'SELECT id_colaborador FROM colaboradores WHERE id_colaborador = ?';
-        $parametros = [$id_colaborador];
-        $colaborador_existente = $banco->consultar($sql, $parametros);
+        // Configurar propriedades do empréstimo
+        $emprestimo->id_colaborador = $id_colaborador;
+        $emprestimo->id_equipamento = $id_equipamento;
+        $emprestimo->quantidade = $quantidade;
+        $emprestimo->data_devolucao = null; // Será preenchida na devolução
         
-        if (!$colaborador_existente) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Colaborador não encontrado!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        // Verificar se o equipamento existe e tem estoque suficiente
-        $sql = 'SELECT id_equipamento, quantidade_estoque FROM equipamentos WHERE id_equipamento = ?';
-        $parametros = [$id_equipamento];
-        $equipamento = $banco->consultar($sql, $parametros);
-        
-        if (!$equipamento) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Equipamento não encontrado!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        if ($equipamento['quantidade_estoque'] < $quantidade) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Quantidade solicitada maior que o estoque disponível!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        if ($quantidade <= 0) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Quantidade deve ser maior que zero!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        // Verificar se o colaborador já possui um empréstimo ativo deste equipamento
-        $sql = 'SELECT id_emprestimo FROM emprestimos 
-                WHERE id_colaborador = ? 
-                AND id_equipamento = ? 
-                AND status = "emprestado"';
-        $parametros = [$id_colaborador, $id_equipamento];
-        $emprestimo_ativo = $banco->consultar($sql, $parametros);
-        
-        if ($emprestimo_ativo) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Este colaborador já possui um empréstimo ativo deste equipamento. É permitido apenas um tipo de equipamento por vez. Por favor, devolva o equipamento antes de realizar um novo empréstimo.'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        // Iniciar transação
-        $banco->iniciarTransacao();
-        
-        // Registrar o empréstimo
-        $sql = 'INSERT INTO emprestimos (data_retirada, id_colaborador, id_equipamento, quantidade) VALUES (NOW(), ?, ?, ?)';
-        $parametros = [
-            $id_colaborador,
-            $id_equipamento,
-            $quantidade
-        ];
-        $banco->executarComando($sql, $parametros);
-        
-        // Atualizar o estoque do equipamento
-        $sql = 'UPDATE equipamentos SET quantidade_estoque = quantidade_estoque - ? WHERE id_equipamento = ?';
-        $parametros = [
-            $quantidade,
-            $id_equipamento
-        ];
-        $banco->executarComando($sql, $parametros);
-        
-        // Salvar transação
-        $banco->salvarTransacao();
+        // Usar o método completo que gerencia validações e transações
+        $emprestimo->inserir();
 
         $resposta = [
             'status'    => 'sucesso',
@@ -109,9 +32,6 @@
         ];
         echo json_encode($resposta);
     } catch(PDOException $erro) {
-        // Reverter transação em caso de erro
-        $banco->voltarTransacao();
-        
         $resposta = [
             'status'    => 'erro',
             'mensagem'  => $erro->getMessage(),

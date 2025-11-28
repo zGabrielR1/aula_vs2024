@@ -12,28 +12,14 @@
     }
 
     try {
-        // Banco de dados
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
+        require_once '../class/Usuario.php';
+        $usuario_obj = new Usuario;
         
-        // Verificar se o usuário existe
-        $sql = 'SELECT id_usuario FROM usuarios WHERE id_usuario = ?';
-        $parametros = [$id];
-        $usuario_existente = $banco->consultar($sql, $parametros);
+        // Configurar propriedades do usuário
+        $usuario_obj->id = $id;
         
-        if (!$usuario_existente) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Usuário não encontrado!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        // Excluir usuário
-        $sql = 'DELETE FROM usuarios WHERE id_usuario = ?';
-        $parametros = [$id];
-        $banco->executarComando($sql, $parametros);
+        // Usar o método que já gerencia validações
+        $usuario_obj->excluir();
 
         $resposta = [
             'status'    => 'sucesso',

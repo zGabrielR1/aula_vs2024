@@ -4,6 +4,7 @@
     $nome       = $_POST['nome']        ?? null;
     $usuario    = $_POST['usuario']     ?? null;
     $senha      = $_POST['senha']       ?? null;
+    $tipo       = $_POST['tipo']        ?? 'comum'; // Valor padrão
 
     if ($id == null || $nome == null || $usuario == null || $senha == null) {
         $resposta = [
@@ -15,33 +16,18 @@
     }
 
     try {
-        // Banco de dados
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
+        require_once '../class/Usuario.php';
+        $usuario_obj = new Usuario;
         
-        // Verificar se o usuário já existe (exceto para o próprio usuário)
-        $sql = 'SELECT id_usuario FROM usuarios WHERE usuario = ? AND id_usuario != ?';
-        $parametros = [$usuario, $id];
-        $usuario_existente = $banco->consultar($sql, $parametros);
+        // Configurar propriedades do usuário
+        $usuario_obj->id = $id;
+        $usuario_obj->nome = $nome;
+        $usuario_obj->usuario = $usuario;
+        $usuario_obj->senha = $senha;
+        $usuario_obj->tipo = $tipo;
         
-        if ($usuario_existente) {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Este nome de usuário já está em uso!'
-            ];
-            echo json_encode($resposta);
-            exit;
-        }
-        
-        // Atualizar usuário
-        $sql = 'UPDATE usuarios SET nome = ?, usuario = ?, senha = ? WHERE id_usuario = ?';
-        $parametros = [
-            $nome,
-            $usuario,
-            $senha,
-            $id
-        ];
-        $banco->executarComando($sql, $parametros);
+        // Usar o método que já gerencia validações
+        $usuario_obj->alterar();
 
         $resposta = [
             'status'    => 'sucesso',
