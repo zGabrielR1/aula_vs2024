@@ -1,39 +1,25 @@
 <?php
     // Validação
     $id = $_POST['id'] ?? null;
-    
-    if ($id == null) {
+    if (empty($id)) {
         $resposta = [
-            'status'    => 'erro',
-            'mensagem'  => 'ID do usuário não informado!'
+            'status'   => 'erro',
+            'mensagem' => 'ID do usuário inválido!',
         ];
         echo json_encode($resposta);
         exit;
     }
+    // Definição do cliente a ser selecionado
+    require_once '../class/Usuario.php';
+    $usuario = new Usuario;
+    $usuario->id = $id;
 
-    try {
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
-        $sql = 'SELECT id_usuario, nome, usuario FROM usuarios WHERE id_usuario = ?';
-        $parametros = [$id];
-        $usuario = $banco->consultar($sql, $parametros);
+    // Consultar
+    $dados = $cliente->selecionarPorId();
 
-        if ($usuario) {
-            $resposta = [
-                'status'    => 'sucesso',
-                'usuario'   => $usuario,
-            ];
-        } else {
-            $resposta = [
-                'status'    => 'erro',
-                'mensagem'  => 'Usuário não encontrado!'
-            ];
-        }
-        echo json_encode($resposta);
-    } catch(PDOException $erro) {
-        $resposta = [
-            'status'    => 'erro',
-            'mensagem'  => $erro->getMessage()
-        ];
-        echo json_encode($resposta);
-    }
+    // Retorno para o Front
+    $resposta = [
+        'status'  => 'sucesso',
+        'cliente' => $dados,
+    ];
+    echo json_encode($resposta);

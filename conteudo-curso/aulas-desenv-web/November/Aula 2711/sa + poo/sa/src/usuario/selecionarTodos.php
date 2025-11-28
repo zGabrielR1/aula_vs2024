@@ -1,19 +1,14 @@
 <?php
-    try {
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
-        $sql = 'SELECT id_usuario, nome, usuario FROM usuarios';
-        $usuarios = $banco->consultar($sql, null, true);
+    require_once '../class/Usuario.php';
+    $usuario = new Usuario;
 
-        $resposta = [
-            'status'    => 'sucesso',
-            'usuarios'  => $usuarios,
-        ];
-        echo json_encode($resposta);
-    } catch(PDOException $erro) {
-        $resposta = [
-            'status'    => 'erro',
-            'mensagem'  => $erro->getMessage()
-        ];
-        echo json_encode($resposta);
-    }
+    // Consultar
+    $dados = $usuario->selecionar();
+
+    // Retorno para o Front
+    $resposta = [
+        'status'    => 'sucesso',
+        'usuarios'  => $dados,
+    ];
+    echo json_encode($resposta);
+
