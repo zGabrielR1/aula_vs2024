@@ -12,16 +12,15 @@
     }
 
     try {
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
-        $sql = 'SELECT id_equipamento, descricao, quantidade_estoque, foto, codigo_barras FROM equipamentos WHERE id_equipamento = ?';
-        $parametros = [$id];
-        $equipamento = $banco->consultar($sql, $parametros);
+        require_once '../class/Equipamento.php';
+        $equipamento = new Equipamento;
+        $equipamento->id = $id;
+        $dados = $equipamento->selecionarPorId();
 
-        if ($equipamento) {
+        if ($dados) {
             $resposta = [
                 'status'        => 'sucesso',
-                'equipamento'   => $equipamento,
+                'equipamento'   => $dados,
             ];
         } else {
             $resposta = [

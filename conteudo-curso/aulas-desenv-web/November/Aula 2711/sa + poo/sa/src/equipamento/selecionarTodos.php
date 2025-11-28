@@ -1,9 +1,8 @@
 <?php
     try {
-        require_once '../class/BancoDeDados.php';
-        $banco = new BancoDeDados;
-        $sql = 'SELECT id_equipamento, descricao, quantidade_estoque, foto, codigo_barras FROM equipamentos';
-        $equipamentos = $banco->consultar($sql, null, true);
+        require_once '../class/Equipamento.php';
+        $equipamento = new Equipamento;
+        $equipamentos = $equipamento->selecionar();
 
         $resposta = [
             'status'        => 'sucesso',
