@@ -15,16 +15,6 @@ function registrarEmprestimo() {
         return;
     }
 
-    // Validar estoque
-    var selectEquipamento = document.getElementById('select-equipamento');
-    var optionSelecionada = selectEquipamento.options[selectEquipamento.selectedIndex];
-    var estoqueDisponivel = parseInt(optionSelecionada.getAttribute('data-estoque'));
-
-    if (parseInt(quantidade) > estoqueDisponivel) {
-        alert('A quantidade solicitada (' + quantidade + ') é maior que o estoque disponível (' + estoqueDisponivel + ').');
-        return;
-    }
-
     $.ajax({
         type: 'post',
         url: 'src/emprestimo/inserir.php',
@@ -46,7 +36,7 @@ function registrarEmprestimo() {
             }
         },
         error: function (erro) {
-            alert('Ocorreu um erro na requisição: ' + erro.responseText);
+            alert('Ocorreu um erro na requisição: ' + erro);
         }
     });
 }
@@ -196,7 +186,6 @@ function listarEquipamentosNaEmprestimo() {
                     var option = document.createElement('option');
                     option.value = equipamento['id_equipamento'];
                     option.textContent = `${equipamento['descricao']} (Estoque: ${equipamento['quantidade_estoque']})`;
-                    option.setAttribute('data-estoque', equipamento['quantidade_estoque']);
                     selectEquipamento.appendChild(option);
                 }
             });

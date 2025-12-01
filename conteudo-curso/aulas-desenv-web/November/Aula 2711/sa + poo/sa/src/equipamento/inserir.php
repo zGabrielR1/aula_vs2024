@@ -31,7 +31,7 @@
             'mensagem'  => 'Equipamento cadastrado com sucesso! Código de barras gerado automaticamente.'
         ];
         echo json_encode($resposta);
-    } catch(Throwable $erro) {
+    } catch(PDOException $erro) {
         $resposta = [
             'status'    => 'erro',
             'mensagem'  => $erro->getMessage(),

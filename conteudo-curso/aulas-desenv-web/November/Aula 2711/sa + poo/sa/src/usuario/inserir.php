@@ -32,7 +32,7 @@
             'mensagem'  => 'Usuário cadastrado com sucesso!'
         ];
         echo json_encode($resposta);
-    } catch(Throwable $erro) {
+    } catch(PDOException $erro) {
         $resposta = [
             'status'    => 'erro',
             'mensagem'  => $erro->getMessage(),
