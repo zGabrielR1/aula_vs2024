@@ -1,9 +1,9 @@
 // Registrar Empréstimo
 function registrarEmprestimo() {
-    var id              = document.getElementById('txt-id').value;
-    var id_colaborador  = document.getElementById('select-colaborador').value;
-    var id_equipamento  = document.getElementById('select-equipamento').value;
-    var quantidade      = document.getElementById('txt-quantidade').value;
+    var id = document.getElementById('txt-id').value;
+    var id_colaborador = document.getElementById('select-colaborador').value;
+    var id_equipamento = document.getElementById('select-equipamento').value;
+    var quantidade = document.getElementById('txt-quantidade').value;
 
     if (id_colaborador === '' || id_equipamento === '' || quantidade === '') {
         alert('Por favor, preencha todos os campos!');
@@ -15,16 +15,26 @@ function registrarEmprestimo() {
         return;
     }
 
+    // Validar estoque
+    var selectEquipamento = document.getElementById('select-equipamento');
+    var optionSelecionada = selectEquipamento.options[selectEquipamento.selectedIndex];
+    var estoqueDisponivel = parseInt(optionSelecionada.getAttribute('data-estoque'));
+
+    if (parseInt(quantidade) > estoqueDisponivel) {
+        alert('A quantidade solicitada (' + quantidade + ') é maior que o estoque disponível (' + estoqueDisponivel + ').');
+        return;
+    }
+
     $.ajax({
         type: 'post',
         url: 'src/emprestimo/inserir.php',
         dataType: 'json',
         data: {
-            'id_colaborador'    : id_colaborador,
-            'id_equipamento'    : id_equipamento,
-            'quantidade'        : quantidade
+            'id_colaborador': id_colaborador,
+            'id_equipamento': id_equipamento,
+            'quantidade': quantidade
         },
-        success: function(resposta) {
+        success: function (resposta) {
             alert(resposta['mensagem']);
 
             if (resposta['status'] === 'sucesso') {
@@ -35,8 +45,8 @@ function registrarEmprestimo() {
                 listarEquipamentosNaEmprestimo();                   // Atualizar seleção de equipamentos
             }
         },
-        error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
+        error: function (erro) {
+            alert('Ocorreu um erro na requisição: ' + erro.responseText);
         }
     });
 }
@@ -47,30 +57,30 @@ function listarEmprestimos() {
         type: 'post',
         url: 'src/emprestimo/selecionar.php',
         dataType: 'json',
-        success: function(resposta) {
+        success: function (resposta) {
             // Javascript para imprimir os dados da resposta dentro da tabela
             var tabelaEmprestimos = document.getElementById('tbody-emprestimos');
             tabelaEmprestimos.innerHTML = ''; // Limpar a tabela antes de imprimir os empréstimos
 
             var emprestimos = resposta['emprestimos'];
-            emprestimos.forEach(function(emprestimo) {
-                var statusHtml = emprestimo['status'] === 'emprestado' ? 
-                    '<span class="badge bg-warning">Emprestado</span>' : 
+            emprestimos.forEach(function (emprestimo) {
+                var statusHtml = emprestimo['status'] === 'emprestado' ?
+                    '<span class="badge bg-warning">Emprestado</span>' :
                     '<span class="badge bg-success">Devolvido</span>';
-                
-                var dataDevolucaoHtml = emprestimo['data_devolucao'] ? 
-                    emprestimo['data_devolucao'] : 
+
+                var dataDevolucaoHtml = emprestimo['data_devolucao'] ?
+                    emprestimo['data_devolucao'] :
                     '-';
-                
-                var acoesHtml = emprestimo['status'] === 'emprestado' ? 
+
+                var acoesHtml = emprestimo['status'] === 'emprestado' ?
                     `<button class='btn btn-sm btn-success' onclick='devolverEmprestimo(${emprestimo['id_emprestimo']})'>
                         <i class='bi bi-arrow-down-circle-fill'></i> Devolver
                     </button>
                     <button class='btn btn-sm btn-danger' onclick='cancelarEmprestimo(${emprestimo['id_emprestimo']})'>
                         <i class='bi bi-x-circle-fill'></i> Cancelar
-                    </button>` : 
+                    </button>` :
                     '-';
-                
+
                 var linha = document.createElement('tr');
                 linha.innerHTML = `
                     <td>${emprestimo['id_emprestimo']}</td>
@@ -85,7 +95,7 @@ function listarEmprestimos() {
                 tabelaEmprestimos.appendChild(linha);
             });
         },
-        error: function(erro) {
+        error: function (erro) {
             alert('Ocorreu um erro na requisição: ' + erro);
         }
     });
@@ -102,7 +112,7 @@ function devolverEmprestimo(idEmprestimo) {
             data: {
                 'id_emprestimo': idEmprestimo,
             },
-            success: function(resposta) {
+            success: function (resposta) {
                 alert(resposta['mensagem']);
 
                 if (resposta['status'] === 'sucesso') {
@@ -111,7 +121,7 @@ function devolverEmprestimo(idEmprestimo) {
                     listarEquipamentosNaEmprestimo();  // Atualizar seleção de equipamentos
                 }
             },
-            error: function(erro) {
+            error: function (erro) {
                 alert('Ocorreu um erro na requisição: ' + erro);
             }
         });
@@ -129,7 +139,7 @@ function cancelarEmprestimo(idEmprestimo) {
             data: {
                 'id_emprestimo': idEmprestimo,
             },
-            success: function(resposta) {
+            success: function (resposta) {
                 alert(resposta['mensagem']);
 
                 if (resposta['status'] === 'sucesso') {
@@ -138,7 +148,7 @@ function cancelarEmprestimo(idEmprestimo) {
                     listarEquipamentosNaEmprestimo();  // Atualizar seleção de equipamentos
                 }
             },
-            error: function(erro) {
+            error: function (erro) {
                 alert('Ocorreu um erro na requisição: ' + erro);
             }
         });
@@ -151,19 +161,19 @@ function listarColaboradoresNaEmprestimo() {
         type: 'post',
         url: 'src/colaborador/selecionarTodos.php',
         dataType: 'json',
-        success: function(resposta) {
+        success: function (resposta) {
             var selectColaborador = document.getElementById('select-colaborador');
             selectColaborador.innerHTML = '<option value="">Selecione um colaborador</option>';
 
             var colaboradores = resposta['colaboradores'];
-            colaboradores.forEach(function(colaborador) {
+            colaboradores.forEach(function (colaborador) {
                 var option = document.createElement('option');
                 option.value = colaborador['id_colaborador'];
                 option.textContent = `${colaborador['nome']} (${colaborador['cpf']})`;
                 selectColaborador.appendChild(option);
             });
         },
-        error: function(erro) {
+        error: function (erro) {
             alert('Ocorreu um erro na requisição: ' + erro);
         }
     });
@@ -175,22 +185,23 @@ function listarEquipamentosNaEmprestimo() {
         type: 'post',
         url: 'src/equipamento/selecionarTodos.php',
         dataType: 'json',
-        success: function(resposta) {
+        success: function (resposta) {
             var selectEquipamento = document.getElementById('select-equipamento');
             selectEquipamento.innerHTML = '<option value="">Selecione um equipamento</option>';
 
             var equipamentos = resposta['equipamentos'];
-            equipamentos.forEach(function(equipamento) {
+            equipamentos.forEach(function (equipamento) {
                 // Filtrar equipamentos sem estoque (melhora UX, mas backend também valida)
                 if (equipamento['quantidade_estoque'] > 0) {
                     var option = document.createElement('option');
                     option.value = equipamento['id_equipamento'];
                     option.textContent = `${equipamento['descricao']} (Estoque: ${equipamento['quantidade_estoque']})`;
+                    option.setAttribute('data-estoque', equipamento['quantidade_estoque']);
                     selectEquipamento.appendChild(option);
                 }
             });
         },
-        error: function(erro) {
+        error: function (erro) {
             alert('Ocorreu um erro na requisição: ' + erro);
         }
     });

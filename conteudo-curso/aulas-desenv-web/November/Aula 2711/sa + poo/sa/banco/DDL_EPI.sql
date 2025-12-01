@@ -7,7 +7,7 @@ USE `db_epis` ;
 CREATE TABLE IF NOT EXISTS `db_epis`.`usuarios` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NOT NULL,
-  `usuario` VARCHAR(255) NOT NULL,
+  `usuario` VARCHAR(255) NOT NULL UNIQUE,
   `senha` VARCHAR(255) NOT NULL,
   `tipo` VARCHAR(45),
   PRIMARY KEY (`id_usuario`))

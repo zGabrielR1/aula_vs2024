@@ -8,7 +8,7 @@
     // Retorno para o Front
     $resposta = [
         'status'    => 'sucesso',
-        'usuario'  => $dados,
+        'usuarios'  => $dados,
     ];
     echo json_encode($resposta);
 

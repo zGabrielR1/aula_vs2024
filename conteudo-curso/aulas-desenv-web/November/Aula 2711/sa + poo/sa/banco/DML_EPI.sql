@@ -1,6 +1,6 @@
 -- Inserir usuário administrador padrão
-INSERT INTO usuarios (nome, usuario, senha) VALUES 
-('Administrador', 'admin', 'admin123');
+INSERT INTO usuarios (nome, usuario, senha, tipo) VALUES 
+('Administrador', 'admin', 'admin123', 'admin');
 
 -- Inserir alguns colaboradores de exemplo
 INSERT INTO colaboradores (nome, cpf, data_nascimento) VALUES 
