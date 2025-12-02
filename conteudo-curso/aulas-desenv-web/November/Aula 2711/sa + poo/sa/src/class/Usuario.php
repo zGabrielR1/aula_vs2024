@@ -1,7 +1,6 @@
 <?php
 
 require_once 'BancoDeDados.php';
-// use BancoDeDados;
 
 class Usuario {
     // Atributos

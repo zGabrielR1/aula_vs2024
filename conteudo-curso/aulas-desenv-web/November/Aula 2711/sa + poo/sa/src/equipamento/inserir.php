@@ -23,7 +23,6 @@
         // Obter arquivo de imagem se fornecido
         $arquivo_imagem = isset($_FILES['file-equipamento']) ? $_FILES['file-equipamento'] : null;
         
-        // Usar o método completo que gerencia upload de imagem, inserção e geração de código de barras
         $equipamento->inserirComImagemECodigo($arquivo_imagem, '../../upload/');
 
         $resposta = [

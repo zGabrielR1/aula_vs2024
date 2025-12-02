@@ -88,7 +88,6 @@ class Equipamento {
                 throw new Exception('Equipamento não encontrado!');
             }
 
-            // Preserve existing values if not set
             if ($this->foto === null) {
                 $this->foto = $equipamento_existente['foto'];
             }
@@ -153,7 +152,6 @@ class Equipamento {
 
             // Atualizar o equipamento com a imagem correta
             $this->foto = $nome_imagem_nova;
-            // Preserve the existing barcode
             $this->codigo_barras = $equipamento_existente['codigo_barras'];
             $this->alterar();
             

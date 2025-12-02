@@ -18,7 +18,6 @@
         // Configurar propriedades do empréstimo
         $emprestimo->id = $id_emprestimo;
         
-        // Usar o método completo que gerencia validações e transações
         $emprestimo->devolver();
 
         $resposta = [

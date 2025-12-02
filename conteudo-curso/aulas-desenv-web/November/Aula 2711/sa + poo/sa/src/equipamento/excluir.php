@@ -16,7 +16,6 @@
         $equipamento = new Equipamento;
         $equipamento->id = $id;
         
-        // Usar o método completo que exclui do banco e deleta a imagem
         $equipamento->excluirComImagem('../../upload/');
 
         $resposta = [
