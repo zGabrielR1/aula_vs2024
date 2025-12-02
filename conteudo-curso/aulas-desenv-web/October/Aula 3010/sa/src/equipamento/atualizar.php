@@ -2,12 +2,12 @@
     // Validação
     $id                 = $_POST['id']                 ?? null;
     $descricao          = $_POST['descricao']          ?? null;
-    $quantidade_estoque = $_POST['quantidade_estoque'] ?? 0;
+    $quantidade_estoque = $_POST['quantidade_estoque'] ?? null;
 
-    if ($id == null || $descricao == null) {
+    if ($id == null) {
         $resposta = [
             'status'    => 'erro',
-            'mensagem'  => 'Por favor, informe todos os campos obrigatórios!'
+            'mensagem'  => 'ID do equipamento não informado!'
         ];
         echo json_encode($resposta);
         exit;
@@ -34,8 +34,8 @@
         require_once '../class/BancoDeDados.php';
         $banco = new BancoDeDados;
         
-        // Verificar se o equipamento existe
-        $sql = 'SELECT id_equipamento, foto FROM equipamentos WHERE id_equipamento = ?';
+        // Verificar se o equipamento existe e obter dados atuais
+        $sql = 'SELECT id_equipamento, foto, codigo_barras FROM equipamentos WHERE id_equipamento = ?';
         $parametros = [$id];
         $equipamento_existente = $banco->consultar($sql, $parametros);
         
@@ -53,12 +53,25 @@
             $nome_imagem = $equipamento_existente['foto'];
         }
         
-        // Atualizar equipamento
-        $sql = 'UPDATE equipamentos SET descricao = ?, quantidade_estoque = ?, foto = ? WHERE id_equipamento = ?';
+        // Usar valores existentes para campos não fornecidos
+        if ($descricao === null) {
+            $descricao = $equipamento_existente['descricao'];
+        }
+        
+        if ($quantidade_estoque === null) {
+            $quantidade_estoque = $equipamento_existente['quantidade_estoque'];
+        }
+        
+        // Preservar o código de barras existente
+        $codigo_barras = $equipamento_existente['codigo_barras'];
+        
+        // Atualizar equipamento mantendo o código de barras
+        $sql = 'UPDATE equipamentos SET descricao = ?, quantidade_estoque = ?, foto = ?, codigo_barras = ? WHERE id_equipamento = ?';
         $parametros = [
             $descricao,
             $quantidade_estoque,
             $nome_imagem,
+            $codigo_barras,
             $id
         ];
         $banco->executarComando($sql, $parametros);

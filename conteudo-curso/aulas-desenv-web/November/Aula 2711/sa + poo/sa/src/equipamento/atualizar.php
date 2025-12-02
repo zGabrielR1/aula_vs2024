@@ -2,13 +2,13 @@
     // Validação
     $id                 = $_POST['id']                 ?? null;
     $descricao          = $_POST['descricao']          ?? null;
-    $quantidade_estoque = $_POST['quantidade_estoque'] ?? 0;
+    $quantidade_estoque = $_POST['quantidade_estoque'] ?? null;
     $codigo_barras      = $_POST['codigo_barras']      ?? null;
 
-    if ($id == null || $descricao == null) {
+    if ($id == null) {
         $resposta = [
             'status'    => 'erro',
-            'mensagem'  => 'Por favor, informe todos os campos obrigatórios!'
+            'mensagem'  => 'ID do equipamento não informado!'
         ];
         echo json_encode($resposta);
         exit;
@@ -18,11 +18,16 @@
         require_once '../class/Equipamento.php';
         $equipamento = new Equipamento;
         
-        // Configurar propriedades do equipamento
         $equipamento->id = $id;
-        $equipamento->descricao = $descricao;
-        $equipamento->quantidade_estoque = $quantidade_estoque;
-        $equipamento->codigo_barras = $codigo_barras;
+        
+        $equipamento_existente = $equipamento->selecionarPorId();
+        
+        if (!$equipamento_existente) {
+            throw new Exception('Equipamento não encontrado!');
+        }
+        
+        $equipamento->descricao = $descricao ?? $equipamento_existente['descricao'];
+        $equipamento->quantidade_estoque = $quantidade_estoque ?? $equipamento_existente['quantidade_estoque'];
         
         // Obter arquivo de imagem se fornecido
         $arquivo_imagem = isset($_FILES['file-equipamento']) ? $_FILES['file-equipamento'] : null;
@@ -35,10 +40,16 @@
             'mensagem'  => 'Equipamento atualizado com sucesso!'
         ];
         echo json_encode($resposta);
-    } catch(PDOException $erro) {
+    } catch(Exception $erro) {
         $resposta = [
             'status'    => 'erro',
             'mensagem'  => $erro->getMessage(),
+        ];
+        echo json_encode($resposta);
+    } catch(PDOException $erro) {
+        $resposta = [
+            'status'    => 'erro',
+            'mensagem'  => 'Erro de conexão com o banco de dados.',
         ];
         echo json_encode($resposta);
     }

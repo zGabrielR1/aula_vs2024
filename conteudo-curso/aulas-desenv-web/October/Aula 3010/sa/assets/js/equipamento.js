@@ -28,7 +28,21 @@ function salvarEquipamento() {
                 }
             },
             error: function(erro) {
-                alert('Ocorreu um erro na requisição: ' + erro);
+                // Handle error properly to show meaningful message
+                var errorMessage = 'Ocorreu um erro na requisição.';
+                if (erro.responseText) {
+                    try {
+                        var response = JSON.parse(erro.responseText);
+                        if (response.mensagem) {
+                            errorMessage = response.mensagem;
+                        }
+                    } catch (e) {
+                        errorMessage = erro.responseText;
+                    }
+                } else if (erro.statusText) {
+                    errorMessage += ' ' + erro.statusText;
+                }
+                alert(errorMessage);
             }
         });
     }
@@ -82,7 +96,21 @@ function listarEquipamentos() {
             });
         },
         error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
+            // Handle error properly to show meaningful message
+            var errorMessage = 'Ocorreu um erro na requisição.';
+            if (erro.responseText) {
+                try {
+                    var response = JSON.parse(erro.responseText);
+                    if (response.mensagem) {
+                        errorMessage = response.mensagem;
+                    }
+                } catch (e) {
+                    errorMessage = erro.responseText;
+                }
+            } else if (erro.statusText) {
+                errorMessage += ' ' + erro.statusText;
+            }
+            alert(errorMessage);
         }
     });
 }
@@ -106,7 +134,21 @@ function excluirEquipamento(idEquipamento) {
                 }
             },
             error: function(erro) {
-                alert('Ocorreu um erro na requisição: ' + erro);
+                // Handle error properly to show meaningful message
+                var errorMessage = 'Ocorreu um erro na requisição.';
+                if (erro.responseText) {
+                    try {
+                        var response = JSON.parse(erro.responseText);
+                        if (response.mensagem) {
+                            errorMessage = response.mensagem;
+                        }
+                    } catch (e) {
+                        errorMessage = erro.responseText;
+                    }
+                } else if (erro.statusText) {
+                    errorMessage += ' ' + erro.statusText;
+                }
+                alert(errorMessage);
             }
         });
     }
@@ -140,7 +182,21 @@ function editarEquipamento(idEquipamento) {
             }
         },
         error: function(erro) {
-            alert('Ocorreu um erro na requisição: ' + erro);
+            // Handle error properly to show meaningful message
+            var errorMessage = 'Ocorreu um erro na requisição.';
+            if (erro.responseText) {
+                try {
+                    var response = JSON.parse(erro.responseText);
+                    if (response.mensagem) {
+                        errorMessage = response.mensagem;
+                    }
+                } catch (e) {
+                    errorMessage = erro.responseText;
+                }
+            } else if (erro.statusText) {
+                errorMessage += ' ' + erro.statusText;
+            }
+            alert(errorMessage);
         }
     });
 }

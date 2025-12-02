@@ -7,8 +7,8 @@ class Equipamento {
     public string $id;
     public string $descricao;
     public string $quantidade_estoque;
-    public string $foto;
-    public string $codigo_barras;
+    public ?string $foto = null;
+    public ?string $codigo_barras = null;
     private BancoDeDados $banco;
 
     // Construtor
@@ -80,12 +80,21 @@ class Equipamento {
     {
         try {
             // Verificar se o equipamento existe
-            $sql = 'SELECT id_equipamento, foto FROM equipamentos WHERE id_equipamento = ?';
+            $sql = 'SELECT id_equipamento, foto, codigo_barras FROM equipamentos WHERE id_equipamento = ?';
             $parametros = [$this->id];
             $equipamento_existente = $this->banco->consultar($sql, $parametros);
             
             if (!$equipamento_existente) {
                 throw new Exception('Equipamento não encontrado!');
+            }
+
+            // Preserve existing values if not set
+            if ($this->foto === null) {
+                $this->foto = $equipamento_existente['foto'];
+            }
+            
+            if ($this->codigo_barras === null) {
+                $this->codigo_barras = $equipamento_existente['codigo_barras'];
             }
 
             $sql = 'UPDATE equipamentos SET 
@@ -112,7 +121,7 @@ class Equipamento {
     {
         try {
             // Verificar se o equipamento existe
-            $sql = 'SELECT id_equipamento, foto FROM equipamentos WHERE id_equipamento = ?';
+            $sql = 'SELECT id_equipamento, foto, codigo_barras FROM equipamentos WHERE id_equipamento = ?';
             $parametros = [$this->id];
             $equipamento_existente = $this->banco->consultar($sql, $parametros);
             
@@ -144,6 +153,8 @@ class Equipamento {
 
             // Atualizar o equipamento com a imagem correta
             $this->foto = $nome_imagem_nova;
+            // Preserve the existing barcode
+            $this->codigo_barras = $equipamento_existente['codigo_barras'];
             $this->alterar();
             
             return true;

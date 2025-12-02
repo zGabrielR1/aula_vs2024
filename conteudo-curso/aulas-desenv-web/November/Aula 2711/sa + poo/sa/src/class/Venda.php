@@ -6,7 +6,7 @@ class Venda {
     // Atributos
     public string $id;
     public string $data_retirada;
-    public string $data_devolucao;
+    public ?string $data_devolucao = null;
     public string $id_colaborador;
     public string $id_equipamento;
     public string $quantidade;

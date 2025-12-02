@@ -6,7 +6,7 @@ class Emprestimo {
     // Atributos
     public string $id;
     public string $data_retirada;
-    public string $data_devolucao;
+    public ?string $data_devolucao = null;
     public string $id_colaborador;
     public string $id_equipamento;
     public string $quantidade;
@@ -134,11 +134,31 @@ class Emprestimo {
     public function cancelar()
     {
         try {
-            $sql = 'UPDATE emprestimos SET status = "cancelado" WHERE id_emprestimo = ? AND status = "emprestado"';
+            $this->banco->iniciarTransacao();
+
+            // Verificar se o empréstimo existe e está em aberto
+            $sql = 'SELECT * FROM emprestimos WHERE id_emprestimo = ? AND status = "emprestado"';
+            $parametros = [$this->id];
+            $emprestimo = $this->banco->consultar($sql, $parametros);
+            
+            if (!$emprestimo) {
+                throw new Exception('Empréstimo não encontrado ou já devolvido!');
+            }
+
+            // Atualizar o status do empréstimo (usar 'devolvido' pois o equipamento retorna ao estoque)
+            $sql = 'UPDATE emprestimos SET status = "devolvido" WHERE id_emprestimo = ?';
             $parametros = [$this->id];
             $this->banco->executarComando($sql, $parametros);
+
+            // Devolver a quantidade ao estoque (como acontece na devolução)
+            $sql = 'UPDATE equipamentos SET quantidade_estoque = quantidade_estoque + ? WHERE id_equipamento = ?';
+            $parametros = [$emprestimo['quantidade'], $emprestimo['id_equipamento']];
+            $this->banco->executarComando($sql, $parametros);
+
+            $this->banco->salvarTransacao();
         } catch (PDOException $erro) {
-            throw new PDOException;
+            $this->banco->voltarTransacao();
+            throw new PDOException($erro->getMessage(), (int)$erro->getCode(), $erro);
         }
     }
 

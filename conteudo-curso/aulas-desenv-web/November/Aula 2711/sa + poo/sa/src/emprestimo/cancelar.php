@@ -13,15 +13,15 @@
     }
 
     // Banco de dados
-    require_once '../class/Venda.php';
+    require_once '../class/Emprestimo.php';
 
-    $emprestimo = new Venda;
+    $emprestimo = new Emprestimo;
     $emprestimo->id = $id_emprestimo;
     
     $emprestimo->cancelar();
         
     $resposta = [
         'status'    => 'sucesso',
-        'mensagem'  => 'Empréstimo cancelado com sucesso!'
+        'mensagem'  => 'Empréstimo devolvido com sucesso!'
     ];
     echo json_encode($resposta);
