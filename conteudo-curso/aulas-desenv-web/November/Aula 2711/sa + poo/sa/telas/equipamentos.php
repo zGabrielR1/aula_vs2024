@@ -58,3 +58,18 @@
         </tbody>
     </table>
 </div>
+
+<!-- Modal para exibir imagem ampliada -->
+<div class="modal fade" id="modalImagem" tabindex="-1" aria-labelledby="modalImagemLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalImagemLabel">Visualização</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="" id="imgModal" class="img-fluid" alt="Imagem Ampliada">
+      </div>
+    </div>
+  </div>
+</div>
