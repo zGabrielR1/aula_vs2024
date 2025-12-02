@@ -31,6 +31,12 @@
             'mensagem'  => 'Empréstimo registrado com sucesso!'
         ];
         echo json_encode($resposta);
+    } catch(Exception $erro) {
+        $resposta = [
+            'status'    => 'erro',
+            'mensagem'  => $erro->getMessage(),
+        ];
+        echo json_encode($resposta);
     } catch(PDOException $erro) {
         $resposta = [
             'status'    => 'erro',

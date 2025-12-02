@@ -56,7 +56,7 @@
     } catch(PDOException $erro) {
         $resposta = [
             'status'    => 'erro',
-            'mensagem'  => $erro->getMessage(),
+            'mensagem' => $erro->getCode() == 23000 ? 'Este colaborador não pode ser excluido, pois está associado a um empréstimo.' : $erro->getMessage(),
         ];
         echo json_encode($resposta);
     }

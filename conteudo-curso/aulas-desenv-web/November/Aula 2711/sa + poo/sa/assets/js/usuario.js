@@ -48,7 +48,7 @@ function listarUsuarios() {
             tabelaUsuarios.innerHTML = ''; // Limpar a tabela antes de imprimir os usuários
 
             var usuarios = resposta['usuarios'] || [];
-            usuario.forEach(function (usuario) {
+            usuarios.forEach(function (usuario) {
                 var linha = document.createElement('tr');
                 linha.innerHTML = `
                     <td>${usuario['id_usuario']}</td>

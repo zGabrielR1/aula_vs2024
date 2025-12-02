@@ -27,7 +27,7 @@
     } catch(PDOException $erro) {
         $resposta = [
             'status'    => 'erro',
-            'mensagem'  => $erro->getMessage(),
+            'mensagem'  => $erro->getCode() == 23000 ? 'Este equipamento não pode ser excluído, pois faz parte de um empréstimo.' : $erro->getMessage(),
         ];
         echo json_encode($resposta);
     }

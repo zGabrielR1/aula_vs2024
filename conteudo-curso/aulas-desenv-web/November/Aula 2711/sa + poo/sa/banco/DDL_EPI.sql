@@ -21,7 +21,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `db_epis`.`colaboradores` (
   `id_colaborador` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NOT NULL,
-  `cpf` VARCHAR(20) NOT NULL,
+  `cpf` VARCHAR(20) NOT NULL UNIQUE,
   `data_nascimento` DATE NOT NULL,
   PRIMARY KEY (`id_colaborador`))
 ENGINE = InnoDB
